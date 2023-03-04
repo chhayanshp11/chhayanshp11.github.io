@@ -3,14 +3,14 @@ module.exports = {
   siteDescription:
     'Chhayansh Purohit is a Software Developer at Amdocs, who loves learning new things and helping tech beginners.',
   siteKeywords:
-    'Chhayansh Purohit, Chandrika, Deb, chhayanshp11, software developer, software engineer, content freelancer, face mask, face mask detection, web developer, java developer, pepper content, jamshedpur, amdocs, bit, mesra',
+    'Chhayansh Purohit, chhayanshp11, software developer, software engineer, content freelancer, face mask, face mask detection, web developer, java developer, pepper content, jamshedpur, amdocs, bit, mesra',
   siteUrl: 'https://chhayanshp11.github.io/',
   siteLanguage: 'en_US',
   googleAnalyticsID: 'UA-45666519-2',
   googleVerification: 'DCl7VAf9tcz6eD9gb67NfkNnJ1PKRNcg8qQiwpbx9Lk',
   name: 'Chhayansh Purohit',
   location: 'Jamshedpur, India',
-  email: 'ChhayanshPurohit@gmail.com',
+  email: 'Chhayansh.Purohit@gmail.com',
   github: 'https://github.com/chhayanshp11',
   twitterHandle: '@chhayanshp11',
   socialMedia: [
