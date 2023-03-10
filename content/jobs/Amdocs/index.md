@@ -1,9 +1,9 @@
 ---
 date: '2020-07-30'
-title: 'Software Developer'
-company: 'Amdocs'
-range: 'July 2020 - Present'
-url: 'https://www.amdocs.com/'
+title: 'Data Engineer'
+company: 'Infosys'
+range: 'Sept 2021 - June 2022'
+url: 'https://www.infosys.com/'
 ---
 
 - Responsible for code development, UAT support, automation of Bell Canada NM1-RTB customisation project as part of Digital Delivery scrum team. (Oct 2021 - present)

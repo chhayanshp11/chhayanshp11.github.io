@@ -5,8 +5,8 @@ subtitle: 'I love exploring new things!'
 buttonText: 'Contact Me'
 ---
 
-I'm an India based software developer with a goal-driven creative mindset and passion for learning and innovating.
+I'm an Data Science and Cyber Security Enthusiast with a goal-driven creative mindset and passion for learning and innovating.
 
-Currently working as a Software Developer at [Amdocs](https://www.amdocs.com/) and as a Freelance Content Writer for [Pepper Content](https://www.peppercontent.io).
+Currently pursuing my MS in Information Technology and Management from [The University of Texas at Dallas.](https://www.utdallas.edu/).
 
-Outside work, I occasionally blog on [Medium](https://chhayanshp11.medium.com/). Off-screen, I sketch my thoughts [here](https://pin.it/4W1Rxtj)!
+Outside work, I love adventure sports and aim to travel the world.

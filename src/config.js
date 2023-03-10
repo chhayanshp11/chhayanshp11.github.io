@@ -10,7 +10,7 @@ module.exports = {
   googleVerification: 'DCl7VAf9tcz6eD9gb67NfkNnJ1PKRNcg8qQiwpbx9Lk',
   name: 'Chhayansh Purohit',
   location: 'Jamshedpur, India',
-  email: 'Chhayansh.Purohit@gmail.com',
+  email: 'Chhayansh.Purohit@Gmail.com',
   github: 'https://github.com/chhayanshp11',
   twitterHandle: '@chhayanshp11',
   socialMedia: [
@@ -20,7 +20,7 @@ module.exports = {
     },
     {
       name: 'Linkedin',
-      url: 'https://www.linkedin.com/in/chandrika-deb/',
+      url: 'https://www.linkedin.com/in/chhayanshp11/',
     },
     {
       name: 'Codepen',

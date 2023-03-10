@@ -2,32 +2,20 @@
 title: 'About Me'
 avatar: 'profile.jpg'
 skills:
-  - Java Enterprise
-  - Spring MVC & Maven
-  - Jenkins (CI/CD)
-  - Kafka & Couchbase
-  - JUnit & TestNG
-  - IntelliJ Idea
-  - Golang
-  - Python
+  - dgd
 ---
 
-Hello! Interestingly, I got introduced to programming in my freshman year at [Birla Institute Of Technology,  Mesra](https://www.bitmesra.ac.in/) where I completed my Bachelors in Computer Science and Engineering (2016-2020) with [86.3% aggregate](https://drive.google.com/file/d/1G4UBPBP0mvWZLRdkF_EcpmKKGp7_OA8U/view?usp=sharing).
+If you are reading this, believe me, “**Dreaming, after all, is a form of planning and Dreams do come True!!**” And with that note, let me walk you through my career path and how my interest in technology lead me to where I am today :)
 
-I'm currently working as a developer for **Bell Canada** in the Amdocs Digital Delivery unit. My responsibilty includes Java/Spring based microservices development & testing. 
+I have a strong passion for using technology to solve the world's biggest problems one byte at a time. As a technologist, I have expertise in Data Science and Analytics, Cyber Security, Software Engineering, finding trends in the data and Program Management. 
 
-I'm also an [Innovation Agent](https://drive.google.com/file/d/117KS9QnDrcg7dllcAzGz_b7qQPgR3pGs/view?usp=sharing) fostering the culture of creativity and innovation at Amdocs, India.
+All these skills are aquired over the years. Interestingly, I got introduced to programming and data science in my freshman year at [Jabalpur Engineering College, Jabalpur](https://www.jecjabalpur.ac.in/) where I completed my Bachelors of Technology in Computer Science and Engineering (2017-2021).
 
-I have been awarded as Winner in [Innovation Nugget](https://drive.google.com/file/d/1PzTZkXlQV9ldZxqmBbbO94uIqrhSwvcq/view?usp=sharing), Creativity Jam, [Design Thinking Hackathon](https://drive.google.com/file/d/1hXCATvKwzHCvctHtElsqFg5YIqabz22O/view?usp=sharing) and Runners-Up in [Project ICE Fair](https://drive.google.com/file/d/1exB19OoQ5dzU2mg4qbdkNutA25TGBWV3/view?usp=sharing) by Amdocs.
+I joined [Infosys Ltd](https://www.infosys.com/) as a Data Engineer contracted to [Pfizer](https://www.pfizer.com/). Developed  Pfizer Registry Quality Control Management System, a Rules Engine for changed data capture and logic rule check using SQL database and Alteryx workflows.
+
+Decided to get into Techno-Management and flew to the States (USA) to get my Master's of Science in Information Technology and Management from [The University of Texas at Dallas.](https://www.utdallas.edu/)
 
 Here is a list of the technologies that I'm familiar with!
-
-
-
-
-
-
-
 
 
 
