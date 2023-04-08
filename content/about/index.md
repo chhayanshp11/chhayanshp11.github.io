@@ -2,14 +2,7 @@
 title: 'About Me'
 avatar: 'profile.jpg'
 skills:
-  - Data Engineering
-  - Data Analytics
-  - Python, C++
-  - SQL
-  - AWS
-  - CI/CD Pipeline
-  - Docker, Kubernetes
-  - Cyber Security
+  - dgd
 ---
 
 If you are reading this, believe me, “**Dreaming, after all, is a form of planning and Dreams do come True!!**” And with that note, let me walk you through my career path and how my interest in technology lead me to where I am today :)

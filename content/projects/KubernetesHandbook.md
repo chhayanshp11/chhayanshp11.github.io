@@ -5,7 +5,7 @@ github: 'https://github.com/chhayanshp11/kubernetes-handbook'
 external: 'https://amdocs-1.gitbook.io/kubernetes-handbook/'
 tech:
   - Kubernetes
-showInProjects: false
+showInProjects: true
 ---
 
 This handbook covers a beginner-friendly detailed understanding of Kubernetes core concepts.

@@ -8,7 +8,7 @@ tech:
   - CSS
   - Javascript
   - Bootstrap
-showInProjects: false
+showInProjects: true
 ---
 
 Portfolio Website Version 1 hosted using GitHub Pages. Updates coming soon!

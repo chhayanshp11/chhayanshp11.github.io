@@ -9,7 +9,7 @@ tech:
   - Pillow
   - NumPy
 company: ''
-showInProjects: false
+showInProjects: true
 ---
 
 A real time face recognition system developed in Python using Pillow, OpenCV and NumPy libraries

@@ -7,6 +7,7 @@ tech:
   - Go
   - Rest API
 company: ''
-showInProjects: false
+showInProjects: true
+---
 
 Collection of small code gists along my Golang learning journey

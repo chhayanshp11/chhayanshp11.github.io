@@ -6,7 +6,7 @@ external: 'https://chhayanshp11.github.io/IntelliJ-Idea-Tips-n-Tricks/'
 tech:
   - IntelliJ Idea
 company: 'Amdocs'
-showInProjects: false
+showInProjects: true
 ---
 
 IntelliJ Idea Tips and Tricks for Java/Spring Microservices Handling

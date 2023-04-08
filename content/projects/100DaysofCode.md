@@ -10,7 +10,7 @@ tech:
   - CSS
   - Python
 company: ''
-showInProjects: false
+showInProjects: true
 ---
 
 Repository dedicated to my #100DaysOfCode journey
