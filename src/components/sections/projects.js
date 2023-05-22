@@ -151,6 +151,7 @@ const Projects = ({ data }) => {
         View Complete List of Projects/Codes
       </StyledArchiveLink>
 
+
       <StyledGrid>
         <TransitionGroup className="projects">
           {projectsToShow &&
@@ -217,6 +218,8 @@ const Projects = ({ data }) => {
         </TransitionGroup>
       </StyledGrid>
     </StyledContainer>
+
+
   );
 };
 

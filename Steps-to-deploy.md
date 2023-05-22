@@ -25,3 +25,8 @@
   - npm run deploy
 -
 -
+
+
+- To start on local machine http://localhost:8000
+  - npm start
+  - npm run
