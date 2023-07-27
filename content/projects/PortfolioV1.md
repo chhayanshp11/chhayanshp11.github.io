@@ -1,8 +1,8 @@
 ---
-date: '2020-04-21'
-title: 'Portfolio Website v1'
-github: 'https://github.com/chhayanshp11/chhayanshp11.github.io-v1'
-external: 'https://chhayanshp11.github.io/chhayanshp11.github.io-v1/'
+date: '2022-04-21'
+title: 'Portfolio Website'
+github: 'https://chhayanshpurohit.com/'
+external: 'https://chhayanshpurohit.com/'
 tech:
   - HTML
   - CSS

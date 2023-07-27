@@ -1,15 +1,15 @@
 module.exports = {
-  siteTitle: 'Chhayansh Purohit | Software Developer | Content Freelancer',
+  siteTitle: 'Chhayansh Purohit | Data Engineer',
   siteDescription:
-    'Chhayansh Purohit is a Software Developer at Amdocs, who loves learning new things and helping tech beginners.',
+    'Chhayansh Purohit is a Data Engineering Enthusiast',
   siteKeywords:
-    'Chhayansh Purohit, chhayanshp11, software developer, software engineer, content freelancer, face mask, face mask detection, web developer, java developer, pepper content, jamshedpur, amdocs, bit, mesra',
+    'Chhayansh Purohit, chhayanshp11, Data Engineer, Data Analysis, Data, Python, Airflow, Google, Amazon, Netflix, Facebook, Meta, MSITM, UTD, Engineer, AWS, GCP, Azure',
   siteUrl: 'https://chhayanshp11.github.io/',
   siteLanguage: 'en_US',
-  googleAnalyticsID: 'UA-45666519-2',
-  googleVerification: 'DCl7VAf9tcz6eD9gb67NfkNnJ1PKRNcg8qQiwpbx9Lk',
+  googleAnalyticsID: 'G-LR2PKT5RNW',
+  googleVerification: '',
   name: 'Chhayansh Purohit',
-  location: 'Jamshedpur, India',
+  location: 'Dallas, Texas, USA',
   email: 'Chhayansh.Purohit@Gmail.com',
   github: 'https://github.com/chhayanshp11',
   twitterHandle: '@chhayanshp11',
@@ -22,14 +22,14 @@ module.exports = {
       name: 'Linkedin',
       url: 'https://www.linkedin.com/in/chhayanshp11/',
     },
-    {
+    /*{
       name: 'Codepen',
       url: 'https://codepen.io/chhayanshp11',
     },
     {
       name: 'Instagram',
       url: 'https://www.instagram.com/chhayanshp11',
-    },
+    },*/
     {
       name: 'Twitter',
       url: 'https://twitter.com/chhayanshp11',
