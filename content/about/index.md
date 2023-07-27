@@ -9,15 +9,13 @@ skills:
   - Problem Solving
 ---
 
-If you are reading this, believe me, “**Dreaming, after all, is a form of planning and Dreams do come True!!**” And with that note, let me walk you through my career path and how my interest in technology lead me to where I am today :)
+If you are reading this, believe me,[**Dreaming, after all, is a form of planning and Dreams do come True!!**]() And with that note, let me walk you through my career path and how my interest in technology lead me to where I am today :)
 
-I have a strong passion for using technology to solve the world's biggest problems one byte at a time. As a technologist, I have expertise in Data Science and Analytics, Cyber Security, Software Engineering, finding trends in the data and Program Management. 
+I am a passionate data engineering and cloud computing enthusiast currently pursuing my Masters at the University of Texas at Dallas. I thrive on transforming raw data into valuable insights and building scalable cloud solutions that empower businesses to make data-driven decisions.
 
-All these skills are aquired over the years. Interestingly, I got introduced to programming and data science in my freshman year at [Jabalpur Engineering College, Jabalpur](https://www.jecjabalpur.ac.in/) where I completed my Bachelors of Technology in Computer Science and Engineering (2017-2021).
+As a firm believer in the potential of technology to shape the future, I am constantly exploring the latest advancements in the data and cloud world. My journey has led me to work on diverse projects, honing my skills in data integration, ETL processes, data warehousing, and cloud architecture.
 
-I joined [Infosys Ltd](https://www.infosys.com/) as a Data Engineer contracted to [Pfizer](https://www.pfizer.com/). Developed  Pfizer Registry Quality Control Management System, a Rules Engine for changed data capture and logic rule check using SQL database and Alteryx workflows.
-
-Decided to get into Techno-Management and flew to the States (USA) to get my Master's of Science in Information Technology and Management from [The University of Texas at Dallas.](https://www.utdallas.edu/)
+Let's embark on this data-driven adventure together, shaping a better tomorrow with the power of information and technology.
 
 Here is a list of the technologies that I'm familiar with!
 
