@@ -1,8 +1,8 @@
 ---
 date: '2023-05-30'
-title: 'Data Analytics Intern'
+title: 'Data Engineering Intern'
 company: 'LPL Financial'
-range: 'May 2023 - Aug 2023'
+range: 'May 2023 - Present'
 url: 'https://www.lplfinancial.com/'
 ---
 
