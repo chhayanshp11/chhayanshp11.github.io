@@ -1,6 +1,6 @@
 ---
 date: '2023-05-30'
-title: 'Data Engineering Intern'
+title: 'Data Engineer 2'
 company: 'LPL Financial'
 range: 'May 2023 - Present'
 url: 'https://www.lplfinancial.com/'
