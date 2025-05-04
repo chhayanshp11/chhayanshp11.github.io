@@ -1,0 +1,128 @@
+name: CICD
+
+on:
+  # Run on pushes to develop branch
+  push:
+    branches: ["develop"]
+  
+  # Run on pull requests to main branch
+  pull_request:
+    branches: ["main"]
+  
+  # Allow manual deployment to production
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'develop'
+        type: choice
+        options:
+          - develop
+          - production
+      branch:
+        description: 'Branch to deploy from'
+        required: true
+        type: choice
+        default: 'develop'
+        options:
+          - main
+          - develop
+          - code
+          - custom
+      custom_branch:
+        description: 'Custom branch name (only if "custom" is selected above)'
+        required: false
+        type: string
+
+# Sets permissions of the GITHUB_TOKEN
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment per environment
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run tests
+        run: npm test
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build with Gatsby
+        env:
+          PREFIX_PATHS: 'true'
+        run: npm run build
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy-develop:
+    needs: build
+    if: github.ref == 'refs/heads/develop' || (github.event.inputs.environment == 'develop' && (github.event.inputs.branch == 'develop' || (github.event.inputs.branch == 'custom' && github.event.inputs.custom_branch != '')))
+    environment:
+      name: develop
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout specific branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch == 'custom' && github.event.inputs.custom_branch || github.event.inputs.branch }}
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  deploy-production:
+    needs: build
+    if: github.ref == 'refs/heads/main' || (github.event.inputs.environment == 'production' && (github.event.inputs.branch == 'main' || (github.event.inputs.branch == 'custom' && github.event.inputs.custom_branch != '')))
+    environment:
+      name: production
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout specific branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch == 'custom' && github.event.inputs.custom_branch || github.event.inputs.branch }}
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4 
