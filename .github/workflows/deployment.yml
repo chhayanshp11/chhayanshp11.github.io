@@ -125,4 +125,4 @@ jobs:
           ref: ${{ github.event.inputs.branch == 'custom' && github.event.inputs.custom_branch || github.event.inputs.branch }}
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4 
+        uses: actions/deploy-pages@v4
