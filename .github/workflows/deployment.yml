@@ -8,6 +8,7 @@ on:
   # Run on pull requests to main branch
   pull_request:
     branches: ["main"]
+    types: [closed]
   
   # Allow manual deployment to production
   workflow_dispatch:
@@ -129,7 +130,10 @@ jobs:
 
   deploy-production:
     needs: build
-    if: github.ref == 'refs/heads/main' || (github.event.inputs.environment == 'production' && (github.event.inputs.branch == 'main' || (github.event.inputs.branch == 'custom' && github.event.inputs.custom_branch != '')))
+    if: >-
+      (github.ref == 'refs/heads/main' ||
+      (github.event.inputs.environment == 'production' && github.event.inputs.branch == 'main') ||
+      (github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true))
     environment:
       name: production
       url: ${{ steps.deployment.outputs.page_url }}
@@ -138,7 +142,7 @@ jobs:
       - name: Checkout specific branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.inputs.branch == 'custom' && github.event.inputs.custom_branch || github.event.inputs.branch }}
+          ref: ${{ github.event.inputs.branch }}
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4 
