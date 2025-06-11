@@ -40,6 +40,8 @@ const StyledMetadata = styled.div`
   font-size: ${fontSizes.xs};
   line-height: 1;
 `;
+
+/* Commented out for future use
 const StyledGitHubLink = styled.a`
   color: ${colors.lightSlate};
   padding: 10px;
@@ -59,8 +61,10 @@ const StyledGitHubInfo = styled.div`
     margin-right: 5px;
   }
 `;
+*/
 
 const Footer = () => {
+  /* Commented out for future use
   const [githubInfo, setGitHubInfo] = useState({
     stars: null,
     forks: null,
@@ -81,6 +85,7 @@ const Footer = () => {
       })
       .catch(e => console.error(e));
   }, []);
+  */
 
   return (
     <StyledContainer>
@@ -101,15 +106,11 @@ const Footer = () => {
         </StyledSocialList>
       </StyledSocial>
       <StyledMetadata tabindex="-1">
+        {/* Commented out for future use
         <StyledGitHubLink
-          href="https://github.com/bchiang7/v4"
+          href="https://github.com/chhayanshp11"
           target="_blank"
           rel="nofollow noopener noreferrer">
-          <div>
-            Designed &amp; Built by Brittany Chiang<br></br>
-            Revised by Chhayansh Purohit
-          </div>
-
           {githubInfo.stars && githubInfo.forks && (
             <StyledGitHubInfo>
               <span>
@@ -123,13 +124,14 @@ const Footer = () => {
             </StyledGitHubInfo>
           )}
         </StyledGitHubLink>
+        */}
       </StyledMetadata>
     </StyledContainer>
   );
 };
 
 Footer.propTypes = {
-  githubInfo: PropTypes.object,
+  // githubInfo: PropTypes.object, // Commented out for future use
 };
 
 export default Footer;
