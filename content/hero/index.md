@@ -9,4 +9,4 @@ I'm an Data Engineering Enthusiast transforming complex data into actionable int
 
 Currently pursuing my MS in Information Technology and Management from [The University of Texas at Dallas.](https://www.utdallas.edu/).
 
-Outside work, I love adventure sports and aim to travel the world.
+Outside work, I love adventure sports and aim to travel the world.....
