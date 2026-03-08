@@ -1,0 +1,121 @@
+/**
+ * @name Navigationbar.tsx
+ * @type Component
+ */
+
+import { IParallax, ParallaxLayer } from "@react-spring/parallax";
+import { fontJersey15 } from "@/lib/font";
+import "../style/navigationBar.css";
+import { RefObject } from "react";
+import { cn } from "@/lib/utils";
+import { useLanguage } from "../contexts/language-context";
+
+// Propriétés de NavigationBar
+type Props = {
+  speed: number;
+  parallaxRef: RefObject<IParallax | null>;
+};
+
+// Propriétés de NavigationBarText
+type PropsAgain = {
+  text: string;
+  className?: string;
+  onClick?: () => void;
+};
+
+/**
+ * @NavigationBarText
+ *
+ * @description Texte qui va servir de lien cliquable
+ * afin de renvoyer aux autre section du porte folio.
+ *
+ * @param text: Texte qui sera affiché
+ * @param className: Classe supplémentaire à appliquer au bouton
+ * @param onClick: Fonction qui va etre réalisé lors du clique sur le texte
+ *
+ */
+function NavigationBarText({
+  text,
+  className = "",
+  onClick = () => {},
+}: PropsAgain) {
+  return (
+    <span
+      onClick={onClick}
+      className={cn(
+        "p-navigation-bar-text px-4 py-1 text-end text-2xl text-blue-9 lg:px-12 lg:text-3xl",
+        fontJersey15.className,
+        className,
+      )}
+    >
+      {text}
+    </span>
+  );
+}
+
+/**
+ * @NavigationBar
+ *
+ * @description Barre de navigation qui comportera des liens pour
+ * aller aux autres sections du porte folio, sur sa proche couche parallax.
+ *
+ * @param speed: Vitesse à transmettre à la couche parallax
+ * @param parallaxRef: Référence de l'élément global parallax
+ *
+ */
+function NavigationBar({ speed, parallaxRef }: Props) {
+  const scrollToSection = (sectionOffset: number, tab?: "experience" | "education") => {
+    parallaxRef.current?.scrollTo(sectionOffset);
+    if (tab) {
+      window.dispatchEvent(new CustomEvent('setExperienceTab', { detail: tab }));
+    }
+  };
+
+  // Récupération du textes
+  const { texts } = useLanguage();
+
+  return (
+    <ParallaxLayer
+      offset={0}
+      speed={speed}
+      className="pointer-events-none flex justify-end"
+    >
+      <div
+        id="navigation-bar"
+        className="pointer-events-auto flex flex-col pt-4 lg:pt-8"
+      >
+        {/* Navigation section About */}
+        <NavigationBarText
+          text={texts.hero.nav.about}
+          onClick={() => scrollToSection(1)}
+        ></NavigationBarText>
+
+        {/* Navigation section Experience */}
+        <NavigationBarText
+          text={texts.hero.nav.experience}
+          onClick={() => scrollToSection(2, "experience")}
+        ></NavigationBarText>
+
+        {/* Navigation section Education */}
+        <NavigationBarText
+          text={texts.hero.nav.education}
+          onClick={() => scrollToSection(2, "education")}
+        ></NavigationBarText>
+
+        {/* Navigation section Skills */}
+        <NavigationBarText
+          text={texts.hero.nav.skills}
+          onClick={() => scrollToSection(3)}
+        ></NavigationBarText>
+
+        {/* Navigation section Beyond Code */}
+        <NavigationBarText
+          text={texts.hero.nav.beyondCode}
+          onClick={() => scrollToSection(4.8)}
+        ></NavigationBarText>
+      </div>
+    </ParallaxLayer>
+  );
+}
+
+export default NavigationBar;

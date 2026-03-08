@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.p-minimal-size {
+  min-width: 320px;
+  min-height: 600px;
+}
+
+.half-ellipse {
+  width: 130%;
+  height: 280px;
+  /* hauteur importante pour bien voir la forme */
+  border-top-left-radius: 50% 100%;
+  border-top-right-radius: 50% 100%;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+
+/* Hero */
+
+.p-animation {
+  /* height: 100vh; */
+  min-width: 320px;
+  min-height: 600px;
+  display: block;
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.p-background-layer {
+  height: 100dvh;
+  width: 100%;
+  min-height: 600px;
+  min-width: 320px;
+  background-position: bottom center;
+  background-size: auto 1038px;
+  background-repeat: repeat-x;
+  position: fixed;
+}
+
+.p-fluide-anim {
+  transition: all 0.5s ease-in-out;
+}
+
+.pointer-events-none {
+  pointer-events: none;
+}
+
+
+.pointer-events-auto {
+  pointer-events: auto;
+}
+
+@media (min-width:1024px) {
+  .pointer-events-none-large {
+    pointer-events: none;
+  }
+}
+
+
+/* que des min height de 600px ( comme p-animation ) */
+
+.debug {
+  outline: solid red 3px;
+}
+
+/* Badge floating animations */
+@keyframes badgeFloat1 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  25% {
+    transform: translateY(-6px) translateX(2px);
+  }
+  50% {
+    transform: translateY(-2px) translateX(-3px);
+  }
+  75% {
+    transform: translateY(-8px) translateX(1px);
+  }
+}
+
+@keyframes badgeFloat2 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  25% {
+    transform: translateY(-4px) translateX(-2px);
+  }
+  50% {
+    transform: translateY(-7px) translateX(3px);
+  }
+  75% {
+    transform: translateY(-3px) translateX(-1px);
+  }
+}
