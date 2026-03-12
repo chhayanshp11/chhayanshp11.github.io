@@ -1,71 +1,33 @@
-<div align="center">
-  <img alt="Logo" src="https://github.com/chhayanshp11/chhayanshp11.github.io/blob/code/src/images/logo.png" width="100" />
-</div>
-<h1 align="center">
-  Portfolio Website Version 2
-</h1>
 <p align="center">
-  The second iteration of <a href="https://chhayanshp11.github.io/" target="_blank">chhayanshp11.github.io</a> built with <a href="https://www.gatsbyjs.org/" target="_blank">Gatsby</a> and hosted with <a href="https://pages.github.com/" target="_blank">Github Pages</a>
-</p>
-<p align="center">
-  Previous iterations:
-  <a href="https://github.com/chhayanshp11/chhayanshp11.github.io-v1" target="_blank">Version 1</a>
+  <a href="https://github.com/chhayanshp11">
+   🏠 Go back to my GitHub home page 🏠 
+  </a>
 </p>
 
-<div align="center">
-  <img alt="Demo" src="https://github.com/chhayanshp11/chhayanshp11.github.io/blob/code/src/images/demo.png" />
-</div>
+---
 
+# 📌 Portfolio
 
-## 🛠 Installation & Set Up
+![Project preview](./public/img/preview.png)
 
-1. Install the Gatsby CLI
+## 📝 Overview
 
-   ```sh
-   npm install -g gatsby-cli
-   ```
+Portfolio deployed on `GitHub Pages`. The main idea behind this portfolio was to use the `parallax` effect. I decided to use an image from the game `Firewatch` and build my color palette around it. I created the different parallax layers myself.
 
-2. Install and use the correct version of Node using [NVM](https://github.com/nvm-sh/nvm)
+This site is animated and responsive, but nothing beats visiting it to see for yourself.
+- 🚀 [Go to my portfolio](https://chhayanshp11.github.io)
 
-   ```sh
-   nvm install
-   ```
+## 🧰 Toolbox
 
-3. Install dependencies
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-   ```sh
-   yarn
-   ```
-
-4. Start the development server
-
-   ```sh
-   npm start
-   ```
-
-## 🚀 Building and Running for Production
-
-1. Generate a full static production build
-
-   ```sh
-   npm run build
-   ```
-
-1. Preview the site as it will appear once deployed
-
-   ```sh
-   npm run serve
-   ```
-
-## 🎨 Color Reference
-
-| Color          | Hex                                                                |
-| -------------- | ------------------------------------------------------------------ |
-| Navy           | ![#0a192f](https://via.placeholder.com/10/0a192f?text=+) `#0a192f` |
-| Light Navy     | ![#172a45](https://via.placeholder.com/10/0a192f?text=+) `#172a45` |
-| Lightest Navy  | ![#303C55](https://via.placeholder.com/10/303C55?text=+) `#303C55` |
-| Slate          | ![#8892b0](https://via.placeholder.com/10/8892b0?text=+) `#8892b0` |
-| Light Slate    | ![#a8b2d1](https://via.placeholder.com/10/a8b2d1?text=+) `#a8b2d1` |
-| Lightest Slate | ![#ccd6f6](https://via.placeholder.com/10/ccd6f6?text=+) `#ccd6f6` |
-| White          | ![#e6f1ff](https://via.placeholder.com/10/e6f1ff?text=+) `#e6f1ff` |
-| Green          | ![#64ffda](https://via.placeholder.com/10/64ffda?text=+) `#64ffda` |
+---
+<p align="center">
+  <a href="https://github.com/chhayanshp11">
+   🏠 Go back to my GitHub home page 🏠 
+  </a>
+</p>
