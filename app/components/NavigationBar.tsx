@@ -44,7 +44,7 @@ function NavigationBarText({
     <span
       onClick={onClick}
       className={cn(
-        "p-navigation-bar-text px-4 py-1 text-end max-sm:text-lg text-2xl text-blue-9 lg:px-12 lg:text-3xl max-sm:pr-2 max-sm:pl-0 max-sm:py-[1px] max-sm:leading-tight",
+        "p-navigation-bar-text px-4 py-1 text-end max-sm:text-[19px] text-2xl text-blue-9 lg:px-12 lg:text-3xl max-sm:pr-2 max-sm:pl-0 max-sm:py-[1px] max-sm:leading-tight",
         fontJersey15.className,
         className,
       )}

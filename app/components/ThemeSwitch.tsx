@@ -27,7 +27,7 @@ function PersonaToggle({ speed }: Props) {
             <polyline points="16 18 22 12 16 6" />
             <polyline points="8 6 2 12 8 18" />
           </svg>
-          <span className="font-semibold text-[8px] md:text-sm">Engineer</span>
+          <span className="font-semibold text-[10px] md:text-sm">Engineer</span>
         </div>
 
         <div className="h-3 w-px bg-white/10" />
@@ -45,7 +45,7 @@ function PersonaToggle({ speed }: Props) {
             <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
             <circle cx="12" cy="13" r="4" />
           </svg>
-          <span className="font-semibold text-[8px] md:text-sm">Traveller</span>
+          <span className="font-semibold text-[10px] md:text-sm">Traveller</span>
         </div>
       </div>
     </ParallaxLayer>
