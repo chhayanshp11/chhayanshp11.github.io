@@ -6,7 +6,7 @@
 import { IParallax, ParallaxLayer } from "@react-spring/parallax";
 import { fontJersey15 } from "@/lib/font";
 import "../style/navigationBar.css";
-import { RefObject, useState } from "react";
+import { RefObject } from "react";
 import { cn } from "@/lib/utils";
 import { useMobile } from "../hooks/useMobile";
 import textsEn from "../../lang/data-texts-en";
@@ -65,7 +65,6 @@ function NavigationBarText({
  *
  */
 function NavigationBar({ speed, parallaxRef }: Props) {
-  const [isOpen, setIsOpen] = useState(false);
   const isMobile = useMobile();
 
   const scrollToSection = (sectionOffset: number, tab?: "experience" | "education") => {
@@ -79,7 +78,6 @@ function NavigationBar({ speed, parallaxRef }: Props) {
     if (tab) {
       window.dispatchEvent(new CustomEvent('setExperienceTab', { detail: tab }));
     }
-    setIsOpen(false);
   };
 
   // Récupération du textes
