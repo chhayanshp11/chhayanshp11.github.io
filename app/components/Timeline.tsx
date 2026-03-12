@@ -4,6 +4,7 @@
  */
 
 
+import Image from "next/image";
 import "../style/timeline.css";
 import { fontJersey15, fontInter } from "@/lib/font";
 import { cn } from "@/lib/utils";
@@ -130,8 +131,13 @@ const TimelineMiddle = ({ logoSrc }: { logoSrc?: string }) => {
   return (
     <div className="timeline-middle">
       {logoSrc ? (
-        <div className="w-9 h-9 rounded-full bg-white/95 flex items-center justify-center shadow-md overflow-hidden">
-          <img src={logoSrc} alt="logo" className="w-full h-full object-cover rounded-full" />
+        <div className="w-9 h-9 rounded-full bg-white/95 flex items-center justify-center shadow-md overflow-hidden relative">
+          <Image 
+            src={logoSrc} 
+            alt="logo" 
+            fill
+            className="object-cover rounded-full" 
+          />
         </div>
       ) : (
         <div className="w-3 h-3 rounded-full bg-[#a2fff4] shadow-[0_0_8px_rgba(162,255,244,0.6)]" />

@@ -8,7 +8,6 @@ import { fontJersey15 } from "@/lib/font";
 import "../style/navigationBar.css";
 import { RefObject, useState } from "react";
 import { cn } from "@/lib/utils";
-import SwitchDark from "./DarkSwitch";
 import { useMobile } from "../hooks/useMobile";
 import textsEn from "../../lang/data-texts-en";
 

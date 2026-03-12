@@ -4,7 +4,6 @@
  */
 
 import "../style/backToTop.css";
-import { fontJersey15 } from "@/lib/font";
 import { cn } from "@/lib/utils";
 import { IParallax } from "@react-spring/parallax";
 import { RefObject } from "react";

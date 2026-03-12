@@ -10,7 +10,6 @@ import { fontJersey15, fontInter } from "@/lib/font";
 
 import "./style/footer.css";
 import textsEn from "../lang/data-texts-en";
-import { useMobile } from "./hooks/useMobile";
 
 
 // Propriétés

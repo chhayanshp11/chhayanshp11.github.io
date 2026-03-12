@@ -60,8 +60,8 @@ function HomeContent() {
       return () => window.removeEventListener("scroll", handleScrollMobile);
     } else {
       // Must wait for ref to be available using a microtask if it just mounted
+      const container = parallaxRef.current?.container.current;
       const setupDesktopListener = () => {
-        const container = parallaxRef.current?.container.current;
         if (container) {
           container.addEventListener("scroll", handleScrollDesktop);
         }
@@ -71,7 +71,6 @@ function HomeContent() {
       
       return () => {
         clearTimeout(timeoutId);
-        const container = parallaxRef.current?.container.current;
         if (container) {
           container.removeEventListener("scroll", handleScrollDesktop);
         }
