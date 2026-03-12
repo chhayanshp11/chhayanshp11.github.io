@@ -8,7 +8,8 @@ import "../style/timeline.css";
 import { fontJersey15, fontInter } from "@/lib/font";
 import { cn } from "@/lib/utils";
 import { useOnScreen } from "../hooks/useOnScreen";
-import { useLanguage } from "../contexts/language-context";
+import textsEn from "../../lang/data-texts-en";
+import { useMobile } from "../hooks/useMobile";
 
 // Propriétés de Timeline
 type Props = {
@@ -19,6 +20,8 @@ type Props = {
 type TimelineTextProps = {
   name: string;
   desc: string;
+  date?: string;
+  location?: string; // Added location
   right?: boolean;
   subRoles?: { title: string; date: string }[];
 };
@@ -28,6 +31,7 @@ type TimelineStepProps = {
   name: string;
   desc: string;
   date: string;
+  location?: string; // Added location
   right?: boolean;
   isFirst?: boolean;
   isLast?: boolean;
@@ -46,29 +50,50 @@ type TimelineDateProps = {
  *
  * @description Affiche le titre et la description de l'étape.
  */
-const TimelineText = ({ name, desc, right = false, subRoles }: TimelineTextProps) => {
+const TimelineText = ({ name, desc, date, location, right = false, subRoles }: TimelineTextProps) => {
+  const isMobile = useMobile();
+  const effectiveRight = isMobile ? true : right;
+
   return (
     <div
       className={cn(
-        "p-fluide-anim flex w-20 flex-col items-center hover:scale-105 md:w-72 lg:min-h-24 transition-all cursor-pointer",
-        right
+        "p-fluide-anim flex flex-col hover:scale-105 transition-all cursor-pointer",
+        isMobile ? "w-full pl-4 items-start py-2" : "w-20 md:w-72 lg:min-h-24 items-center",
+        effectiveRight
           ? "timeline-end hover:translate-x-3"
           : "timeline-start hover:-translate-x-3",
       )}
     >
+      {/* Date on TOP for Mobile only */}
+      {isMobile && date && (
+        <span className="text-[10px] text-white/40 mb-1 font-medium tracking-wider uppercase">
+          {date}
+        </span>
+      )}
+
       {/* Company / Institution name */}
       <span
         className={cn(
-          "text-center text-base/4 opacity-90 lg:text-xl/5",
+          "text-base/4 opacity-90 lg:text-xl/5",
+          isMobile ? "text-left" : "text-center",
           fontJersey15.className,
         )}
       >
         {name}
       </span>
+
+      {/* Location */}
+      {location && (
+        <span className={cn("text-[10px] text-[#a2fff4]/40 mt-0.5", isMobile ? "text-left" : "text-center", fontInter.className)}>
+          📍 {location}
+        </span>
+      )}
+
       {/* Position title */}
       <div
         className={cn(
-          "mt-1.5 text-center text-xs text-[#a2fff4]/80 hidden md:inline-block",
+          "mt-1.5 text-xs text-[#a2fff4]/80",
+          isMobile ? "text-left mb-2" : "text-center hidden md:inline-block",
           fontInter.className,
         )}
       >
@@ -76,7 +101,7 @@ const TimelineText = ({ name, desc, right = false, subRoles }: TimelineTextProps
       </div>
       {/* Sub-roles for grouped entries (e.g. LPL) */}
       {subRoles && subRoles.length > 0 && (
-        <div className="mt-2.5 w-full hidden md:block">
+        <div className={cn("mt-2.5 w-full", isMobile ? "block" : "hidden md:block")}>
           {subRoles.map((role, i) => (
             <div
               key={i}
@@ -86,7 +111,7 @@ const TimelineText = ({ name, desc, right = false, subRoles }: TimelineTextProps
                 fontInter.className,
               )}
             >
-              <span className="text-xs text-[#c4ebff]/90">{role.title}</span>
+              <span className={cn("text-xs text-[#c4ebff]/90", isMobile && "text-[10px]")}>{role.title}</span>
               <span className="text-[10px] opacity-40 ml-2 shrink-0">{role.date}</span>
             </div>
           ))}
@@ -119,6 +144,9 @@ const TimelineMiddle = ({ logoSrc }: { logoSrc?: string }) => {
  * @TimelineDate
  */
 const TimelineDate = ({ date, right = false }: TimelineDateProps) => {
+  const isMobile = useMobile();
+  if (isMobile) return null; // Date is handled inside TimelineText on mobile
+
   return (
     <div
       className={cn(
@@ -138,6 +166,7 @@ const TimelineStep = ({
   name,
   desc,
   date,
+  location,
   right = false,
   isFirst = false,
   isLast = false,
@@ -148,7 +177,7 @@ const TimelineStep = ({
     <li>
       <hr className={cn(isFirst ? "first-hr" : "", "dark:invert")} />
       <TimelineMiddle logoSrc={logoSrc} />
-      <TimelineText name={name} desc={desc} right={right} subRoles={subRoles} />
+      <TimelineText name={name} desc={desc} date={date} location={location} right={right} subRoles={subRoles} />
       <TimelineDate date={date} right={!right} />
       <hr className={cn(isLast ? "last-hr" : "", "dark:invert")} />
     </li>
@@ -160,17 +189,19 @@ const TimelineStep = ({
  * Fonction principale
  */
 function Timeline({ className = "" }: Props) {
+  const isMobile = useMobile();
   // Référence pour l'apparition au scroll
   const [lineRef, lineVisible] = useOnScreen<HTMLUListElement>();
 
   // Récupération du textes
-  const { texts } = useLanguage();
+  const texts = textsEn;
 
   return (
     <ul
       ref={lineRef}
       className={cn(
-        "delay-400 timeline transition-all duration-1000 ease-in-out lg:timeline-vertical",
+        "delay-400 timeline transition-all duration-1000 ease-in-out lg:timeline-vertical max-lg:timeline-vertical max-lg:px-4",
+        isMobile ? "timeline-snap-icon" : "",
         className,
         lineVisible
           ? ""
@@ -180,11 +211,13 @@ function Timeline({ className = "" }: Props) {
       {/* LPL Financial — grouped with sub-roles */}
       <TimelineStep
         name="LPL Financial"
-        desc="Austin, TX"
+        desc=""
         date="2023 - Present"
+        location={texts.about.timeline.lpl0.location}
         isFirst
         logoSrc="https://www.google.com/s2/favicons?domain=lpl.com&sz=128"
         subRoles={[
+          { title: texts.about.timeline.lpl0.desc, date: texts.about.timeline.lpl0.date },
           { title: texts.about.timeline.lpl1.desc, date: texts.about.timeline.lpl1.date },
           { title: texts.about.timeline.lpl2.desc, date: texts.about.timeline.lpl2.date },
           { title: texts.about.timeline.lpl3.desc, date: texts.about.timeline.lpl3.date },
@@ -194,8 +227,10 @@ function Timeline({ className = "" }: Props) {
       {/* Education (UTD) */}
       <TimelineStep
         name={texts.about.timeline.utd.name}
+        //desc="ddd"
         desc={texts.about.timeline.utd.desc}
         date={texts.about.timeline.utd.date}
+        location={texts.about.timeline.utd.location}
         right
         logoSrc="https://www.google.com/s2/favicons?domain=utdallas.edu&sz=128"
       />
@@ -205,6 +240,7 @@ function Timeline({ className = "" }: Props) {
         name={texts.about.timeline.oxyl.name}
         desc={texts.about.timeline.oxyl.desc}
         date={texts.about.timeline.oxyl.date}
+        location={texts.about.timeline.oxyl.location}
         logoSrc="https://www.google.com/s2/favicons?domain=infosys.com&sz=128"
       />
 
@@ -213,6 +249,7 @@ function Timeline({ className = "" }: Props) {
         name={texts.about.timeline.sopra.name}
         desc={texts.about.timeline.sopra.desc}
         date={texts.about.timeline.sopra.date}
+        location={texts.about.timeline.sopra.location}
         right
         logoSrc="https://www.google.com/s2/favicons?domain=worldsoftit.com&sz=128"
       />
@@ -222,6 +259,7 @@ function Timeline({ className = "" }: Props) {
         name={texts.about.timeline.jec.name}
         desc={texts.about.timeline.jec.desc}
         date={texts.about.timeline.jec.date}
+        location={texts.about.timeline.jec.location}
         isLast
         logoSrc="/img/jec_logo.png"
       />

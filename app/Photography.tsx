@@ -8,12 +8,12 @@
 
 "use client";
 
-import { ParallaxLayer } from "@react-spring/parallax";
 import { fontJersey15, fontInter } from "@/lib/font";
 import { cn } from "@/lib/utils";
 import { useOnScreen } from "./hooks/useOnScreen";
 import Image from "next/image";
 import Link from "next/link";
+import SectionWrapper from "./components/SectionWrapper";
 
 import mountainsImg from "../public/img/photography/mountains.png";
 import streetImg from "../public/img/photography/street.png";
@@ -23,10 +23,10 @@ function Photography() {
   const [ref, visible] = useOnScreen<HTMLDivElement>();
 
   return (
-    <ParallaxLayer
-      offset={5.8}
+    <SectionWrapper
+      offset={7.2}
       speed={0}
-      className="pointer-events-auto flex items-center"
+      className="pointer-events-auto flex items-center w-full"
     >
       <div
         ref={ref}
@@ -86,7 +86,7 @@ function Photography() {
           </button>
         </Link>
       </div>
-    </ParallaxLayer>
+    </SectionWrapper>
   );
 }
 

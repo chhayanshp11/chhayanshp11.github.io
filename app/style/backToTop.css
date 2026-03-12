@@ -1,16 +1,35 @@
-.p-backtotop {
-    text-shadow: 0 0 7px #a2fff4AA;
+/* Glassmorphism and cascading animations for Back to Top */
+
+.back-to-top-glow {
+    overflow: hidden;
 }
 
-.p-backtotop:hover {
-    text-shadow: 0 0 25px #a2fff4;
+@keyframes pulse-up {
+    0%, 100% {
+        opacity: 0.3;
+        transform: translateY(0);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-3px);
+    }
 }
 
-
-.dark .p-backtotop {
-    text-shadow: 0 0 3px #00131cAA;
+.btt-chevron-1 {
+    animation: pulse-up 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-.dark .p-backtotop:hover {
-    text-shadow: 0 0 25px #00131c;
+.btt-chevron-2 {
+    animation: pulse-up 2s cubic-bezier(0.4, 0, 0.6, 1) 200ms infinite;
+}
+
+.btt-chevron-3 {
+    animation: pulse-up 2s cubic-bezier(0.4, 0, 0.6, 1) 400ms infinite;
+}
+
+.back-to-top-glow:hover .btt-chevron-1,
+.back-to-top-glow:hover .btt-chevron-2,
+.back-to-top-glow:hover .btt-chevron-3 {
+    opacity: 1;
+    animation-play-state: paused;
 }

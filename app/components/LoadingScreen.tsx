@@ -4,7 +4,7 @@
  */
 
 import React from "react";
-import { useLanguage } from "../contexts/language-context";
+import textsEn from "../../lang/data-texts-en";
 
 /**
  * @loadingScreen
@@ -16,7 +16,7 @@ import { useLanguage } from "../contexts/language-context";
  */
 const LoadingScreen: React.FC = () => {
   // Récupération du textes
-  const { texts } = useLanguage();
+  const texts = textsEn;
 
   return (
     <div className="bg-white fixed inset-0 z-50 flex items-center justify-center">

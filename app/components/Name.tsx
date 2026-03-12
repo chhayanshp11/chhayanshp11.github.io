@@ -31,17 +31,17 @@ function Name({ speed, text, className = "" }: Props) {
     <ParallaxLayer
       offset={0}
       speed={speed}
-      className="pointer-events-none flex justify-center"
+      className="pointer-events-none flex w-full h-full flex-col justify-center items-center"
     >
-      <p
+      <div
         className={cn(
-          "flex items-center transition-all duration-200 ease-in-out",
+          "pointer-events-auto transition-all duration-200 ease-in-out",
           fontJersey15.className,
           className,
         )}
       >
-        <span className="pointer-events-auto">{text}</span>
-      </p>
+        {text}
+      </div>
     </ParallaxLayer>
   );
 }

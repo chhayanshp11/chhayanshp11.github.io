@@ -4,10 +4,11 @@
  */
 
 import Image from "next/image";
-import { RefObject, useEffect, useState } from "react";
 import { IParallax, ParallaxLayer } from "@react-spring/parallax";
+import { RefObject, useEffect, useState } from "react";
 import "../style/scrollDownArrow.css";
 import { cn } from "@/lib/utils";
+import { useMobile } from "../hooks/useMobile";
 
 import chevronImg from "../../public/img/chevron.svg";
 
@@ -82,6 +83,7 @@ function ScrollDownArrow({ scrollThreshold = 30, parallaxRef }: Props) {
 
   // Défini si le threshold doit être visible ou pas
   const [isVisible, setIsVisible] = useState(true);
+  const isMobile = useMobile();
 
   // Exécuté uniquement au début
   useEffect(() => {
@@ -106,15 +108,23 @@ function ScrollDownArrow({ scrollThreshold = 30, parallaxRef }: Props) {
 
   return (
     <ParallaxLayer className="pointer-events-none">
-      <div
+      <button
+        onClick={() => {
+          if (isMobile) {
+            window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
+          } else {
+            parallaxRef.current?.scrollTo(1);
+          }
+        }}
         className={cn(
-          "p-fluide-anim relative h-dvh",
+          "p-fluide-anim relative h-dvh w-full rounded-full p-2 text-white/50 transition-colors hover:bg-white-1/10 hover:text-white",
           isVisible ? "opacity-100" : "opacity-0",
         )}
+        aria-label="Scroll down"
       >
         <ThreeChevron className="left-0" />
         <ThreeChevron className="right-0" />
-      </div>
+      </button>
     </ParallaxLayer>
   );
 }

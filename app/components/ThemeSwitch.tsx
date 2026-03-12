@@ -13,7 +13,7 @@ function PersonaToggle({ speed }: Props) {
   return (
     <ParallaxLayer offset={0} speed={speed} className="pointer-events-none">
       <div
-        className="pointer-events-auto absolute right-2 top-40 m-px flex h-10 flex-row items-center gap-0 rounded-full bg-[#001520]/80 backdrop-blur-md border border-white/10 shadow-lg duration-300 hover:scale-105 active:scale-95 md:left-8 md:right-auto md:top-8"
+        className="pointer-events-auto absolute left-4 top-4 md:left-8 md:top-8 m-px flex h-10 flex-row items-center gap-0 rounded-full bg-[#001520]/80 backdrop-blur-md border border-white/10 shadow-lg duration-300 hover:scale-105 active:scale-95"
       >
         {/* Engineer — active on main page */}
         <div
@@ -27,7 +27,7 @@ function PersonaToggle({ speed }: Props) {
             <polyline points="16 18 22 12 16 6" />
             <polyline points="8 6 2 12 8 18" />
           </svg>
-          <span className="font-semibold text-sm">Engineer</span>
+          <span className="font-semibold text-sm max-sm:hidden">Engineer</span>
         </div>
 
         <div className="h-5 w-px bg-white/10" />
@@ -45,7 +45,7 @@ function PersonaToggle({ speed }: Props) {
             <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
             <circle cx="12" cy="13" r="4" />
           </svg>
-          <span className="font-semibold text-sm">Traveller</span>
+          <span className="font-semibold text-sm max-sm:hidden">Traveller</span>
         </div>
       </div>
     </ParallaxLayer>

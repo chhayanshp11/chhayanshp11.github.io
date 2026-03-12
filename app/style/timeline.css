@@ -46,3 +46,37 @@
     }
 
 }
+
+@media (max-width: 1023px) {
+    /* Sleek single-sided timeline for mobile */
+    .timeline-snap-icon {
+        grid-template-columns: 2.5rem auto !important;
+        margin-left: 0.5rem;
+    }
+
+    .timeline-snap-icon li {
+        grid-template-columns: 0px 2.5rem auto !important;
+        margin-bottom: 1.5rem;
+        /* Let height be auto to fit content naturally */
+    }
+
+    .timeline-snap-icon .timeline-start {
+        display: none !important;
+    }
+
+    .timeline-snap-icon .timeline-middle {
+        grid-column-start: 2 !important;
+    }
+
+    .timeline-snap-icon .timeline-end {
+        grid-column-start: 3 !important;
+        /* Date and Text are now both handled within the same component structure or stacked by grid */
+        /* To be safe, we'll let daisyUI's default stacking for one column work */
+        padding-left: 0.5rem;
+        width: 100%;
+    }
+
+    .timeline-snap-icon hr {
+        grid-column-start: 2 !important;
+    }
+}

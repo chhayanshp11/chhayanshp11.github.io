@@ -3,8 +3,8 @@
  * @type Page
  */
 
-import { ParallaxLayer } from "@react-spring/parallax";
 import Image from "next/image";
+import SectionWrapper from "./components/SectionWrapper";
 import Timeline from "./components/Timeline";
 import "./style/about.css";
 import Button from "./components/Button";
@@ -17,7 +17,7 @@ import selfieImg from "../public/img/selfie_v1.jpg";
 import githubBadge from "../public/img/social_media/github-badge.svg";
 import linkedinBadge from "../public/img/social_media/linkedin-badge.svg";
 import mailBadge from "../public/img/social_media/mail-badge.svg";
-import { useLanguage } from "./contexts/language-context";
+import textsEn from "../lang/data-texts-en";
 
 /**
  * @About
@@ -35,10 +35,10 @@ function About() {
   const [contactRef, contactVisible] = useOnScreen<HTMLDivElement>();
 
   // Récupération du textes
-  const { texts } = useLanguage();
+  const texts = textsEn;
 
   return (
-    <ParallaxLayer
+    <SectionWrapper
       offset={1}
       speed={0}
       className="relative flex min-h-[600px] flex-col items-center justify-evenly bg-blue-9 dark:bg-blue-4 lg:flex-row"
@@ -74,7 +74,7 @@ function About() {
             
             {/* AWS Cloud Practitioner Badge */}
             <div className={cn(
-                "absolute -left-2 top-4 lg:-left-3 lg:top-8 w-12 h-12 lg:w-16 lg:h-16 z-20 transition-all duration-700 delay-300 ease-out",
+                "absolute -left-2 top-4 lg:-left-3 lg:top-8 w-12 h-12 lg:w-16 lg:h-16 z-20 transition-all duration-700 delay-300 ease-out max-sm:-left-0",
                 imgVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               )}>
               <div 
@@ -93,7 +93,7 @@ function About() {
 
             {/* AWS Data Engineer Badge */}
             <div className={cn(
-                "absolute -right-2 bottom-4 lg:-right-3 lg:bottom-10 w-12 h-12 lg:w-16 lg:h-16 z-20 transition-all duration-700 delay-500 ease-out",
+                "absolute -right-2 bottom-4 lg:-right-3 lg:bottom-10 w-12 h-12 lg:w-16 lg:h-16 z-20 transition-all duration-700 delay-500 ease-out max-sm:-right-0",
                 imgVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               )}>
               <div 
@@ -175,7 +175,7 @@ function About() {
 
       {/* Timeline sur mon parcours */}
       <Timeline className="scale-90 lg:scale-110" />
-    </ParallaxLayer>
+    </SectionWrapper>
   );
 }
 

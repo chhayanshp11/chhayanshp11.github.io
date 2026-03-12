@@ -8,7 +8,9 @@ import { fontJersey15 } from "@/lib/font";
 import { cn } from "@/lib/utils";
 import { IParallax } from "@react-spring/parallax";
 import { RefObject } from "react";
-import { useLanguage } from "../contexts/language-context";
+import { IconChevronUp } from "@tabler/icons-react";
+import { useMobile } from "../hooks/useMobile";
+import textsEn from "../../lang/data-texts-en";
 
 // Propriétés
 type Props = {
@@ -29,26 +31,35 @@ type Props = {
  *
  */
 function BackToTopButton({ className = "", parallaxRef }: Props) {
-  /**
-   * Permet un retour à la première page de façon fluide
-   */
-  const goTop = () => {
-    parallaxRef.current?.scrollTo(0);
+  const isMobile = useMobile();
+
+  const handleClick = () => {
+    if (isMobile) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      parallaxRef.current?.scrollTo(0);
+    }
   };
 
   // Récupération du textes
-  const { texts } = useLanguage();
+  const texts = textsEn;
 
   return (
     <button
+      onClick={handleClick}
+      aria-label={texts.hero.nav.backToTop}
       className={cn(
-        "p-backtotop fixed right-0 top-0 z-50 px-4 pt-5 text-3xl text-blue-1 shadow-blue-1 transition duration-200 ease-in-out hover:scale-110 active:scale-[1.2] dark:text-blue-9 dark:shadow-blue-9 lg:px-12 lg:pt-9 lg:text-4xl",
+        "fixed bottom-12 right-7 sm:right-12 z-[500] flex flex-col items-center justify-center transition-all duration-500",
+        "text-white/40 hover:text-[#a2fff4] active:scale-90",
+        "back-to-top-glow",
         className,
-        fontJersey15.className,
       )}
-      onClick={goTop}
     >
-      {texts.hero.nav.backToTop}
+      <div className="flex flex-col -space-y-2">
+        <IconChevronUp className="h-5 w-5 btt-chevron-1" />
+        <IconChevronUp className="h-5 w-5 btt-chevron-2" />
+        <IconChevronUp className="h-5 w-5 btt-chevron-3" />
+      </div>
     </button>
   );
 }

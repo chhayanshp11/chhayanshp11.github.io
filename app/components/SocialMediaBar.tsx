@@ -11,7 +11,7 @@ import SocialMedia from "./SocialMedia";
 import githubBadge from "../../public/img/social_media/github-badge.svg";
 import linkedinBadge from "../../public/img/social_media/linkedin-badge.svg";
 import mailBadge from "../../public/img/social_media/mail-badge.svg";
-import { useLanguage } from "../contexts/language-context";
+import textsEn from "../../lang/data-texts-en";
 
 // Propriétés
 type Props = {
@@ -105,17 +105,17 @@ export default function SocialMediaBar({ speed }: Props) {
   }
 
   // Récupération du textes
-  const { texts } = useLanguage();
+  const texts = textsEn;
   
   return (
     <ParallaxLayer
       id="social-media-layer"
       offset={0}
       speed={speed}
-      className="flex justify-start sm:ml-0 sm:justify-center"
+      className="flex justify-start sm:ml-0 sm:justify-center max-sm:hidden"
     >
       <div id="social-media-outer" className="flex flex-col gap-2 p-3">
-        <div className="flex flex-row gap-7 sm:gap-10">
+        <div className="flex flex-row gap-7 max-sm:gap-3 lg:gap-10">
           {/* Badge Github */}
           <SocialMedia
             svgSrc={githubBadge}

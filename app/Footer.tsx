@@ -3,13 +3,14 @@
  * @type Page
  */
 
-import { ParallaxLayer } from "@react-spring/parallax";
-import { fontJersey15, fontInter } from "@/lib/font";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import SectionWrapper from "./components/SectionWrapper";
+import { fontJersey15, fontInter } from "@/lib/font";
 
 import "./style/footer.css";
-import { useLanguage } from "./contexts/language-context";
+import textsEn from "../lang/data-texts-en";
+import { useMobile } from "./hooks/useMobile";
 
 
 // Propriétés
@@ -47,15 +48,14 @@ const FooterMedia = ({ name, href }: Props) => {
  *
  */
 function Footer() {
-
   // Récupération du textes
-  const { texts } = useLanguage();
+  const texts = textsEn;
 
   return (
-    <ParallaxLayer
-      offset={6}
+    <SectionWrapper
+      offset={8.5}
       speed={0}
-      className="min-[600px] pointer-events-none relative"
+      className="min-[600px] pointer-events-none relative w-full h-24"
     >
       <div className="pointer-events-auto absolute bottom-0 flex h-9 w-full flex-row items-center justify-evenly">
         {/* Nom Prénom */}
@@ -88,7 +88,7 @@ function Footer() {
           />
         </div>
       </div>
-    </ParallaxLayer>
+    </SectionWrapper>
   );
 }
 

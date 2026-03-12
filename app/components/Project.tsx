@@ -15,11 +15,9 @@ import Image from "next/image";
 import { Ref } from "react";
 
 
-import projectsEn from "../../lang/data-projects-en";
-
-
 import githubBadge from "../../public/img/social_media/github-badge.svg";
-import { useLanguage } from "../contexts/language-context";
+import projectsEn from "../../lang/data-projects-en";
+import textsEn from "../../lang/data-texts-en";
 
 // Propriétés
 type Props = {
@@ -86,7 +84,7 @@ function Project({ ref, id, isExpanded, onExpand, className }: Props) {
   const darkenedColor = darkenColor(bg_col, 0.2);
 
   // Récupération du textes
-  const { texts } = useLanguage();
+  const texts = textsEn;
 
   return (
     <div

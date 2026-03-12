@@ -6,9 +6,8 @@
 import { fontJersey15, fontInter } from "@/lib/font";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { useLanguage } from "../contexts/language-context";
-
 import skillsEn from "../../lang/data-skills-en";
+import textsEn from "../../lang/data-texts-en";
 
 // Propriétés
 type Props = {
@@ -37,7 +36,7 @@ function Skill({ id, className = "" }: Props) {
   const selectedSkill = skills?.find((skill) => skill.id === id);
 
   // Récupération du textes
-  const { texts } = useLanguage();
+  const texts = textsEn;
 
   return (
     <div className={cn("pointer-events-none z-50 flex flex-col", className)}>

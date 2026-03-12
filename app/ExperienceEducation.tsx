@@ -8,9 +8,9 @@
 
 "use client";
 
-import { ParallaxLayer } from "@react-spring/parallax";
 import { fontInter } from "@/lib/font";
 import { cn } from "@/lib/utils";
+import SectionWrapper from "./components/SectionWrapper";
 import { useOnScreen } from "./hooks/useOnScreen";
 import { useState, useEffect } from "react";
 import Image from "next/image";
@@ -73,12 +73,11 @@ const experienceData: ExperienceEntry[] = [
     skills: ["AWS", "PySpark", "Redshift", "Terraform", "Python"],
     roles: [
       {
-        title: "Senior Data Engineer",
+        title: "Senior Engineer, Data",
         type: "Full-time",
         date: "March 2026 – Present",
         location: "Austin, TX",
         bullets: [
-          "Leading design and architecture of enterprise data platforms",
           "Architecting and optimizing modern data engineering pipelines",
         ],
       },
@@ -121,14 +120,14 @@ const experienceData: ExperienceEntry[] = [
     company: "Infosys Limited",
     logoSrc: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://infosys.com&size=128",
     date: "2021 – 2022",
-    location: "Hyderabad, India",
+    location: "Pune, India",
     skills: ["Hadoop", "Hive", "Python", "Tableau"],
     roles: [
       {
         title: "Data Engineer",
         type: "Full-time",
         date: "2021 – 2022",
-        location: "Hyderabad, India",
+        location: "Pune, India",
         bullets: [
           "Designed and implemented Hadoop-based data processing pipelines using Hive, Pig, and Sqoop",
           "Ingested and processed 10K+ records daily from RDBMS to HDFS for analytics workloads",
@@ -141,7 +140,7 @@ const experienceData: ExperienceEntry[] = [
   {
     company: "Worldsoft Technologies",
     logoSrc: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://worldsoftit.com&size=128",
-    date: "2019",
+    date: "2019 – 2021",
     location: "Jabalpur, India",
     skills: ["AWS VPC", "IAM", "Cloud Migration"],
     roles: [
@@ -211,7 +210,7 @@ function ExperienceCard({ entry, isFeatured }: { entry: ExperienceEntry, isFeatu
   const [expanded, setExpanded] = useState(isFeatured || false);
 
   return (
-    <div 
+    <div
       className={cn(
         "rounded-2xl border border-white/[0.06] bg-white/[0.03] p-5 md:p-6 transition-all duration-300 hover:border-[#a2fff4]/20 hover:bg-white/[0.05] cursor-pointer group flex flex-col flex-grow",
         isFeatured ? "w-full" : "w-full md:w-[calc(50%-12px)]"
@@ -224,23 +223,23 @@ function ExperienceCard({ entry, isFeatured }: { entry: ExperienceEntry, isFeatu
             <Image src={entry.logoSrc} alt={entry.company} width={28} height={28} className="object-contain rounded-full" />
           </div>
           <div className="flex flex-col">
-              <div className="flex flex-col gap-2 sm:gap-3 items-start">
-                <h3 className={cn("text-lg font-semibold text-white group-hover:text-[#a2fff4] transition-colors flex items-center gap-2", fontInter.className)}>
-                  {entry.company}
-                  <span className="text-[#a2fff4]/50 bg-[#a2fff4]/10 p-1 rounded-sm flex items-center justify-center">
+            <div className="flex flex-col gap-2 sm:gap-3 items-start">
+              <h3 className={cn("text-lg font-semibold text-white group-hover:text-[#a2fff4] transition-colors flex items-center gap-2", fontInter.className)}>
+                {entry.company}
+                <span className="text-[#a2fff4]/50 bg-[#a2fff4]/10 p-1 rounded-sm flex items-center justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className={cn("transition-transform duration-300", expanded ? "rotate-180" : "rotate-0")}>
-                    <path d="m6 9 6 6 6-6"/>
+                    <path d="m6 9 6 6 6-6" />
                   </svg>
                 </span>
-                </h3>
-                <div className="flex flex-wrap gap-1.5 mt-1">
-                  {entry.skills?.map(skill => (
-                    <span key={skill} className={cn("px-2 py-0.5 rounded-md bg-[#a2fff4]/10 text-[#a2fff4] text-[10px] font-medium border border-[#a2fff4]/20", fontInter.className)}>
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+              </h3>
+              <div className="flex flex-wrap gap-1.5 mt-1">
+                {entry.skills?.map(skill => (
+                  <span key={skill} className={cn("px-2 py-0.5 rounded-md bg-[#a2fff4]/10 text-[#a2fff4] text-[10px] font-medium border border-[#a2fff4]/20", fontInter.className)}>
+                    {skill}
+                  </span>
+                ))}
               </div>
+            </div>
           </div>
         </div>
 
@@ -273,7 +272,7 @@ function ExperienceCard({ entry, isFeatured }: { entry: ExperienceEntry, isFeatu
                   <div>📍 {role.location}</div>
                 </div>
               </div>
-              
+
               <ul className="mt-3 space-y-2">
                 {role.bullets.map((bullet, j) => (
                   <li key={j} className={cn("text-white/55 text-sm leading-relaxed flex gap-2", fontInter.className)}>
@@ -286,7 +285,7 @@ function ExperienceCard({ entry, isFeatured }: { entry: ExperienceEntry, isFeatu
           ))}
         </div>
       </div>
-      
+
     </div>
   );
 }
@@ -297,7 +296,7 @@ function EducationCard({ entry }: { entry: EducationEntry }) {
   const [expanded, setExpanded] = useState(true);
 
   return (
-    <div 
+    <div
       className={cn(
         "rounded-2xl border border-white/[0.06] bg-white/[0.03] p-5 md:p-6 transition-all duration-300 hover:border-[#a2fff4]/20 hover:bg-white/[0.05] cursor-pointer group flex flex-col flex-grow",
         "w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
@@ -316,7 +315,7 @@ function EducationCard({ entry }: { entry: EducationEntry }) {
                 {entry.school}
                 <span className="text-[#a2fff4]/50 bg-[#a2fff4]/10 p-1 rounded-sm flex items-center justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className={cn("transition-transform duration-300", expanded ? "rotate-180" : "rotate-0")}>
-                    <path d="m6 9 6 6 6-6"/>
+                    <path d="m6 9 6 6 6-6" />
                   </svg>
                 </span>
               </h3>
@@ -333,7 +332,7 @@ function EducationCard({ entry }: { entry: EducationEntry }) {
             </div>
           </div>
         </div>
-        
+
         {/* Dates and Location (Right Aligned) */}
         <div className={cn("text-white/40 text-xs sm:text-right mt-1 sm:mt-0 pl-13 sm:pl-0", fontInter.className)}>
           <div>{entry.date}</div>
@@ -376,10 +375,10 @@ function PublicationCard({ entry }: { entry: PublicationEntry }) {
         </p>
 
         <div className="mt-auto pt-6">
-          <a 
-            href={entry.link} 
-            target="_blank" 
-            rel="noreferrer" 
+          <a
+            href={entry.link}
+            target="_blank"
+            rel="noreferrer"
             className={cn("inline-flex items-center gap-2 text-[#a2fff4]/70 hover:text-[#a2fff4] font-medium text-sm transition-colors", fontInter.className)}
           >
             View Publication
@@ -582,7 +581,7 @@ const TABS: { id: TabType; label: string; icon: React.ReactNode }[] = [
     label: "Publications",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
+        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
       </svg>
     ),
   },
@@ -591,8 +590,8 @@ const TABS: { id: TabType; label: string; icon: React.ReactNode }[] = [
     label: "Certifications",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="8" r="7"/>
-        <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+        <circle cx="12" cy="8" r="7" />
+        <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
       </svg>
     ),
   }
@@ -614,10 +613,11 @@ function ExperienceEducation() {
   }, []);
 
   return (
-    <ParallaxLayer
+    <SectionWrapper
       offset={2}
+      factor={2}
       speed={0}
-      className="flex items-start justify-center bg-blue-9 dark:bg-blue-4 overflow-y-auto pointer-events-auto"
+      className="flex items-start justify-center bg-blue-9 dark:bg-blue-4 pointer-events-auto"
     >
       <div
         ref={ref}
@@ -656,7 +656,7 @@ function ExperienceEducation() {
           {activeTab === "certifications" && certificationsData.map((entry, i) => <CertificationCard key={i} entry={entry} />)}
         </div>
       </div>
-    </ParallaxLayer>
+    </SectionWrapper>
   );
 }
 

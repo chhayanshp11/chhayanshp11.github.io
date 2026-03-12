@@ -4,10 +4,10 @@
  */
 
 import { useState } from "react";
-import { ParallaxLayer } from "@react-spring/parallax";
 import Project from "./components/Project";
 import { useOnScreen } from "./hooks/useOnScreen";
 import { cn } from "@/lib/utils";
+import SectionWrapper from "./components/SectionWrapper";
 
 /**
  * @Projects
@@ -40,16 +40,17 @@ function Projects() {
     handleExpandProject(-1);
   });
 
+
   // Références pour l'apparition au scroll
   const [project1Ref, project1Visible] = useOnScreen<HTMLDivElement>();
   const [project2Ref, project2Visible] = useOnScreen<HTMLDivElement>();
   const [project3Ref, project3Visible] = useOnScreen<HTMLDivElement>();
 
   return (
-    <ParallaxLayer
-      offset={5}
+    <SectionWrapper
+      offset={6}
       speed={0}
-      className="h-min-[600px] flex items-center justify-center bg-blue-9 dark:bg-blue-4"
+      className="h-min-[600px] flex items-center justify-center bg-blue-9 dark:bg-blue-4 w-full relative z-10"
     >
       <div className="flex h-full w-full flex-col justify-center lg:h-4/5 lg:min-h-[600px] lg:flex-row">
         <Project
@@ -83,7 +84,7 @@ function Projects() {
           )}
         />
       </div>
-    </ParallaxLayer>
+    </SectionWrapper>
   );
 }
 

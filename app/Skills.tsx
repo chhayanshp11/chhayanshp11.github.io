@@ -5,8 +5,8 @@
 
 "use client";
 
-import { ParallaxLayer } from "@react-spring/parallax";
 import { useOnScreen } from "./hooks/useOnScreen";
+import SectionWrapper from "./components/SectionWrapper";
 import { cn } from "@/lib/utils";
 import { fontInter } from "@/lib/font";
 import Image from "next/image";
@@ -21,10 +21,10 @@ function Skills() {
   const allSkills = skillsData.flatMap(category => category.subSkills);
 
   return (
-    <ParallaxLayer
-      offset={3}
+    <SectionWrapper
+      offset={4}
       speed={0}
-      className="min-[600px] flex flex-col items-center justify-center bg-blue-9 dark:bg-blue-4 pointer-events-auto"
+      className="min-[600px] flex flex-col items-center justify-center bg-blue-9 dark:bg-blue-4 pointer-events-auto w-full"
     >
       <div
         ref={ref}
@@ -75,7 +75,7 @@ function Skills() {
           Constantly refining and expanding my technical skillset.
         </div>
       </div>
-    </ParallaxLayer>
+    </SectionWrapper>
   );
 }
 

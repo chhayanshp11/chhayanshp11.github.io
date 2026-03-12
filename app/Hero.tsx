@@ -23,7 +23,7 @@ import img3Mountains from "../public/img/background_layer/3_Mountains.png";
 import img2Mountains from "../public/img/background_layer/2_Mountains.png";
 import img1Clouds from "../public/img/background_layer/1_Clouds.png";
 import PersonaToggle from "./components/ThemeSwitch";
-import { useLanguage } from "./contexts/language-context";
+import textsEn from "../lang/data-texts-en";
 
 // Propriétés
 type Props = {
@@ -40,7 +40,7 @@ type Props = {
  */
 function Hero({ parallaxRef }: Props) {
   // Récupération du textes
-  const { texts } = useLanguage();
+  const texts = textsEn;
 
   return (
     <div>
@@ -67,14 +67,14 @@ function Hero({ parallaxRef }: Props) {
       <Name
         speed={-2.5}
         text={texts.hero.hi}
-        className="translate-y-[-60px] text-4xl text-blue-9 lg:translate-x-[-230px] lg:translate-y-[-80px]"
+        className="text-4xl text-blue-9 mb-52 lg:mr-[230px] lg:mb-64 max-sm:mb-56"
       />
 
       {/* Nom et prénom */}
       <Name
         speed={-4}
         text={texts.hero.arthur}
-        className="translate-y-[-20px] text-6xl text-blue-7 lg:translate-y-[-30px] lg:text-8xl"
+        className="text-6xl text-blue-7 lg:text-8xl w-full text-center max-sm:text-[2.2rem] max-sm:leading-[1.1] max-sm:mb-32 lg:mb-32 mb-24"
       />
 
       {/* Couches pour le background */}

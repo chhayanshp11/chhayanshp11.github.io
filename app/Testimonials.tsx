@@ -7,9 +7,9 @@
 
 "use client";
 
-import { ParallaxLayer } from "@react-spring/parallax";
 import { fontInter } from "@/lib/font";
 import { cn } from "@/lib/utils";
+import SectionWrapper from "./components/SectionWrapper";
 import { useOnScreen } from "./hooks/useOnScreen";
 import Image from "next/image";
 import { useRef, useState, useCallback, useEffect } from "react";
@@ -104,10 +104,10 @@ function Testimonials() {
   }, []);
 
   return (
-    <ParallaxLayer
-      offset={4}
+    <SectionWrapper
+      offset={5}
       speed={0}
-      className="flex items-center justify-center pointer-events-auto"
+      className="flex items-center justify-center pointer-events-auto w-full"
     >
       <div
         ref={ref}
@@ -224,7 +224,7 @@ function Testimonials() {
           </div>
         </div>
       </div>
-    </ParallaxLayer>
+    </SectionWrapper>
   );
 }
 
