@@ -11,21 +11,23 @@
 
 
 .p-navigation-bar-text {
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: right center;
+  display: inline-block; /* Essential for transform-origin to work predictably */
 }
 
 #navigation-bar:has(.p-navigation-bar-text:hover) .p-navigation-bar-text:not(:hover) {
   color: #003b64;
-  scale: 0.8;
+  opacity: 0.7;
+  scale: 0.95;
 }
 
 .p-navigation-bar-text:hover {
   scale: 1.1;
-  text-shadow: 0 0 4px #002545;
+  text-shadow: 0 0 8px rgba(0, 37, 69, 0.3);
   cursor: pointer;
 }
 
 .p-navigation-bar-text:active {
-  scale: 1.2;
-  text-shadow: 0 0 2px #002545;
+  scale: 1.15;
 }
