@@ -67,7 +67,7 @@ const TimelineText = ({ name, desc, date, location, right = false, subRoles }: T
     >
       {/* Date on TOP for Mobile only */}
       {isMobile && date && (
-        <span className="text-[10px] text-white/40 mb-1 font-medium tracking-wider uppercase">
+        <span className="text-xs text-white/40 mb-1 font-medium tracking-wider uppercase">
           {date}
         </span>
       )}
@@ -75,7 +75,7 @@ const TimelineText = ({ name, desc, date, location, right = false, subRoles }: T
       {/* Company / Institution name */}
       <span
         className={cn(
-          "text-base/4 opacity-90 lg:text-xl/5",
+          "text-lg/5 opacity-90 lg:text-xl/5",
           isMobile ? "text-left" : "text-center",
           fontJersey15.className,
         )}
@@ -85,7 +85,7 @@ const TimelineText = ({ name, desc, date, location, right = false, subRoles }: T
 
       {/* Location */}
       {location && (
-        <span className={cn("text-[10px] text-[#a2fff4]/40 mt-0.5", isMobile ? "text-left" : "text-center", fontInter.className)}>
+        <span className={cn("text-xs text-[#a2fff4]/40 mt-0.5", isMobile ? "text-left" : "text-center", fontInter.className)}>
           📍 {location}
         </span>
       )}
@@ -93,7 +93,7 @@ const TimelineText = ({ name, desc, date, location, right = false, subRoles }: T
       {/* Position title */}
       <div
         className={cn(
-          "mt-1.5 text-xs text-[#a2fff4]/80",
+          "mt-1.5 text-sm text-[#a2fff4]/80",
           isMobile ? "text-left mb-2" : "text-center hidden md:inline-block",
           fontInter.className,
         )}
@@ -112,8 +112,8 @@ const TimelineText = ({ name, desc, date, location, right = false, subRoles }: T
                 fontInter.className,
               )}
             >
-              <span className={cn("text-xs text-[#c4ebff]/90", isMobile && "text-[10px]")}>{role.title}</span>
-              <span className="text-[10px] opacity-40 ml-2 shrink-0">{role.date}</span>
+              <span className={cn("text-sm text-[#c4ebff]/90", isMobile && "text-xs")}>{role.title}</span>
+              <span className="text-xs opacity-40 ml-2 shrink-0">{role.date}</span>
             </div>
           ))}
         </div>
