@@ -27,6 +27,18 @@ npm install
 ```bash
 npm run dev
 ```
+OR use the one-click script:
+```bash
+./run-local.sh
+```
+
+### 4. Stop the Development Server
+- **In Terminal**: Press `Ctrl + C`.
+- **Using Script**: Run `./stop-local.sh` with the following options:
+  - `./stop-local.sh` (stops default ports 3000/3001)
+  - `./stop-local.sh all` (stops ALL Next.js processes on the machine)
+  - `./stop-local.sh 3005` (stops a specific port)
+  - `./stop-local.sh 3000 3001 8000` (stops multiple ports)
 
 The site should now be running at [http://localhost:3000](http://localhost:3000).
 
