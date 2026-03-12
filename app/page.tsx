@@ -97,7 +97,7 @@ function HomeContent() {
         </div>
 
         <div className="relative z-10 w-full bg-blue-9 flex flex-col items-center">
-           <About />
+           <About parallaxRef={parallaxRef} />
            <ExperienceEducation />
            <Skills />
            <Testimonials />
@@ -137,7 +137,7 @@ function HomeContent() {
 
         {/* <ElementBackground /> */}
 
-        <About />
+        <About parallaxRef={parallaxRef} />
         <ExperienceEducation />
         <Skills />
         <Testimonials />

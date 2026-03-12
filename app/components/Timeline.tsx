@@ -1,9 +1,4 @@
-/**
- * @name Timeline.tsx
- * @type Component
- */
-
-
+import { IParallax } from "@react-spring/parallax";
 import Image from "next/image";
 import "../style/timeline.css";
 import { fontJersey15, fontInter } from "@/lib/font";
@@ -15,6 +10,7 @@ import { useMobile } from "../hooks/useMobile";
 // Propriétés de Timeline
 type Props = {
   className?: string;
+  parallaxRef: React.RefObject<IParallax | null>;
 };
 
 // Propriétés de TimelineText
@@ -22,9 +18,12 @@ type TimelineTextProps = {
   name: string;
   desc: string;
   date?: string;
-  location?: string; // Added location
+  location?: string;
   right?: boolean;
   subRoles?: { title: string; date: string }[];
+  tab?: string;
+  targetId?: string;
+  parallaxRef: React.RefObject<IParallax | null>;
 };
 
 // Propriétés de TimelineStep
@@ -32,12 +31,15 @@ type TimelineStepProps = {
   name: string;
   desc: string;
   date: string;
-  location?: string; // Added location
+  location?: string;
   right?: boolean;
   isFirst?: boolean;
   isLast?: boolean;
   subRoles?: { title: string; date: string }[];
   logoSrc?: string;
+  tab?: string;
+  targetId?: string;
+  parallaxRef: React.RefObject<IParallax | null>;
 };
 
 // Propriétés de TimelineDate
@@ -51,14 +53,60 @@ type TimelineDateProps = {
  *
  * @description Affiche le titre et la description de l'étape.
  */
-const TimelineText = ({ name, desc, date, location, right = false, subRoles }: TimelineTextProps) => {
+const TimelineText = ({
+  name,
+  desc,
+  date,
+  location,
+  right = false,
+  subRoles,
+  tab,
+  targetId,
+  parallaxRef,
+}: TimelineTextProps) => {
   const isMobile = useMobile();
   const effectiveRight = isMobile ? true : right;
 
+  const handleTimelineClick = () => {
+    if (!tab) return;
+
+    // 1. Dispatch event to switch tab in ExperienceEducation
+    window.dispatchEvent(new CustomEvent("setExperienceTab", { detail: tab }));
+
+    // 2. Scroll to ExperienceEducation section (offset 2 in Parallax)
+    if (parallaxRef.current) {
+      if (isMobile) {
+        // Find the ExperienceEducation section element
+        const expSection = document.querySelector("#experience-education");
+        if (expSection) {
+          expSection.scrollIntoView({ behavior: "smooth" });
+        }
+      } else {
+        parallaxRef.current.scrollTo(2);
+      }
+    }
+
+    // 3. Scroll specific card into view after a delay
+    if (targetId) {
+      setTimeout(() => {
+        const element = document.getElementById(targetId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "center" });
+          // Optional: briefly highlight it
+          element.classList.add("ring-2", "ring-[#a2fff4]", "ring-offset-4", "ring-offset-transparent");
+          setTimeout(() => {
+            element.classList.remove("ring-2", "ring-[#a2fff4]", "ring-offset-4", "ring-offset-transparent");
+          }, 2000);
+        }
+      }, 800);
+    }
+  };
+
   return (
     <div
+      onClick={handleTimelineClick}
       className={cn(
-        "p-fluide-anim flex flex-col hover:scale-105 transition-all cursor-pointer",
+        "p-fluide-anim flex flex-col hover:scale-105 transition-all cursor-pointer group/item",
         isMobile ? "w-full pl-4 items-start py-2" : "w-20 md:w-72 lg:min-h-24 items-center",
         effectiveRight
           ? "timeline-end hover:translate-x-3"
@@ -75,7 +123,7 @@ const TimelineText = ({ name, desc, date, location, right = false, subRoles }: T
       {/* Company / Institution name */}
       <span
         className={cn(
-          "text-lg/5 opacity-90 lg:text-xl/5",
+          "text-lg/5 opacity-90 lg:text-xl/5 group-hover/item:text-[#a2fff4] transition-colors",
           isMobile ? "text-left" : "text-center",
           fontJersey15.className,
         )}
@@ -178,12 +226,25 @@ const TimelineStep = ({
   isLast = false,
   subRoles,
   logoSrc,
+  tab,
+  targetId,
+  parallaxRef,
 }: TimelineStepProps) => {
   return (
     <li>
       <hr className={cn(isFirst ? "first-hr" : "", "dark:invert")} />
       <TimelineMiddle logoSrc={logoSrc} />
-      <TimelineText name={name} desc={desc} date={date} location={location} right={right} subRoles={subRoles} />
+      <TimelineText
+        name={name}
+        desc={desc}
+        date={date}
+        location={location}
+        right={right}
+        subRoles={subRoles}
+        tab={tab}
+        targetId={targetId}
+        parallaxRef={parallaxRef}
+      />
       <TimelineDate date={date} right={!right} />
       <hr className={cn(isLast ? "last-hr" : "", "dark:invert")} />
     </li>
@@ -194,7 +255,7 @@ const TimelineStep = ({
  * @Timeline
  * Fonction principale
  */
-function Timeline({ className = "" }: Props) {
+function Timeline({ className = "", parallaxRef }: Props) {
   const isMobile = useMobile();
   // Référence pour l'apparition au scroll
   const [lineRef, lineVisible] = useOnScreen<HTMLUListElement>();
@@ -222,6 +283,9 @@ function Timeline({ className = "" }: Props) {
         location={texts.about.timeline.lpl0.location}
         isFirst
         logoSrc="https://www.google.com/s2/favicons?domain=lpl.com&sz=128"
+        tab="experience"
+        targetId="lpl-financial"
+        parallaxRef={parallaxRef}
         subRoles={[
           { title: texts.about.timeline.lpl0.desc, date: texts.about.timeline.lpl0.date },
           { title: texts.about.timeline.lpl1.desc, date: texts.about.timeline.lpl1.date },
@@ -233,12 +297,14 @@ function Timeline({ className = "" }: Props) {
       {/* Education (UTD) */}
       <TimelineStep
         name={texts.about.timeline.utd.name}
-        //desc="ddd"
         desc={texts.about.timeline.utd.desc}
         date={texts.about.timeline.utd.date}
         location={texts.about.timeline.utd.location}
         right
         logoSrc="https://www.google.com/s2/favicons?domain=utdallas.edu&sz=128"
+        tab="education"
+        targetId="university-of-texas-at-dallas"
+        parallaxRef={parallaxRef}
       />
 
       {/* Infosys */}
@@ -248,6 +314,9 @@ function Timeline({ className = "" }: Props) {
         date={texts.about.timeline.oxyl.date}
         location={texts.about.timeline.oxyl.location}
         logoSrc="https://www.google.com/s2/favicons?domain=infosys.com&sz=128"
+        tab="experience"
+        targetId="infosys-limited"
+        parallaxRef={parallaxRef}
       />
 
       {/* Worldsoft Technologies */}
@@ -258,6 +327,9 @@ function Timeline({ className = "" }: Props) {
         location={texts.about.timeline.sopra.location}
         right
         logoSrc="https://www.google.com/s2/favicons?domain=worldsoftit.com&sz=128"
+        tab="experience"
+        targetId="worldsoft-technologies"
+        parallaxRef={parallaxRef}
       />
 
       {/* Jabalpur Engineering College */}
@@ -268,6 +340,9 @@ function Timeline({ className = "" }: Props) {
         location={texts.about.timeline.jec.location}
         isLast
         logoSrc="/img/jec_logo.png"
+        tab="education"
+        targetId="jabalpur-engineering-college"
+        parallaxRef={parallaxRef}
       />
     </ul>
   );

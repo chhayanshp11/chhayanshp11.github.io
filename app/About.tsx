@@ -17,6 +17,7 @@ import selfieImg from "../public/img/selfie_v1.jpg";
 import githubBadge from "../public/img/social_media/github-badge.svg";
 import linkedinBadge from "../public/img/social_media/linkedin-badge.svg";
 import mailBadge from "../public/img/social_media/mail-badge.svg";
+import { IParallax } from "@react-spring/parallax";
 import textsEn from "../lang/data-texts-en";
 
 /**
@@ -26,7 +27,7 @@ import textsEn from "../lang/data-texts-en";
  * @description Page About.
  *
  */
-function About() {
+function About({ parallaxRef }: { parallaxRef: React.RefObject<IParallax | null> }) {
   // Références pour l'apparition au scroll
   const [aboutRef, aboutVisible] = useOnScreen<HTMLDivElement>();
   const [imgRef, imgVisible] = useOnScreen<HTMLImageElement>();
@@ -174,7 +175,7 @@ function About() {
       </div>
 
       {/* Timeline sur mon parcours */}
-      <Timeline className="scale-90 lg:scale-110" />
+      <Timeline parallaxRef={parallaxRef} className="scale-90 lg:scale-110" />
     </SectionWrapper>
   );
 }

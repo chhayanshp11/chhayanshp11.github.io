@@ -211,6 +211,7 @@ function ExperienceCard({ entry, isFeatured }: { entry: ExperienceEntry, isFeatu
 
   return (
     <div
+      id={entry.company.toLowerCase().replace(/\s+/g, '-')}
       className={cn(
         "rounded-2xl border border-white/[0.06] bg-white/[0.03] p-5 md:p-6 transition-all duration-300 hover:border-[#a2fff4]/20 hover:bg-white/[0.05] cursor-pointer group flex flex-col flex-grow",
         isFeatured ? "w-full" : "w-full md:w-[calc(50%-12px)]"
@@ -297,6 +298,7 @@ function EducationCard({ entry }: { entry: EducationEntry }) {
 
   return (
     <div
+      id={entry.school.toLowerCase().replace(/\s+/g, '-')}
       className={cn(
         "rounded-2xl border border-white/[0.06] bg-white/[0.03] p-5 md:p-6 transition-all duration-300 hover:border-[#a2fff4]/20 hover:bg-white/[0.05] cursor-pointer group flex flex-col flex-grow",
         "w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
@@ -614,6 +616,7 @@ function ExperienceEducation() {
 
   return (
     <SectionWrapper
+      id="experience-education"
       offset={2}
       factor={2}
       speed={0}
