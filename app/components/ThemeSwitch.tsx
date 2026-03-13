@@ -12,7 +12,7 @@ function PersonaToggle({ speed = 0 }: Props = {}) {
   return (
     <div 
       className="absolute left-4 top-4 md:left-8 md:top-8 m-px flex h-8 md:h-10 flex-row items-center gap-0 rounded-full bg-[#001520]/80 backdrop-blur-md border border-white/10 shadow-lg duration-300 hover:scale-105 active:scale-95"
-      style={{ transform: `translate3d(0, calc(var(--hero-scroll, 0px) * ${speed}), 0)`, willChange: "transform" }}
+      style={{ transform: `translate3d(0, calc(var(--hero-scroll, 0px) * ${speed}), 0)` }}
     >
       {/* Engineer — active on main page */}
       <div

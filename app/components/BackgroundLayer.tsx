@@ -9,10 +9,7 @@ function BackgroundLayer({ path, speed = 0 }: Props) {
   return (
     <div
       className="absolute inset-0 pointer-events-none flex flex-col items-center"
-      style={{
-        transform: `translate3d(0, calc(var(--hero-scroll, 0px) * ${speed}), 0)`,
-        willChange: "transform",
-      }}
+      style={{ transform: `translate3d(0, calc(var(--hero-scroll, 0px) * ${speed}), 0)` }}
     >
       <div className="aspect-[1920/1080] h-full relative w-full">
         <Image

@@ -68,7 +68,7 @@ function NavigationBar({ speed = 0 }: Props = {}) {
     <nav
       id="navigation-bar-container"
       className="absolute top-0 right-0 pointer-events-none flex justify-end w-full"
-      style={{ transform: `translate3d(0, calc(var(--hero-scroll, 0px) * ${speed}), 0)`, willChange: "transform" }}
+      style={{ transform: `translate3d(0, calc(var(--hero-scroll, 0px) * ${speed}), 0)` }}
     >
       <div
         id="navigation-bar"

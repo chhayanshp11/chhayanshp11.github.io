@@ -33,8 +33,8 @@ function Hero() {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           if (heroRef.current) {
-            // Prevent negative scroll values causing jumps (iOS bounce)
-            const currentScroll = Math.max(0, window.scrollY);
+            // Prevent negative scroll values and sub-pixel decimal jitter
+            const currentScroll = Math.max(0, Math.round(window.scrollY));
             heroRef.current.style.setProperty('--hero-scroll', `${currentScroll}px`);
           }
           ticking = false;
