@@ -11,7 +11,13 @@ import mailBadge from "../../public/img/social_media/mail-badge.svg";
 import textsEn from "../../lang/data-texts-en";
 
 // Propriétés
-export default function SocialMediaBar() {
+type Props = {
+  scrollOffset?: number;
+  speed?: number;
+};
+
+export default function SocialMediaBar({ scrollOffset = 0, speed = 0 }: Props = {}) {
+  const yPos = scrollOffset * speed;
   // Effectué uniquement au début
   useEffect(() => {
     headerSetup();
@@ -61,6 +67,7 @@ export default function SocialMediaBar() {
     <div
       id="social-media-layer"
       className="absolute top-4 left-0 w-full flex justify-center max-sm:hidden z-20"
+      style={{ transform: `translateY(${yPos}px)`, willChange: "transform" }}
     >
       <div id="social-media-outer" className="flex flex-col gap-2 p-3">
         <div className="flex flex-row gap-7 max-sm:gap-3 lg:gap-10">

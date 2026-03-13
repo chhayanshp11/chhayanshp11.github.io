@@ -2,11 +2,20 @@ import { useRouter } from "next/navigation";
 import { fontInter } from "@/lib/font";
 import { cn } from "@/lib/utils";
 
-function PersonaToggle() {
+type Props = {
+  scrollOffset?: number;
+  speed?: number;
+};
+
+function PersonaToggle({ scrollOffset = 0, speed = 0 }: Props = {}) {
+  const yPos = scrollOffset * speed;
   const router = useRouter();
 
   return (
-    <div className="absolute left-4 top-4 md:left-8 md:top-8 m-px flex h-8 md:h-10 flex-row items-center gap-0 rounded-full bg-[#001520]/80 backdrop-blur-md border border-white/10 shadow-lg duration-300 hover:scale-105 active:scale-95 z-20">
+    <div 
+      className="absolute left-4 top-4 md:left-8 md:top-8 m-px flex h-8 md:h-10 flex-row items-center gap-0 rounded-full bg-[#001520]/80 backdrop-blur-md border border-white/10 shadow-lg duration-300 hover:scale-105 active:scale-95"
+      style={{ transform: `translateY(${yPos}px)`, willChange: "transform" }}
+    >
       {/* Engineer — active on main page */}
       <div
         className={cn(

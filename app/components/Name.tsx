@@ -10,6 +10,8 @@ import { cn } from "@/lib/utils";
 type Props = {
   text: string;
   className?: string;
+  scrollOffset?: number;
+  speed?: number;
 };
 
 /**
@@ -22,9 +24,14 @@ type Props = {
  * @param className: Classe supplémentaire à appliquer
  * 
  */
-function Name({ text, className = "" }: Props) {
+function Name({ text, className = "", scrollOffset = 0, speed = 0 }: Props) {
+  const yPos = scrollOffset * speed;
+
   return (
-    <div className="absolute inset-0 pointer-events-none flex w-full h-full flex-col justify-center items-center">
+    <div 
+      className="absolute inset-0 pointer-events-none flex w-full h-full flex-col justify-center items-center"
+      style={{ transform: `translateY(${yPos}px)`, willChange: "transform" }}
+    >
       <div
         className={cn(
           "pointer-events-auto transition-all duration-200 ease-in-out",

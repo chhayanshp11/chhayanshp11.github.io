@@ -80,13 +80,12 @@ function ScrollDownArrow() {
           }
         }}
         className={cn(
-          "p-fluide-anim relative h-screen w-full rounded-full p-2 text-white/50 transition-colors hover:bg-white-1/10 hover:text-white pointer-events-auto",
+          "p-fluide-anim absolute bottom-8 left-1/2 -translate-x-1/2 p-2 text-white/50 transition-colors hover:text-white pointer-events-auto",
           isVisible ? "opacity-100" : "opacity-0",
         )}
         aria-label="Scroll down"
       >
-        <ThreeChevron className="left-0" />
-        <ThreeChevron className="right-0" />
+        <ThreeChevron className="relative bottom-auto left-auto right-auto px-0 py-0" />
       </button>
     </div>
   );
