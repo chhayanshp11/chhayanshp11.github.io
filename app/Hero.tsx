@@ -12,7 +12,15 @@ import NavigationBar from "./components/NavigationBar";
 import PersonaToggle from "./components/ThemeSwitch";
 import textsEn from "../lang/data-texts-en";
 
-// ... (imports for images stay same)
+import img9Forest from "../public/img/background_layer/9_Forest.png";
+import img8Forest from "../public/img/background_layer/8_Forest.png";
+import img7Bridge from "../public/img/background_layer/7_Bridge.png";
+import img6Birds from "../public/img/background_layer/6_Birds.png";
+import img5Birds from "../public/img/background_layer/5_Birds.png";
+import img4Mountains from "../public/img/background_layer/4_Mountains.png";
+import img3Mountains from "../public/img/background_layer/3_Mountains.png";
+import img2Mountains from "../public/img/background_layer/2_Mountains.png";
+import img1Clouds from "../public/img/background_layer/1_Clouds.png";
 
 function Hero() {
   const texts = textsEn;
