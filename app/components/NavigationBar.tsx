@@ -46,12 +46,10 @@ function NavigationBarText({
 }
 
 type Props = {
-  scrollOffset?: number;
   speed?: number;
 };
 
-function NavigationBar({ scrollOffset = 0, speed = 0 }: Props = {}) {
-  const yPos = scrollOffset * speed;
+function NavigationBar({ speed = 0 }: Props = {}) {
   const scrollToSection = (sectionId: string, tab?: "experience" | "education") => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -70,7 +68,7 @@ function NavigationBar({ scrollOffset = 0, speed = 0 }: Props = {}) {
     <nav
       id="navigation-bar-container"
       className="absolute top-0 right-0 pointer-events-none flex justify-end w-full"
-      style={{ transform: `translateY(${yPos}px)`, willChange: "transform" }}
+      style={{ transform: `translateY(calc(var(--hero-scroll, 0px) * ${speed}))`, willChange: "transform" }}
     >
       <div
         id="navigation-bar"

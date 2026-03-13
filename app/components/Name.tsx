@@ -10,7 +10,6 @@ import { cn } from "@/lib/utils";
 type Props = {
   text: string;
   className?: string;
-  scrollOffset?: number;
   speed?: number;
 };
 
@@ -24,13 +23,11 @@ type Props = {
  * @param className: Classe supplémentaire à appliquer
  * 
  */
-function Name({ text, className = "", scrollOffset = 0, speed = 0 }: Props) {
-  const yPos = scrollOffset * speed;
-
+function Name({ text, className = "", speed = 0 }: Props) {
   return (
     <div 
       className="absolute inset-0 pointer-events-none flex w-full h-full flex-col justify-center items-center"
-      style={{ transform: `translateY(${yPos}px)`, willChange: "transform" }}
+      style={{ transform: `translateY(calc(var(--hero-scroll, 0px) * ${speed}))`, willChange: "transform" }}
     >
       <div
         className={cn(

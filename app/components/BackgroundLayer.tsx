@@ -2,18 +2,15 @@ import Image, { StaticImageData } from "next/image";
 
 type Props = {
   path: StaticImageData;
-  scrollOffset?: number;
   speed?: number;
 };
 
-function BackgroundLayer({ path, scrollOffset = 0, speed = 0 }: Props) {
-  const yPos = scrollOffset * speed;
-
+function BackgroundLayer({ path, speed = 0 }: Props) {
   return (
     <div
       className="absolute inset-0 pointer-events-none flex flex-col items-center"
       style={{
-        transform: `translateY(${yPos}px)`,
+        transform: `translateY(calc(var(--hero-scroll, 0px) * ${speed}))`,
         willChange: "transform",
       }}
     >
