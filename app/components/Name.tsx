@@ -27,7 +27,7 @@ function Name({ text, className = "", speed = 0 }: Props) {
   return (
     <div 
       className="absolute inset-0 pointer-events-none flex w-full h-full flex-col justify-center items-center"
-      style={{ transform: `translateY(calc(var(--hero-scroll, 0px) * ${speed}))`, willChange: "transform" }}
+      style={{ transform: `translate3d(0, calc(var(--hero-scroll, 0px) * ${speed}), 0)`, willChange: "transform" }}
     >
       <div
         className={cn(

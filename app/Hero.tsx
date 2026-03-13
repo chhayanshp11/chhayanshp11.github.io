@@ -53,7 +53,7 @@ function Hero() {
   return (
     <div
       ref={heroRef}
-      className="relative h-[100dvh] w-full overflow-hidden bg-[#a2fff4]"
+      className="relative h-[100svh] w-full overflow-hidden bg-[#a2fff4]"
       style={{ scrollSnapAlign: "start", scrollSnapStop: "always" }}
     >
       {/* Background layers - Diverging Parallax for the "sliding" effect */}

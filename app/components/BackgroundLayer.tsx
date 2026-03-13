@@ -10,7 +10,7 @@ function BackgroundLayer({ path, speed = 0 }: Props) {
     <div
       className="absolute inset-0 pointer-events-none flex flex-col items-center"
       style={{
-        transform: `translateY(calc(var(--hero-scroll, 0px) * ${speed}))`,
+        transform: `translate3d(0, calc(var(--hero-scroll, 0px) * ${speed}), 0)`,
         willChange: "transform",
       }}
     >
