@@ -67,14 +67,14 @@ function Hero({ parallaxRef }: Props) {
       <Name
         speed={-2.5}
         text={texts.hero.hi}
-        className="text-4xl text-blue-9 mb-44 lg:mr-[230px] lg:mb-56 max-sm:mb-28 max-sm:mr-16 max-sm:text-[1.7rem]"
+        className="text-4xl text-blue-9 mb-52 lg:mr-[230px] lg:mb-64 max-sm:mb-56"
       />
 
       {/* Nom et prénom */}
       <Name
         speed={-4}
         text={texts.hero.arthur}
-        className="text-6xl text-blue-7 lg:text-8xl w-full text-center max-sm:text-[2.6rem] max-sm:leading-[1.1] max-sm:mb-12 lg:mb-20 mb-16"
+        className="text-6xl text-blue-7 lg:text-8xl w-full text-center max-sm:text-[2.2rem] max-sm:leading-[1.1] max-sm:mb-32 lg:mb-32 mb-24"
       />
 
       {/* Couches pour le background */}
