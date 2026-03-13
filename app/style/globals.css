@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+}
+
+body {
+  @apply bg-[#00131c];
+}
+
 .p-minimal-size {
   min-width: 320px;
   min-height: 600px;

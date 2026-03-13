@@ -32,7 +32,10 @@ function Hero() {
   const texts = textsEn;
 
   return (
-    <div className="relative h-screen w-full overflow-hidden bg-[#a2fff4]">
+    <div
+      className="relative h-screen w-full overflow-hidden bg-[#a2fff4]"
+      style={{ scrollSnapAlign: "start", scrollSnapStop: "always" }}
+    >
       {/* Background layers - Fixed stack for non-parallax stability */}
       <BackgroundLayer path={img1Clouds} />
       <BackgroundLayer path={img2Mountains} />

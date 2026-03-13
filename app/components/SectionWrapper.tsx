@@ -12,7 +12,11 @@ export default function SectionWrapper({
   id,
 }: SectionWrapperProps) {
   return (
-    <section id={id} className={`w-full relative ${className}`}>
+    <section
+      id={id}
+      className={`w-full relative scroll-snap-align-start scroll-snap-stop-always ${className}`}
+      style={{ scrollSnapAlign: "start", scrollSnapStop: "always" }}
+    >
       {children}
     </section>
   );
