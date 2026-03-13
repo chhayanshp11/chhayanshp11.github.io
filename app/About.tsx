@@ -17,7 +17,6 @@ import selfieImg from "../public/img/selfie_v1.jpg";
 import githubBadge from "../public/img/social_media/github-badge.svg";
 import linkedinBadge from "../public/img/social_media/linkedin-badge.svg";
 import mailBadge from "../public/img/social_media/mail-badge.svg";
-import { IParallax } from "@react-spring/parallax";
 import textsEn from "../lang/data-texts-en";
 
 /**
@@ -27,7 +26,7 @@ import textsEn from "../lang/data-texts-en";
  * @description Page About.
  *
  */
-function About({ parallaxRef }: { parallaxRef: React.RefObject<IParallax | null> }) {
+function About() {
   // Références pour l'apparition au scroll
   const [aboutRef, aboutVisible] = useOnScreen<HTMLDivElement>();
   const [imgRef, imgVisible] = useOnScreen<HTMLImageElement>();
@@ -40,8 +39,7 @@ function About({ parallaxRef }: { parallaxRef: React.RefObject<IParallax | null>
 
   return (
     <SectionWrapper
-      offset={1}
-      speed={0}
+      id="about-section"
       className="relative flex min-h-[600px] flex-col items-center justify-evenly bg-blue-9 dark:bg-blue-4 lg:flex-row"
     >
       <div className="absolute top-0 -z-10 hidden h-32 w-full flex-col items-center bg-blue-9 dark:flex">
@@ -175,7 +173,7 @@ function About({ parallaxRef }: { parallaxRef: React.RefObject<IParallax | null>
       </div>
 
       {/* Timeline sur mon parcours */}
-      <Timeline parallaxRef={parallaxRef} className="scale-90 lg:scale-110" />
+      <Timeline className="scale-90 lg:scale-110" />
     </SectionWrapper>
   );
 }

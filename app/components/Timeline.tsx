@@ -1,4 +1,3 @@
-import { IParallax } from "@react-spring/parallax";
 import Image from "next/image";
 import "../style/timeline.css";
 import { fontJersey15, fontInter } from "@/lib/font";
@@ -10,7 +9,6 @@ import { useMobile } from "../hooks/useMobile";
 // Propriétés de Timeline
 type Props = {
   className?: string;
-  parallaxRef: React.RefObject<IParallax | null>;
 };
 
 // Propriétés de TimelineText
@@ -23,7 +21,6 @@ type TimelineTextProps = {
   subRoles?: { title: string; date: string }[];
   tab?: string;
   targetId?: string;
-  parallaxRef: React.RefObject<IParallax | null>;
 };
 
 // Propriétés de TimelineStep
@@ -39,7 +36,6 @@ type TimelineStepProps = {
   logoSrc?: string;
   tab?: string;
   targetId?: string;
-  parallaxRef: React.RefObject<IParallax | null>;
 };
 
 // Propriétés de TimelineDate
@@ -62,7 +58,6 @@ const TimelineText = ({
   subRoles,
   tab,
   targetId,
-  parallaxRef,
 }: TimelineTextProps) => {
   const isMobile = useMobile();
   const effectiveRight = isMobile ? true : right;
@@ -73,17 +68,10 @@ const TimelineText = ({
     // 1. Dispatch event to switch tab in ExperienceEducation
     window.dispatchEvent(new CustomEvent("setExperienceTab", { detail: tab }));
 
-    // 2. Scroll to ExperienceEducation section (offset 2 in Parallax)
-    if (parallaxRef.current) {
-      if (isMobile) {
-        // Find the ExperienceEducation section element
-        const expSection = document.querySelector("#experience-education");
-        if (expSection) {
-          expSection.scrollIntoView({ behavior: "smooth" });
-        }
-      } else {
-        parallaxRef.current.scrollTo(2);
-      }
+    // 2. Scroll to ExperienceEducation section
+    const expSection = document.getElementById("experience-education");
+    if (expSection) {
+      expSection.scrollIntoView({ behavior: "smooth" });
     }
 
     // 3. Scroll specific card into view after a delay
@@ -228,7 +216,6 @@ const TimelineStep = ({
   logoSrc,
   tab,
   targetId,
-  parallaxRef,
 }: TimelineStepProps) => {
   return (
     <li>
@@ -243,7 +230,6 @@ const TimelineStep = ({
         subRoles={subRoles}
         tab={tab}
         targetId={targetId}
-        parallaxRef={parallaxRef}
       />
       <TimelineDate date={date} right={!right} />
       <hr className={cn(isLast ? "last-hr" : "", "dark:invert")} />
@@ -255,7 +241,7 @@ const TimelineStep = ({
  * @Timeline
  * Fonction principale
  */
-function Timeline({ className = "", parallaxRef }: Props) {
+function Timeline({ className = "" }: Props) {
   const isMobile = useMobile();
   // Référence pour l'apparition au scroll
   const [lineRef, lineVisible] = useOnScreen<HTMLUListElement>();
@@ -285,7 +271,6 @@ function Timeline({ className = "", parallaxRef }: Props) {
         logoSrc="https://www.google.com/s2/favicons?domain=lpl.com&sz=128"
         tab="experience"
         targetId="lpl-financial"
-        parallaxRef={parallaxRef}
         subRoles={[
           { title: texts.about.timeline.lpl0.desc, date: texts.about.timeline.lpl0.date },
           { title: texts.about.timeline.lpl1.desc, date: texts.about.timeline.lpl1.date },
@@ -304,7 +289,6 @@ function Timeline({ className = "", parallaxRef }: Props) {
         logoSrc="https://www.google.com/s2/favicons?domain=utdallas.edu&sz=128"
         tab="education"
         targetId="university-of-texas-at-dallas"
-        parallaxRef={parallaxRef}
       />
 
       {/* Infosys */}
@@ -316,7 +300,6 @@ function Timeline({ className = "", parallaxRef }: Props) {
         logoSrc="https://www.google.com/s2/favicons?domain=infosys.com&sz=128"
         tab="experience"
         targetId="infosys-limited"
-        parallaxRef={parallaxRef}
       />
 
       {/* Worldsoft Technologies */}
@@ -329,7 +312,6 @@ function Timeline({ className = "", parallaxRef }: Props) {
         logoSrc="https://www.google.com/s2/favicons?domain=worldsoftit.com&sz=128"
         tab="experience"
         targetId="worldsoft-technologies"
-        parallaxRef={parallaxRef}
       />
 
       {/* Jabalpur Engineering College */}
@@ -342,7 +324,6 @@ function Timeline({ className = "", parallaxRef }: Props) {
         logoSrc="/img/jec_logo.png"
         tab="education"
         targetId="jabalpur-engineering-college"
-        parallaxRef={parallaxRef}
       />
     </ul>
   );

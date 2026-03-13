@@ -48,8 +48,7 @@ function Projects() {
 
   return (
     <SectionWrapper
-      offset={6}
-      speed={0}
+      id="projects-section"
       className="h-min-[600px] flex items-center justify-center bg-blue-9 dark:bg-blue-4 w-full relative z-10"
     >
       <div className="flex h-full w-full flex-col justify-center lg:h-4/5 lg:min-h-[600px] lg:flex-row">

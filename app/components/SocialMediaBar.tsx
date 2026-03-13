@@ -3,11 +3,8 @@
  * @type Component
  */
 
-import { ParallaxLayer } from "@react-spring/parallax";
 import { useEffect } from "react";
 import SocialMedia from "./SocialMedia";
-
-
 import githubBadge from "../../public/img/social_media/github-badge.svg";
 import linkedinBadge from "../../public/img/social_media/linkedin-badge.svg";
 import mailBadge from "../../public/img/social_media/mail-badge.svg";
@@ -15,7 +12,6 @@ import textsEn from "../../lang/data-texts-en";
 
 // Propriétés
 type Props = {
-  speed: number;
 };
 
 /**
@@ -23,80 +19,46 @@ type Props = {
  * Fonction principale
  *
  * @description Bar des réseaux sociaux qui va contenir les liens
- * pour y accéder. avec bar juste en dessous qui suis la ou est la souris
- * et texte decrivant le texte hover, dans sa propre couche parallax.
- *
- * @param speed: Vitesse à transmettre à la couche parallax
+ * pour y accéder.
  *
  */
-export default function SocialMediaBar({ speed }: Props) {
+export default function SocialMediaBar({ }: Props) {
   // Effectué uniquement au début
   useEffect(() => {
     headerSetup();
   }, );
 
-  /**
-   * Va mettre en place le suivie de la barre en dessous des badge
-   * ainsi que le texte qui décrit la ou pointe la souris.
-   */
   function headerSetup() {
-    // Récupération de la barre
     const selecteur = document.getElementById("social-media-selecteur");
+    const selecteurText = document.getElementById("social-media-selecteur-text");
+    const allSocialMedia = document.getElementsByClassName("p-social-media-badge");
 
-    // Récupération du texte en dessous de la barre
-    const selecteurText = document.getElementById(
-      "social-media-selecteur-text",
-    );
-
-    // Récupération d'un tableau contenant tout les badge social media
-    const allSocialMedia = document.getElementsByClassName(
-      "p-social-media-badge",
-    );
-
-    // On itère sur chaque badge
     for (const socialMedia of Array.from(allSocialMedia) as HTMLElement[]) {
-      // Lorsque l'on entre dans un état hover
       socialMedia.addEventListener("mouseenter", () => {
-        // Récupération du numéro du badge
         const num = parseInt(socialMedia.dataset.num ?? "0");
-
-        // Récupération de son propre offset gauche
         const offset = socialMedia?.offsetLeft ?? 0;
+        const firstBadge = document.getElementById(`social-media-badge-${1}`);
+        const offset_first = firstBadge?.offsetLeft ?? 0;
 
-        // Récupération de l'offset gauche du premier badge
-        const offset_first =
-          document.getElementById(`social-media-badge-${1}`)?.offsetLeft ?? 0;
-
-        // Ajustement de la barre en dessous du badge concerné
         if (selecteur) {
           selecteur.style.width = `${socialMedia.clientWidth}px`;
           selecteur.style.left = `${offset - offset_first}px`;
         }
 
-        // Ajustement du texte avec le contenue adéquat
         if (selecteurText) {
           switch (num) {
-            case 1:
-              selecteurText.textContent = texts.footer.git;
-              break;
-            case 2:
-              selecteurText.textContent = texts.footer.linkedin;
-              break;
-            case 3:
-              selecteurText.textContent = texts.footer.mail;
-              break;
+            case 1: selecteurText.textContent = texts.footer.git; break;
+            case 2: selecteurText.textContent = texts.footer.linkedin; break;
+            case 3: selecteurText.textContent = texts.footer.mail; break;
           }
         }
       });
 
-      // Lorsque l'on sort de l'état hover
       socialMedia.addEventListener("mouseleave", () => {
-        // La barre revient dans son état normal
         if (selecteur) {
           selecteur.style.width = `100%`;
           selecteur.style.left = `0`;
         }
-        // Le texte reprend une valeur vide
         if (selecteurText) {
           selecteurText.textContent = " ";
         }
@@ -104,35 +66,27 @@ export default function SocialMediaBar({ speed }: Props) {
     }
   }
 
-  // Récupération du textes
   const texts = textsEn;
   
   return (
-    <ParallaxLayer
+    <div
       id="social-media-layer"
-      offset={0}
-      speed={speed}
-      className="flex justify-start sm:ml-0 sm:justify-center max-sm:hidden"
+      className="absolute top-4 left-0 w-full flex justify-center max-sm:hidden z-20"
     >
       <div id="social-media-outer" className="flex flex-col gap-2 p-3">
         <div className="flex flex-row gap-7 max-sm:gap-3 lg:gap-10">
-          {/* Badge Github */}
           <SocialMedia
             svgSrc={githubBadge}
             num="1"
             href="https://github.com/chhayanshp11"
             alt={texts.hero.social.altGit}
           />
-
-          {/* Badge Linkedin */}
           <SocialMedia
             svgSrc={linkedinBadge}
             num="2"
             href="https://www.linkedin.com/in/chhayanshp11/"
             alt={texts.hero.social.altLinkedin}
           />
-
-          {/* Badge Mail */}
           <SocialMedia
             svgSrc={mailBadge}
             num="3"
@@ -141,18 +95,16 @@ export default function SocialMediaBar({ speed }: Props) {
           />
         </div>
 
-        {/* Barre qui suit le badge séléctionné */}
         <div
           id="social-media-selecteur"
           className="flex flex-col items-center rounded-full"
         >
-          {/* Texte qui s'adapte */}
           <div
             id="social-media-selecteur-text"
             className="mt-2 text-nowrap text-center text-sm text-blue-8"
           ></div>
         </div>
       </div>
-    </ParallaxLayer>
+    </div>
   );
 }

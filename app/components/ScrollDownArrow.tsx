@@ -4,20 +4,14 @@
  */
 
 import Image from "next/image";
-import { IParallax, ParallaxLayer } from "@react-spring/parallax";
-import { RefObject, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "../style/scrollDownArrow.css";
 import { cn } from "@/lib/utils";
-import { useMobile } from "../hooks/useMobile";
 
 import chevronImg from "../../public/img/chevron.svg";
 
 // Propriétés de ScrollDownArrow
 type Props = {
-  margin_bottom?: number;
-  margin_side?: number;
-  scrollThreshold?: number;
-  parallaxRef: RefObject<IParallax | null>;
 };
 
 // Propriétés de Chevron et ThreeChevron
@@ -39,7 +33,6 @@ function Chevron({ className = " " }: PropsAgain) {
       src={chevronImg}
       alt=""
       className={cn(className, "rotate-90 w-5 h-5")}
-      
     />
   );
 }
@@ -72,52 +65,33 @@ function ThreeChevron({ className = " " }: PropsAgain) {
  * Fonction principale
  *
  * @description A droite et à gauche, en bas de l'écran, des chevrons animé
- * indique a l'utilisateur qu'il peut scroll vers le bas,
- * ces chevron disparaissent lorsque l'on quitte la 1ère page.
- *
- * @param scrollThreshold: Seuil avant que les chevrons disparaissent 
- * @param parallaxRef: Référence de l'élément global parallax
+ * indique a l'utilisateur qu'il peut scroll vers le bas.
  *
  */
-function ScrollDownArrow({ scrollThreshold = 30, parallaxRef }: Props) {
-
-  // Défini si le threshold doit être visible ou pas
+function ScrollDownArrow({ }: Props) {
   const [isVisible, setIsVisible] = useState(true);
-  const isMobile = useMobile();
 
-  // Exécuté uniquement au début
+  // Simple visibility check based on window scroll
   useEffect(() => {
-    /**
-     * Check la position du scroll et set visible à true uniquement
-     * si l'on ne dépasse pas le threshold.
-     */
-    const checkScrollPosition = () => {
-      if (parallaxRef.current) {
-        const currentScrollPos = parallaxRef.current.current;
-        setIsVisible(currentScrollPos < scrollThreshold);
-      }
+    const handleScroll = () => {
+      setIsVisible(window.scrollY < 100);
     };
 
-    // Appel cette fonction toute les secondes
-    const intervalId = setInterval(checkScrollPosition, 1000);
-
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [scrollThreshold, parallaxRef]);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <ParallaxLayer className="pointer-events-none">
+    <div className="absolute inset-0 pointer-events-none">
       <button
         onClick={() => {
-          if (isMobile) {
-            window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
-          } else {
-            parallaxRef.current?.scrollTo(1);
+          const element = document.getElementById("about-section");
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
           }
         }}
         className={cn(
-          "p-fluide-anim relative h-dvh w-full rounded-full p-2 text-white/50 transition-colors hover:bg-white-1/10 hover:text-white",
+          "p-fluide-anim relative h-screen w-full rounded-full p-2 text-white/50 transition-colors hover:bg-white-1/10 hover:text-white pointer-events-auto",
           isVisible ? "opacity-100" : "opacity-0",
         )}
         aria-label="Scroll down"
@@ -125,7 +99,7 @@ function ScrollDownArrow({ scrollThreshold = 30, parallaxRef }: Props) {
         <ThreeChevron className="left-0" />
         <ThreeChevron className="right-0" />
       </button>
-    </ParallaxLayer>
+    </div>
   );
 }
 

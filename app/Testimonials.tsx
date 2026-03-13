@@ -105,8 +105,7 @@ function Testimonials() {
 
   return (
     <SectionWrapper
-      offset={5}
-      speed={0}
+      id="testimonials-section"
       className="flex items-center justify-center pointer-events-auto w-full"
     >
       <div

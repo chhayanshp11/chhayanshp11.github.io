@@ -617,9 +617,6 @@ function ExperienceEducation() {
   return (
     <SectionWrapper
       id="experience-education"
-      offset={2}
-      factor={2}
-      speed={0}
       className="flex items-start justify-center bg-blue-9 dark:bg-blue-4 pointer-events-auto"
     >
       <div

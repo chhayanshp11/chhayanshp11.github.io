@@ -24,8 +24,7 @@ function Photography() {
 
   return (
     <SectionWrapper
-      offset={7.2}
-      speed={0}
+      id="photography-section"
       className="pointer-events-auto flex items-center w-full"
     >
       <div

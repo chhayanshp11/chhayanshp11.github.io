@@ -1,18 +1,12 @@
-import { ParallaxLayer } from "@react-spring/parallax";
 import Image, { StaticImageData } from "next/image";
 
 type Props = {
-  speed: number;
   path: StaticImageData;
 };
 
-function BackgroundLayer({ speed, path }: Props) {
+function BackgroundLayer({ path }: Props) {
   return (
-    <ParallaxLayer
-      className="pointer-events-none flex flex-col items-center"
-      offset={0}
-      speed={speed}
-    >
+    <div className="absolute inset-0 pointer-events-none flex flex-col items-center">
       <div className="aspect-[1920/1080] h-full">
         <Image
           src={path}
@@ -22,7 +16,7 @@ function BackgroundLayer({ speed, path }: Props) {
           className="object-cover"
         />
       </div>
-    </ParallaxLayer>
+    </div>
   );
 }
 

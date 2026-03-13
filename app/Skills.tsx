@@ -22,8 +22,7 @@ function Skills() {
 
   return (
     <SectionWrapper
-      offset={4}
-      speed={0}
+      id="skills-section"
       className="min-[600px] flex flex-col items-center justify-center bg-blue-9 dark:bg-blue-4 pointer-events-auto w-full"
     >
       <div

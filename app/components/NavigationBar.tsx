@@ -3,18 +3,13 @@
  * @type Component
  */
 
-import { IParallax, ParallaxLayer } from "@react-spring/parallax";
 import { fontJersey15 } from "@/lib/font";
 import "../style/navigationBar.css";
-import { RefObject } from "react";
 import { cn } from "@/lib/utils";
-import { useMobile } from "../hooks/useMobile";
 import textsEn from "../../lang/data-texts-en";
 
 // Propriétés de NavigationBar
 type Props = {
-  speed: number;
-  parallaxRef: RefObject<IParallax | null>;
 };
 
 // Propriétés de NavigationBarText
@@ -44,7 +39,7 @@ function NavigationBarText({
     <span
       onClick={onClick}
       className={cn(
-        "p-navigation-bar-text px-4 py-1 text-end max-sm:text-[19px] text-2xl text-blue-9 lg:px-12 lg:text-3xl max-sm:pr-2 max-sm:pl-0 max-sm:py-[1px] max-sm:leading-tight",
+        "p-navigation-bar-text px-4 py-1 text-end max-sm:text-[19px] text-2xl text-blue-9 lg:px-12 lg:text-3xl max-sm:pr-2 max-sm:pl-0 max-sm:py-[1px] max-sm:leading-tight cursor-pointer",
         fontJersey15.className,
         className,
       )}
@@ -58,23 +53,16 @@ function NavigationBarText({
  * @NavigationBar
  *
  * @description Barre de navigation qui comportera des liens pour
- * aller aux autres sections du porte folio, sur sa proche couche parallax.
- *
- * @param speed: Vitesse à transmettre à la couche parallax
- * @param parallaxRef: Référence de l'élément global parallax
+ * aller aux autres sections du porte folio.
  *
  */
-function NavigationBar({ speed, parallaxRef }: Props) {
-  const isMobile = useMobile();
-
-  const scrollToSection = (sectionOffset: number, tab?: "experience" | "education") => {
-    if (isMobile) {
-      // Find relative section height since sections just stack
-      const targetY = sectionOffset * window.innerHeight;
-      window.scrollTo({ top: targetY, behavior: "smooth" });
-    } else {
-      parallaxRef.current?.scrollTo(sectionOffset);
+function NavigationBar({ }: Props) {
+  const scrollToSection = (sectionId: string, tab?: "experience" | "education") => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
     }
+    
     if (tab) {
       window.dispatchEvent(new CustomEvent('setExperienceTab', { detail: tab }));
     }
@@ -84,10 +72,9 @@ function NavigationBar({ speed, parallaxRef }: Props) {
   const texts = textsEn;
 
   return (
-    <ParallaxLayer
-      offset={0}
-      speed={speed}
-      className="pointer-events-none flex justify-end w-full"
+    <nav
+      id="navigation-bar-container"
+      className="absolute top-0 right-0 pointer-events-none flex justify-end w-full"
     >
       <div
         id="navigation-bar"
@@ -97,27 +84,27 @@ function NavigationBar({ speed, parallaxRef }: Props) {
         <div className="flex flex-col items-end w-full">
           <NavigationBarText
             text={texts.hero.nav.about}
-            onClick={() => scrollToSection(1)}
+            onClick={() => scrollToSection("about-section")}
           />
           <NavigationBarText
             text={texts.hero.nav.experience}
-            onClick={() => scrollToSection(2, "experience")}
+            onClick={() => scrollToSection("experience-education", "experience")}
           />
           <NavigationBarText
             text={texts.hero.nav.education}
-            onClick={() => scrollToSection(2, "education")}
+            onClick={() => scrollToSection("experience-education", "education")}
           />
           <NavigationBarText
             text={texts.hero.nav.skills}
-            onClick={() => scrollToSection(3)}
+            onClick={() => scrollToSection("skills-section")}
           />
           <NavigationBarText
             text={texts.hero.nav.beyondCode}
-            onClick={() => scrollToSection(4.8)}
+            onClick={() => scrollToSection("projects-section")}
           />
         </div>
       </div>
-    </ParallaxLayer>
+    </nav>
   );
 }
 

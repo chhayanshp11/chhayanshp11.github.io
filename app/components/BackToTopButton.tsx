@@ -5,39 +5,26 @@
 
 import "../style/backToTop.css";
 import { cn } from "@/lib/utils";
-import { IParallax } from "@react-spring/parallax";
-import { RefObject } from "react";
 import { IconChevronUp } from "@tabler/icons-react";
-import { useMobile } from "../hooks/useMobile";
 import textsEn from "../../lang/data-texts-en";
 
 // Propriétés
 type Props = {
   className?: string;
-  parallaxRef: RefObject<IParallax | null>;
 };
 
 /**
  * @BackToTopButton
  * Fonction principale
  *
- * @description Bouton qui permet de revenir à la première page,
- * ce bouton n'apparait que lorsque l'on quitte la première page
- * et est toujours positionné en haut à droite.
+ * @description Bouton qui permet de revenir en haut de la page.
  *
  * @param className: Classe supplémentaire à appliquer au bouton
- * @param parallaxRef: Référence de l'élément global parallax
  *
  */
-function BackToTopButton({ className = "", parallaxRef }: Props) {
-  const isMobile = useMobile();
-
+function BackToTopButton({ className = "" }: Props) {
   const handleClick = () => {
-    if (isMobile) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      parallaxRef.current?.scrollTo(0);
-    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   // Récupération du textes
