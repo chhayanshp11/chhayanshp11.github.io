@@ -27,19 +27,34 @@ function Hero() {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      // Only track scroll if Hero is potentially visible
-      if (window.scrollY < window.innerHeight) {
-        setScrollY(window.scrollY);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          // Prevent negative scroll values causing jumps (iOS bounce)
+          const currentScroll = Math.max(0, window.scrollY);
+          
+          // Only track scroll if Hero is potentially visible
+          if (currentScroll < window.innerHeight) {
+            setScrollY(currentScroll);
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
+
+    // Initialize state on mount
+    handleScroll();
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <div
-      className="relative h-screen w-full overflow-hidden bg-[#a2fff4]"
+      className="relative h-[100dvh] w-full overflow-hidden bg-[#a2fff4]"
       style={{ scrollSnapAlign: "start", scrollSnapStop: "always" }}
     >
       {/* Background layers - Diverging Parallax for the "sliding" effect */}
