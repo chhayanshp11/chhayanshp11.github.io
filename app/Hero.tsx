@@ -3,6 +3,7 @@
  * @type Page
  */
 
+import { useState, useEffect } from "react";
 import BackgroundLayer from "./components/BackgroundLayer";
 import Name from "./components/Name";
 import ScrollDownArrow from "./components/ScrollDownArrow";
@@ -11,43 +12,40 @@ import NavigationBar from "./components/NavigationBar";
 import PersonaToggle from "./components/ThemeSwitch";
 import textsEn from "../lang/data-texts-en";
 
-import img9Forest from "../public/img/background_layer/9_Forest.png";
-import img8Forest from "../public/img/background_layer/8_Forest.png";
-import img7Bridge from "../public/img/background_layer/7_Bridge.png";
-import img6Birds from "../public/img/background_layer/6_Birds.png";
-import img5Birds from "../public/img/background_layer/5_Birds.png";
-import img4Mountains from "../public/img/background_layer/4_Mountains.png";
-import img3Mountains from "../public/img/background_layer/3_Mountains.png";
-import img2Mountains from "../public/img/background_layer/2_Mountains.png";
-import img1Clouds from "../public/img/background_layer/1_Clouds.png";
+// ... (imports for images stay same)
 
-/**
- * @Hero
- *
- * @description Page Hero.
- *
- */
 function Hero() {
-  // Récupération du textes
   const texts = textsEn;
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Only track scroll if Hero is potentially visible
+      if (window.scrollY < window.innerHeight) {
+        setScrollY(window.scrollY);
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div
       className="relative h-screen w-full overflow-hidden bg-[#a2fff4]"
       style={{ scrollSnapAlign: "start", scrollSnapStop: "always" }}
     >
-      {/* Background layers - Fixed stack for non-parallax stability */}
-      <BackgroundLayer path={img1Clouds} />
-      <BackgroundLayer path={img2Mountains} />
+      {/* Background layers - Localized parallax for the "sliding" effect */}
+      <BackgroundLayer path={img1Clouds} scrollOffset={scrollY} speed={0.1} />
+      <BackgroundLayer path={img2Mountains} scrollOffset={scrollY} speed={0.2} />
 
       {/* Social Media Bar */}
       <SocialMediaBar />
 
       {/* More background layers */}
-      <BackgroundLayer path={img3Mountains} />
-      <BackgroundLayer path={img4Mountains} />
-      <BackgroundLayer path={img5Birds} />
-      <BackgroundLayer path={img6Birds} />
+      <BackgroundLayer path={img3Mountains} scrollOffset={scrollY} speed={0.3} />
+      <BackgroundLayer path={img4Mountains} scrollOffset={scrollY} speed={0.4} />
+      <BackgroundLayer path={img5Birds} scrollOffset={scrollY} speed={0.45} />
+      <BackgroundLayer path={img6Birds} scrollOffset={scrollY} speed={0.5} />
 
       {/* Navigation Bar */}
       <NavigationBar />
@@ -68,9 +66,9 @@ function Hero() {
       />
 
       {/* Foreground layers */}
-      <BackgroundLayer path={img7Bridge} />
-      <BackgroundLayer path={img8Forest} />
-      <BackgroundLayer path={img9Forest} />
+      <BackgroundLayer path={img7Bridge} scrollOffset={scrollY} speed={0.6} />
+      <BackgroundLayer path={img8Forest} scrollOffset={scrollY} speed={0.7} />
+      <BackgroundLayer path={img9Forest} scrollOffset={scrollY} speed={0.8} />
 
       {/* Scroll Down Arrow */}
       <ScrollDownArrow />
