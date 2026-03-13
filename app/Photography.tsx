@@ -25,6 +25,7 @@ function Photography() {
   return (
     <SectionWrapper
       id="photography-section"
+      fullHeight={false}
       className="pointer-events-auto flex items-center w-full"
     >
       <div
