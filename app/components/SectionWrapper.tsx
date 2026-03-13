@@ -14,7 +14,7 @@ export default function SectionWrapper({
   return (
     <section
       id={id}
-      className={`w-full relative scroll-snap-align-start scroll-snap-stop-always ${className}`}
+      className={`w-full min-h-screen relative flex flex-col items-center justify-center py-20 scroll-snap-align-start scroll-snap-stop-always ${className}`}
       style={{ scrollSnapAlign: "start", scrollSnapStop: "always" }}
     >
       {children}
