@@ -3,10 +3,7 @@
 import { useTheme } from "../contexts/themes-context";
 import { cn } from "@/lib/utils";
 
-type Props = {
-};
-
-function ThemeSwitch({ }: Props) {
+function ThemeSwitch() {
   const { theme, toggleTheme } = useTheme();
 
   return (

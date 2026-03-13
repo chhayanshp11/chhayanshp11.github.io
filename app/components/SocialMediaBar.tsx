@@ -11,22 +11,11 @@ import mailBadge from "../../public/img/social_media/mail-badge.svg";
 import textsEn from "../../lang/data-texts-en";
 
 // Propriétés
-type Props = {
-};
-
-/**
- * @SocialMediaBar
- * Fonction principale
- *
- * @description Bar des réseaux sociaux qui va contenir les liens
- * pour y accéder.
- *
- */
-export default function SocialMediaBar({ }: Props) {
+export default function SocialMediaBar() {
   // Effectué uniquement au début
   useEffect(() => {
     headerSetup();
-  }, );
+  }, []);
 
   function headerSetup() {
     const selecteur = document.getElementById("social-media-selecteur");

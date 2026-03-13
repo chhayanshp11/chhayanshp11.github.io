@@ -8,10 +8,6 @@ import "../style/navigationBar.css";
 import { cn } from "@/lib/utils";
 import textsEn from "../../lang/data-texts-en";
 
-// Propriétés de NavigationBar
-type Props = {
-};
-
 // Propriétés de NavigationBarText
 type PropsAgain = {
   text: string;
@@ -49,14 +45,7 @@ function NavigationBarText({
   );
 }
 
-/**
- * @NavigationBar
- *
- * @description Barre de navigation qui comportera des liens pour
- * aller aux autres sections du porte folio.
- *
- */
-function NavigationBar({ }: Props) {
+function NavigationBar() {
   const scrollToSection = (sectionId: string, tab?: "experience" | "education") => {
     const element = document.getElementById(sectionId);
     if (element) {

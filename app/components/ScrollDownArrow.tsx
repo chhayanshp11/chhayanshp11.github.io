@@ -11,9 +11,6 @@ import { cn } from "@/lib/utils";
 import chevronImg from "../../public/img/chevron.svg";
 
 // Propriétés de ScrollDownArrow
-type Props = {
-};
-
 // Propriétés de Chevron et ThreeChevron
 type PropsAgain = {
   className?: string;
@@ -60,15 +57,7 @@ function ThreeChevron({ className = " " }: PropsAgain) {
   );
 }
 
-/**
- * @ScrollDownArrow
- * Fonction principale
- *
- * @description A droite et à gauche, en bas de l'écran, des chevrons animé
- * indique a l'utilisateur qu'il peut scroll vers le bas.
- *
- */
-function ScrollDownArrow({ }: Props) {
+function ScrollDownArrow() {
   const [isVisible, setIsVisible] = useState(true);
 
   // Simple visibility check based on window scroll

@@ -3,7 +3,7 @@
  * @type Page
  */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Project from "./components/Project";
 import { useOnScreen } from "./hooks/useOnScreen";
 import { cn } from "@/lib/utils";
@@ -28,7 +28,7 @@ function Projects() {
    * @param id: id du projet que l'on expand
    */
   const handleExpandProject = (id: number) => {
-    if (window.innerWidth > 768) {
+    if (typeof window !== 'undefined' && window.innerWidth > 768) {
       setExpandedProjectId(-1);
     } else {
       setExpandedProjectId(expandedProjectId === id ? -1 : id);
@@ -36,9 +36,13 @@ function Projects() {
   };
 
   // Lorsque l'on resize la fenêtre, on dé expand tout
-  window.addEventListener("resize", () => {
-    handleExpandProject(-1);
-  });
+  useEffect(() => {
+    const handleResize = () => {
+      handleExpandProject(-1);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
 
   // Références pour l'apparition au scroll

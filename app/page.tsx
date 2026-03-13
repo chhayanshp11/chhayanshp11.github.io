@@ -4,7 +4,7 @@
  */
 
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Hero from "./Hero";
 import LoadingScreen from "./components/LoadingScreen";
 import About from "./About";

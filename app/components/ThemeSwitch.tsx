@@ -2,10 +2,7 @@ import { useRouter } from "next/navigation";
 import { fontInter } from "@/lib/font";
 import { cn } from "@/lib/utils";
 
-type Props = {
-};
-
-function PersonaToggle({ }: Props) {
+function PersonaToggle() {
   const router = useRouter();
 
   return (
