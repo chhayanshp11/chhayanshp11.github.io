@@ -64,10 +64,10 @@ export default function SocialMediaBar({ speed = 0 }: Props = {}) {
   return (
     <div
       id="social-media-layer"
-      className="absolute top-4 left-0 w-full flex justify-center max-sm:hidden z-20"
+      className="absolute top-4 left-0 w-full flex justify-center max-sm:hidden z-20 pointer-events-none"
       style={{ transform: `translate3d(0, calc(var(--hero-scroll, 0px) * ${speed}), 0)` }}
     >
-      <div id="social-media-outer" className="flex flex-col gap-2 p-3">
+      <div id="social-media-outer" className="flex flex-col gap-2 p-3 pointer-events-auto">
         <div className="flex flex-row gap-7 max-sm:gap-3 lg:gap-10">
           <SocialMedia
             svgSrc={githubBadge}
