@@ -82,10 +82,12 @@ function TimelineNode({
   trip,
   isLeft,
   index,
+  onPhotoClick,
 }: {
   trip: Trip;
   isLeft: boolean;
   index: number;
+  onPhotoClick: (src: string, alt: string) => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -117,7 +119,7 @@ function TimelineNode({
           <>
             {/* isLeft=true: [TripCard | dot | Year] */}
             <div className="w-5/12">
-              <TripCard trip={trip} align="right" />
+              <TripCard trip={trip} align="right" onPhotoClick={onPhotoClick} />
             </div>
             <div className="flex flex-col items-center w-2/12">
               <div className="w-4 h-4 rounded-full bg-[#f0c56d] shadow-[0_0_15px_rgba(240,197,109,0.5)] z-10" />
@@ -142,7 +144,7 @@ function TimelineNode({
               <div className="w-px flex-1 bg-gradient-to-b from-[#f0c56d]/60 to-[#f0c56d]/10 min-h-[200px]" />
             </div>
             <div className="w-5/12">
-              <TripCard trip={trip} align="left" />
+              <TripCard trip={trip} align="left" onPhotoClick={onPhotoClick} />
             </div>
           </>
         )}
@@ -157,7 +159,7 @@ function TimelineNode({
         </div>
         {/* Card */}
         <div className="flex-1">
-          <TripCard trip={trip} align="left" />
+          <TripCard trip={trip} align="left" onPhotoClick={onPhotoClick} />
         </div>
       </div>
     </div>
@@ -166,7 +168,15 @@ function TimelineNode({
 
 /* ────────────────────── Trip Card ────────────────────── */
 
-function TripCard({ trip, align }: { trip: Trip; align: "left" | "right" }) {
+function TripCard({
+  trip,
+  align,
+  onPhotoClick,
+}: {
+  trip: Trip;
+  align: "left" | "right";
+  onPhotoClick: (src: string, alt: string) => void;
+}) {
   return (
     <div
       className={cn(
@@ -188,11 +198,12 @@ function TripCard({ trip, align }: { trip: Trip; align: "left" | "right" }) {
       </p>
 
       {/* Photos */}
-      <div className={cn("mt-4 flex gap-3 flex-wrap", align === "right" ? "justify-end" : "justify-start")}>
+      <div className="mt-4 grid grid-cols-2 gap-2">
         {trip.photos.map((photo, i) => (
           <div
             key={i}
-            className="relative w-52 h-36 rounded-xl overflow-hidden cursor-pointer group/photo"
+            className="relative aspect-[4/3] rounded-xl overflow-hidden cursor-zoom-in group/photo"
+            onClick={() => onPhotoClick(photo, `${trip.destination} photo ${i + 1}`)}
           >
             <Image
               src={photo}
@@ -201,6 +212,15 @@ function TripCard({ trip, align }: { trip: Trip; align: "left" | "right" }) {
               className="object-cover transition-transform duration-500 group-hover/photo:scale-110"
             />
             <div className="absolute inset-0 bg-black/0 group-hover/photo:bg-black/20 transition-colors duration-300" />
+            {/* zoom hint */}
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/photo:opacity-100 transition-opacity duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="drop-shadow-lg">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                <line x1="11" y1="8" x2="11" y2="14"/>
+                <line x1="8" y1="11" x2="14" y2="11"/>
+              </svg>
+            </div>
           </div>
         ))}
       </div>
@@ -212,7 +232,16 @@ function TripCard({ trip, align }: { trip: Trip; align: "left" | "right" }) {
 
 export default function PhotographyPage() {
   const router = useRouter();
+  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
 
+  // Close on Escape
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightbox(null);
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, []);
   return (
     <main className="min-h-screen bg-[#00131c]">
       {/* Hero header */}
@@ -265,7 +294,7 @@ export default function PhotographyPage() {
       {/* Travel Timeline */}
       <div className="max-w-5xl mx-auto px-6 pb-24">
         {trips.map((trip, i) => (
-          <TimelineNode key={trip.id} trip={trip} isLeft={i % 2 === 0} index={i} />
+          <TimelineNode key={trip.id} trip={trip} isLeft={i % 2 === 0} index={i} onPhotoClick={(src, alt) => setLightbox({ src, alt })} />
         ))}
 
         {/* End marker */}
@@ -278,6 +307,42 @@ export default function PhotographyPage() {
           </p>
         </div>
       </div>
+
+      {/* ── Lightbox Modal ── */}
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 md:p-8"
+          onClick={() => setLightbox(null)}
+        >
+          <div
+            className="relative max-w-[90vw] max-h-[90vh] rounded-2xl overflow-hidden shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image
+              src={lightbox.src}
+              alt={lightbox.alt}
+              width={1400}
+              height={1000}
+              className="object-contain max-w-[90vw] max-h-[90vh] w-auto h-auto"
+              priority
+            />
+            {/* Close button */}
+            <button
+              onClick={() => setLightbox(null)}
+              className="absolute top-3 right-3 w-9 h-9 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/80 transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+            {/* Caption */}
+            <div className={cn("absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent px-5 py-3 text-white/80 text-sm", fontInter.className)}>
+              {lightbox.alt}
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
