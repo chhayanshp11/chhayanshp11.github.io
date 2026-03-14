@@ -113,37 +113,39 @@ function TimelineNode({
     >
       {/* ── Desktop: alternating layout ── */}
       <div className="hidden md:flex w-full items-start">
-        {/* Left content */}
-        <div className={cn("w-5/12", isLeft ? "" : "order-3")}>
-          {isLeft ? (
-            <TripCard trip={trip} align="right" />
-          ) : (
-            <div className="flex justify-start pl-8">
-              <span className={cn("text-3xl lg:text-4xl text-white/20", fontJersey15.className)}>
+        {isLeft ? (
+          <>
+            {/* isLeft=true: [TripCard | dot | Year] */}
+            <div className="w-5/12">
+              <TripCard trip={trip} align="right" />
+            </div>
+            <div className="flex flex-col items-center w-2/12">
+              <div className="w-4 h-4 rounded-full bg-[#f0c56d] shadow-[0_0_15px_rgba(240,197,109,0.5)] z-10" />
+              <div className="w-px flex-1 bg-gradient-to-b from-[#f0c56d]/60 to-[#f0c56d]/10 min-h-[200px]" />
+            </div>
+            <div className="w-5/12 flex justify-start pl-8 mt-[-6px]">
+              <span className={cn("text-3xl lg:text-4xl text-white/20 leading-none", fontJersey15.className)}>
                 {trip.date}
               </span>
             </div>
-          )}
-        </div>
-
-        {/* Center line + dot */}
-        <div className="flex flex-col items-center w-2/12 order-2">
-          <div className="w-4 h-4 rounded-full bg-[#f0c56d] shadow-[0_0_15px_rgba(240,197,109,0.5)] z-10" />
-          <div className="w-px flex-1 bg-gradient-to-b from-[#f0c56d]/60 to-[#f0c56d]/10 min-h-[200px]" />
-        </div>
-
-        {/* Right content */}
-        <div className={cn("w-5/12", isLeft ? "order-3" : "")}>
-          {isLeft ? (
-            <div className="flex justify-end pr-8">
-              <span className={cn("text-3xl lg:text-4xl text-white/20", fontJersey15.className)}>
+          </>
+        ) : (
+          <>
+            {/* isLeft=false: [Year | dot | TripCard] */}
+            <div className="w-5/12 flex justify-end pr-8 mt-[-6px]">
+              <span className={cn("text-3xl lg:text-4xl text-white/20 leading-none", fontJersey15.className)}>
                 {trip.date}
               </span>
             </div>
-          ) : (
-            <TripCard trip={trip} align="left" />
-          )}
-        </div>
+            <div className="flex flex-col items-center w-2/12">
+              <div className="w-4 h-4 rounded-full bg-[#f0c56d] shadow-[0_0_15px_rgba(240,197,109,0.5)] z-10" />
+              <div className="w-px flex-1 bg-gradient-to-b from-[#f0c56d]/60 to-[#f0c56d]/10 min-h-[200px]" />
+            </div>
+            <div className="w-5/12">
+              <TripCard trip={trip} align="left" />
+            </div>
+          </>
+        )}
       </div>
 
       {/* ── Mobile: single column ── */}
