@@ -94,7 +94,7 @@ function NavigationBar({ speed = 0 }: Props = {}) {
           />
           <NavigationBarText
             text={texts.hero.nav.beyondCode}
-            onClick={() => scrollToSection("projects-section")}
+            onClick={() => scrollToSection("photography-section")}
           />
         </div>
       </div>
