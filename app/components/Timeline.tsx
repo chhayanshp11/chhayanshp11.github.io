@@ -166,12 +166,12 @@ const TimelineMiddle = ({ logoSrc }: { logoSrc?: string }) => {
   return (
     <div className="timeline-middle">
       {logoSrc ? (
-        <div className="w-9 h-9 rounded-full bg-white/95 flex items-center justify-center shadow-md overflow-hidden relative">
+        <div className="w-9 h-9 rounded-full bg-white/95 flex items-center justify-center shadow-md overflow-hidden relative p-1">
           <Image 
             src={logoSrc} 
             alt="logo" 
             fill
-            className="object-cover rounded-full" 
+            className="object-contain rounded-full p-0.5" 
           />
         </div>
       ) : (
@@ -267,7 +267,7 @@ function Timeline({ className = "" }: Props) {
         date="2023 - Present"
         location={texts.about.timeline.lpl0.location}
         isFirst
-        logoSrc="https://www.google.com/s2/favicons?domain=lpl.com&sz=128"
+        logoSrc="/img/lpl-logo.png"
         tab="experience"
         targetId="lpl-financial"
         subRoles={[
@@ -296,7 +296,7 @@ function Timeline({ className = "" }: Props) {
         desc={texts.about.timeline.oxyl.desc}
         date={texts.about.timeline.oxyl.date}
         location={texts.about.timeline.oxyl.location}
-        logoSrc="https://www.google.com/s2/favicons?domain=infosys.com&sz=128"
+        logoSrc="/img/infosys-logo.png"
         tab="experience"
         targetId="infosys-limited"
       />

@@ -56,8 +56,7 @@
 
     .timeline-snap-icon li {
         grid-template-columns: 0px 2.5rem auto !important;
-        margin-bottom: 1.5rem;
-        /* Let height be auto to fit content naturally */
+        margin-bottom: 0;
     }
 
     .timeline-snap-icon .timeline-start {
