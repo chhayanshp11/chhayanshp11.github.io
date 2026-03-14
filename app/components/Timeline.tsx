@@ -278,13 +278,24 @@ function Timeline({ className = "" }: Props) {
         ]}
       />
 
+      {/* UT Austin McCombs — PGP AI/ML */}
+      <TimelineStep
+        name={texts.about.timeline.utaustin.name}
+        desc={texts.about.timeline.utaustin.desc}
+        date={texts.about.timeline.utaustin.date}
+        location={texts.about.timeline.utaustin.location}
+        right
+        logoSrc="https://www.google.com/s2/favicons?domain=utexas.edu&sz=128"
+        tab="education"
+        targetId="ut-austin-mccombs"
+      />
+
       {/* Education (UTD) */}
       <TimelineStep
         name={texts.about.timeline.utd.name}
         desc={texts.about.timeline.utd.desc}
         date={texts.about.timeline.utd.date}
         location={texts.about.timeline.utd.location}
-        right
         logoSrc="https://www.google.com/s2/favicons?domain=utdallas.edu&sz=128"
         tab="education"
         targetId="university-of-texas-at-dallas"
@@ -296,6 +307,7 @@ function Timeline({ className = "" }: Props) {
         desc={texts.about.timeline.oxyl.desc}
         date={texts.about.timeline.oxyl.date}
         location={texts.about.timeline.oxyl.location}
+        right
         logoSrc="/img/infosys-logo.png"
         tab="experience"
         targetId="infosys-limited"
@@ -307,7 +319,6 @@ function Timeline({ className = "" }: Props) {
         desc={texts.about.timeline.sopra.desc}
         date={texts.about.timeline.sopra.date}
         location={texts.about.timeline.sopra.location}
-        right
         logoSrc="https://www.google.com/s2/favicons?domain=worldsoftit.com&sz=128"
         tab="experience"
         targetId="worldsoft-technologies"
@@ -319,6 +330,7 @@ function Timeline({ className = "" }: Props) {
         desc={texts.about.timeline.jec.desc}
         date={texts.about.timeline.jec.date}
         location={texts.about.timeline.jec.location}
+        right
         isLast
         logoSrc="/img/jec_logo.png"
         tab="education"

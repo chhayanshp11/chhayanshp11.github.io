@@ -160,6 +160,20 @@ const experienceData: ExperienceEntry[] = [
 
 const educationData: EducationEntry[] = [
   {
+    school: "UT Austin, McCombs School of Business",
+    logoSrc: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://utexas.edu&size=128",
+    degree: "Post Graduate Program",
+    field: "AI & ML with GenAI Specialization",
+    date: "Feb 2025 – Present",
+    location: "Austin, TX",
+    skills: ["Generative AI", "Machine Learning", "Deep Learning", "NLP"],
+    highlights: [
+      "Pursuing an intensive PGP in AI/ML with specialization in Generative AI at UT Austin McCombs School of Business",
+      "Coursework covers supervised/unsupervised learning, neural networks, NLP, and cutting-edge GenAI frameworks",
+      "Applying ML techniques directly to real-world data engineering and analytics challenges at LPL Financial",
+    ],
+  },
+  {
     school: "University of Texas at Dallas",
     logoSrc: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://utdallas.edu&size=128",
     degree: "Master of Science",

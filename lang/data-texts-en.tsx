@@ -65,6 +65,12 @@ const textsEn = {
         date: "2019 - 2021",
         location: "Jabalpur, India",
       },
+      utaustin: {
+        name: "UT Austin, McCombs School of Business",
+        desc: "PGP in AI/ML with GenAI Specialization",
+        date: "Feb 2025 - Present",
+        location: "Austin, TX",
+      },
       utd: {
         name: "Univ. of Texas at Dallas",
         desc: "Master of Science, ITM",
