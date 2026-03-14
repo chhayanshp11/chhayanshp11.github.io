@@ -72,7 +72,7 @@ function NavigationBar({ speed = 0 }: Props = {}) {
     >
       <div
         id="navigation-bar"
-        className="pointer-events-auto flex flex-col pt-4 lg:pt-8 w-auto items-end"
+        className="pointer-events-auto flex flex-col pt-2 lg:pt-3 w-auto items-end"
       >
         {/* Navigation list - Visible on all screens */}
         <div className="flex flex-col items-end w-full">
