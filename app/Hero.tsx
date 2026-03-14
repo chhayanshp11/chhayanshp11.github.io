@@ -54,7 +54,6 @@ function Hero() {
     <div
       ref={heroRef}
       className="relative h-[100svh] w-full overflow-hidden bg-[#a2fff4]"
-      style={{ scrollSnapAlign: "start", scrollSnapStop: "always" }}
     >
       {/* Background layers - Diverging Parallax for the "sliding" effect */}
       <BackgroundLayer path={img1Clouds} speed={1.2} />

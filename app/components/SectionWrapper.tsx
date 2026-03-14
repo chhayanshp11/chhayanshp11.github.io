@@ -7,7 +7,6 @@ type SectionWrapperProps = {
   children: React.ReactNode;
   id?: string;
   fullHeight?: boolean;
-  disableSnap?: boolean;
 };
 
 export default function SectionWrapper({
@@ -15,7 +14,6 @@ export default function SectionWrapper({
   children,
   id,
   fullHeight = true,
-  disableSnap = false,
 }: SectionWrapperProps) {
   return (
     <section
@@ -23,10 +21,8 @@ export default function SectionWrapper({
       className={cn(
         "w-full relative flex flex-col items-center justify-center",
         fullHeight && "min-h-screen py-20",
-        !disableSnap && "scroll-snap-align-start scroll-snap-stop-always",
         className
       )}
-      style={!disableSnap ? { scrollSnapAlign: "start", scrollSnapStop: "always" } : {}}
     >
       {children}
     </section>

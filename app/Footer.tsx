@@ -54,7 +54,6 @@ function Footer() {
     <SectionWrapper
       id="footer-section"
       fullHeight={false}
-      disableSnap={true}
       className="min-[600px] pointer-events-none relative w-full h-24"
     >
       <div className="pointer-events-auto absolute bottom-0 flex h-9 w-full flex-row items-center justify-evenly">
