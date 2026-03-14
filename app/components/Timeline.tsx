@@ -252,12 +252,12 @@ function Timeline({ className = "" }: Props) {
     <ul
       ref={lineRef}
       className={cn(
-        "delay-400 timeline transition-all duration-1000 ease-in-out lg:timeline-vertical max-lg:timeline-vertical max-lg:px-4",
+        "timeline transition-[transform,opacity] duration-700 ease-out lg:timeline-vertical max-lg:timeline-vertical max-lg:px-4",
         isMobile ? "timeline-snap-icon" : "",
         className,
         lineVisible
           ? ""
-          : "-translate-y-20 opacity-0 lg:-translate-x-20 lg:-translate-y-0",
+          : "translate-y-8 opacity-0 lg:translate-y-0 lg:-translate-x-20",
       )}
     >
       {/* LPL Financial — grouped with sub-roles */}

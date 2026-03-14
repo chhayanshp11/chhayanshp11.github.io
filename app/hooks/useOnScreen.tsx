@@ -25,7 +25,13 @@ export function useOnScreen<T extends Element>(threshold = 0.1) {
   // Vérification de si le composant qui à ref est à l'écran ou pas
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => setIntersecting(entry.isIntersecting),
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIntersecting(true);
+          // Once seen, disconnect — no need to keep observing
+          observer.disconnect();
+        }
+      },
       { threshold }
     );
     if (ref.current) observer.observe(ref.current);
