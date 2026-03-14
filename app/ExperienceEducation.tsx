@@ -225,7 +225,7 @@ function ExperienceCard({ entry, isFeatured }: { entry: ExperienceEntry, isFeatu
           </div>
           <div className="flex flex-col">
             <div className="flex flex-col gap-2 sm:gap-3 items-start">
-              <h3 className={cn("text-lg font-semibold text-white group-hover:text-[#a2fff4] transition-colors flex items-center gap-2", fontInter.className)}>
+              <h3 className={cn("max-sm:text-[16px]/tight text-lg font-semibold text-white group-hover:text-[#a2fff4] transition-colors flex items-center gap-2", fontInter.className)}>
                 {entry.company}
                 <span className="text-[#a2fff4]/50 bg-[#a2fff4]/10 p-1 rounded-sm flex items-center justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className={cn("transition-transform duration-300", expanded ? "rotate-180" : "rotate-0")}>
@@ -245,7 +245,7 @@ function ExperienceCard({ entry, isFeatured }: { entry: ExperienceEntry, isFeatu
         </div>
 
         {/* Dates and Location (Right Aligned, tied to Company) */}
-        <div className={cn("text-white/40 text-xs sm:text-right mt-1 sm:mt-0 pl-13 sm:pl-0", fontInter.className)}>
+        <div className={cn("max-sm:text-[11px] text-white/40 text-xs sm:text-right mt-1 sm:mt-0 pl-13 sm:pl-0", fontInter.className)}>
           <div>{entry.date}</div>
           <div>📍 {entry.location}</div>
         </div>
@@ -261,14 +261,14 @@ function ExperienceCard({ entry, isFeatured }: { entry: ExperienceEntry, isFeatu
             <div key={i} className={cn("pl-3 border-l-2 border-[#a2fff4]/20 mb-5 last:mb-0", i > 0 ? "mt-5" : "")}>
               <div className="flex flex-col xl:flex-row xl:items-start xl:justify-between gap-1">
                 <div>
-                  <h4 className={cn("text-[#a2fff4] font-medium text-base leading-tight", fontInter.className)}>
+                  <h4 className={cn("text-[#a2fff4] font-medium max-sm:text-sm text-base leading-tight", fontInter.className)}>
                     {role.title}
                   </h4>
-                  <span className={cn("text-white/30 text-xs", fontInter.className)}>
+                  <span className={cn("text-white/30 max-sm:text-[11px] text-xs", fontInter.className)}>
                     {role.type}
                   </span>
                 </div>
-                <div className={cn("text-white/40 text-xs xl:text-right mt-1 xl:mt-0", fontInter.className)}>
+                <div className={cn("text-white/40 max-sm:text-[10px] text-xs xl:text-right mt-1 xl:mt-0", fontInter.className)}>
                   <div>{role.date}</div>
                   <div>📍 {role.location}</div>
                 </div>
@@ -276,8 +276,8 @@ function ExperienceCard({ entry, isFeatured }: { entry: ExperienceEntry, isFeatu
 
               <ul className="mt-3 space-y-2">
                 {role.bullets.map((bullet, j) => (
-                  <li key={j} className={cn("text-white/55 text-sm leading-relaxed flex gap-2", fontInter.className)}>
-                    <span className="text-[#a2fff4]/60 mt-1 shrink-0 text-sm">▸</span>
+                  <li key={j} className={cn("text-white/55 max-sm:text-[13px] text-sm leading-relaxed flex gap-2", fontInter.className)}>
+                    <span className="text-[#a2fff4]/60 mt-1 max-sm:mt-[2px] shrink-0 text-sm max-sm:text-xs">▸</span>
                     <span>{bullet}</span>
                   </li>
                 ))}
@@ -313,7 +313,7 @@ function EducationCard({ entry }: { entry: EducationEntry }) {
           </div>
           <div className="flex flex-col">
             <div className="flex flex-col gap-2 sm:gap-3 items-start">
-              <h3 className={cn("text-lg font-semibold text-white group-hover:text-[#a2fff4] transition-colors flex items-center gap-2", fontInter.className)}>
+              <h3 className={cn("max-sm:text-[16px]/tight text-lg font-semibold text-white group-hover:text-[#a2fff4] transition-colors flex items-center gap-2", fontInter.className)}>
                 {entry.school}
                 <span className="text-[#a2fff4]/50 bg-[#a2fff4]/10 p-1 rounded-sm flex items-center justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className={cn("transition-transform duration-300", expanded ? "rotate-180" : "rotate-0")}>
@@ -321,7 +321,7 @@ function EducationCard({ entry }: { entry: EducationEntry }) {
                   </svg>
                 </span>
               </h3>
-              <div className={cn("text-[#a2fff4]/80 text-[15px]", fontInter.className)}>
+              <div className={cn("text-[#a2fff4]/80 max-sm:text-sm text-[15px]", fontInter.className)}>
                 {entry.degree}, {entry.field}
               </div>
               <div className="flex flex-wrap gap-1.5 mt-1">
@@ -336,7 +336,7 @@ function EducationCard({ entry }: { entry: EducationEntry }) {
         </div>
 
         {/* Dates and Location (Right Aligned) */}
-        <div className={cn("text-white/40 text-xs sm:text-right mt-1 sm:mt-0 pl-13 sm:pl-0", fontInter.className)}>
+        <div className={cn("text-white/40 max-sm:text-[11px] text-xs sm:text-right mt-1 sm:mt-0 pl-13 sm:pl-0", fontInter.className)}>
           <div>{entry.date}</div>
           <div>📍 {entry.location}</div>
         </div>
@@ -350,8 +350,8 @@ function EducationCard({ entry }: { entry: EducationEntry }) {
         <div className="pl-3 border-l-2 border-[#a2fff4]/20 overflow-hidden space-y-2">
           <ul className="space-y-2">
             {entry.highlights.map((h, i) => (
-              <li key={i} className={cn("text-white/55 text-sm leading-relaxed flex gap-2", fontInter.className)}>
-                <span className="text-[#a2fff4]/60 mt-1 shrink-0 text-sm">▸</span>
+              <li key={i} className={cn("text-white/55 max-sm:text-[13px] text-sm leading-relaxed flex gap-2", fontInter.className)}>
+                <span className="text-[#a2fff4]/60 mt-1 max-sm:mt-[2px] shrink-0 text-sm max-sm:text-xs">▸</span>
                 <span>{h}</span>
               </li>
             ))}

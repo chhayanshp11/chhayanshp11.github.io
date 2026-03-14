@@ -101,7 +101,6 @@ const TimelineText = ({
           : "timeline-start hover:-translate-x-3",
       )}
     >
-      {/* Date on TOP for Mobile only */}
       {isMobile && date && (
         <span className="text-xs text-white/40 mb-1 font-medium tracking-wider uppercase">
           {date}
