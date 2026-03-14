@@ -36,6 +36,7 @@ export default function SocialMediaBar({ speed = 0 }: Props = {}) {
         if (selecteur) {
           selecteur.style.width = `${socialMedia.clientWidth}px`;
           selecteur.style.left = `${offset - offset_first}px`;
+          selecteur.style.backgroundColor = '#002545';
         }
 
         if (selecteurText) {
@@ -49,8 +50,8 @@ export default function SocialMediaBar({ speed = 0 }: Props = {}) {
 
       socialMedia.addEventListener("mouseleave", () => {
         if (selecteur) {
-          selecteur.style.width = `100%`;
-          selecteur.style.left = `0`;
+          selecteur.style.width = `0px`;
+          selecteur.style.backgroundColor = 'transparent';
         }
         if (selecteurText) {
           selecteurText.textContent = " ";

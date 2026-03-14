@@ -18,11 +18,11 @@
   position: relative;
   left: 0;
   height: 3px;
-  width: 100%;
+  width: 0;
 
   box-shadow: 0 0 10px #00131c;
 
-  background-color: #002545;
+  background-color: transparent;
 
   transition: left 0.3s ease-in-out, width 0.3s ease-in-out;
 }
