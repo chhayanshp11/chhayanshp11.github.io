@@ -20,7 +20,7 @@ export default function SectionWrapper({
       id={id}
       className={cn(
         "w-full relative flex flex-col items-center justify-center",
-        fullHeight && "min-h-screen py-20",
+        fullHeight && "min-h-screen max-sm:min-h-fit py-20 max-sm:py-10",
         className
       )}
     >
