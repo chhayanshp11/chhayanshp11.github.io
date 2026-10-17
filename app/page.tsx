@@ -595,7 +595,6 @@ function SkillSphere() {
     const goldenAngle = Math.PI * (3 - Math.sqrt(5));
     for (let i = 0; i < n; i++) {
       const y = 1 - (2 * (i + 0.5)) / n;
-      const radiusAtY = Math.sqrt(1 - y * y);
       const theta = Math.acos(y);
       const phi = goldenAngle * i;
       positionsRef.current.push({ theta, phi });
@@ -614,9 +613,9 @@ function SkillSphere() {
     items.forEach((el, i) => {
       const { theta, phi } = positionsRef.current[i];
 
-      let x = radius * Math.sin(theta) * Math.cos(phi);
-      let y = radius * Math.cos(theta);
-      let z = radius * Math.sin(theta) * Math.sin(phi);
+      const x = radius * Math.sin(theta) * Math.cos(phi);
+      const y = radius * Math.cos(theta);
+      const z = radius * Math.sin(theta) * Math.sin(phi);
 
       // Rotate around Y axis
       const cosY = Math.cos(rotY);
@@ -690,7 +689,7 @@ function SkillSphere() {
       onPointerUp={onPointerUp}
       onPointerLeave={onPointerUp}
     >
-      {allSkills.map((skill, i) => (
+      {allSkills.map((skill) => (
         <a
           key={skill.name}
           data-skill
