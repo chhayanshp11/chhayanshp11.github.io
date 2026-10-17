@@ -8,7 +8,7 @@
 
 "use client";
 
-import { fontJersey15, fontInter } from "@/lib/font";
+import { fontHeading, fontInter } from "@/lib/font";
 import { cn } from "@/lib/utils";
 import { useOnScreen } from "./hooks/useOnScreen";
 import Image from "next/image";
@@ -21,9 +21,9 @@ import streetImg from "../public/img/photography/street.png";
 import austinImg from "../public/img/photography/austin.png";
 
 const photos = [
-  { src: mountainsImg, alt: "Himalayas — mountain pass" },
-  { src: streetImg,   alt: "Rajasthan — street market" },
-  { src: austinImg,   alt: "Austin — city at sunset" },
+  { src: mountainsImg, alt: "Himalayas - mountain pass" },
+  { src: streetImg,   alt: "Rajasthan - street market" },
+  { src: austinImg,   alt: "Austin - city at sunset" },
 ];
 
 function Photography() {
@@ -56,7 +56,7 @@ function Photography() {
         <h2
           className={cn(
             "text-4xl lg:text-5xl text-[#f0c56d]",
-            fontJersey15.className,
+            fontHeading.className,
           )}
         >
           Beyond the Code

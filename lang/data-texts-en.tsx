@@ -26,7 +26,7 @@ const textsEn = {
   },
   about: {
     altPicture: "Profile picture",
-    desc: "I specialize in designing and building scalable data architectures. With experience at LPL Financial and Infosys, I've built real-time streaming applications and automated complex ETL pipelines. When I'm offline, I'm capturing logic and light through my photography.",
+    desc: "Data Engineer with 4+ years of experience architecting high-throughput data platforms and AI-driven solutions. At LPL Financial and Infosys, I've designed real-time streaming pipelines, built RAG-powered applications, and automated data workflows at scale using Spark, Kafka, and AWS. Currently deepening my expertise in Generative AI and machine learning through UT Austin's AI/ML program. Beyond the terminal, I'm an avid traveller and photographer - exploring new landscapes and cultures fuels the same curiosity I bring to engineering.",
     seeCV: "Click to view my CV",
     timeline: {
       lpl0: {

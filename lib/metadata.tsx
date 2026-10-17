@@ -7,7 +7,7 @@ import type { Metadata } from "next";
 const metadataInfos: Metadata = {
   title: "Chhayansh Purohit | Data Engineer Portfolio",
   description:
-    "Portfolio of Chhayansh Purohit — Senior Data Engineer specializing in scalable data architectures, AWS cloud solutions, and real-time streaming pipelines. Explore my projects, certifications, publications, and photography.",
+    "Portfolio of Chhayansh Purohit - Senior Data Engineer specializing in scalable data architectures, AWS cloud solutions, and real-time streaming pipelines. Explore my projects, certifications, publications, and photography.",
   keywords: [
     "Chhayansh Purohit",
     "Data Engineer",

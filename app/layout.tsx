@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import "./style/globals.css";
-import { fontInter } from "@/lib/font";
+import { fontInter, fontHeading } from "@/lib/font";
 import { cn } from "@/lib/utils";
 import metadataInfos from "@/lib/metadata";
-import { ThemeProvider } from "./contexts/themes-context";
 
 export const metadata: Metadata = metadataInfos;
 
@@ -13,9 +12,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className={cn(fontInter.className, "p-minimal-size text-white-1 dark:text-blue-10")}>
-        <ThemeProvider>{children}</ThemeProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={cn(
+          fontInter.variable,
+          fontHeading.variable,
+          "font-body antialiased",
+        )}
+      >
+        {children}
       </body>
     </html>
   );

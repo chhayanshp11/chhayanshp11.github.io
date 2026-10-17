@@ -28,7 +28,7 @@ export function useOnScreen<T extends Element>(threshold = 0.1) {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIntersecting(true);
-          // Once seen, disconnect — no need to keep observing
+          // Once seen, disconnect - no need to keep observing
           observer.disconnect();
         }
       },

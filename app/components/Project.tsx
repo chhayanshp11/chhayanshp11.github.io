@@ -7,7 +7,7 @@
 
 import { cn } from "@/lib/utils";
 import Button from "./Button";
-import { fontJersey15 } from "@/lib/font";
+import { fontHeading } from "@/lib/font";
 import "../style/project.css";
 import SocialMedia from "./SocialMedia";
 
@@ -112,7 +112,7 @@ function Project({ ref, id, isExpanded, onExpand, className }: Props) {
             <span
               className={cn(
                 "z-10 text-center text-2xl text-white-1 lg:text-4xl",
-                fontJersey15.className,
+                fontHeading.className,
               )}
             >
               {selectedProject?.title}
@@ -156,7 +156,7 @@ function Project({ ref, id, isExpanded, onExpand, className }: Props) {
                   <h2
                     className={cn(
                       "mb-2 text-2xl font-bold",
-                      fontJersey15.className,
+                      fontHeading.className,
                     )}
                   >
                     {selectedProject?.title}

@@ -3,7 +3,7 @@
  * @type Component
  */
 
-import { fontJersey15, fontInter } from "@/lib/font";
+import { fontHeading, fontInter } from "@/lib/font";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import skillsEn from "../../lang/data-skills-en";
@@ -44,7 +44,7 @@ function Skill({ id, className = "" }: Props) {
       <span
         className={cn(
           "text-center text-2xl/6 text-blue-1 lg:text-2xl",
-          fontJersey15.className,
+          fontHeading.className,
         )}
       >
         {selectedSkill?.title}

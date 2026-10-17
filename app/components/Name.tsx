@@ -3,7 +3,7 @@
  * @type Component
  */
 
-import { fontJersey15 } from "@/lib/font";
+import { fontHeading } from "@/lib/font";
 import { cn } from "@/lib/utils";
 
 // Propriétés
@@ -32,7 +32,7 @@ function Name({ text, className = "", speed = 0 }: Props) {
       <div
         className={cn(
           "pointer-events-auto transition-all duration-200 ease-in-out",
-          fontJersey15.className,
+          fontHeading.className,
           className,
         )}
       >

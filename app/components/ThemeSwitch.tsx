@@ -14,7 +14,7 @@ function PersonaToggle({ speed = 0 }: Props = {}) {
       className="absolute left-4 top-4 md:left-8 md:top-8 m-px flex h-8 md:h-10 flex-row items-center gap-0 rounded-full bg-[#001520]/80 backdrop-blur-md border border-white/10 shadow-lg duration-300 hover:scale-105 active:scale-95 pointer-events-auto cursor-pointer"
       style={{ transform: `translate3d(0, calc(var(--hero-scroll, 0px) * ${speed}), 0)` }}
     >
-      {/* Engineer — active on main page */}
+      {/* Engineer - active on main page */}
       <div
         className={cn(
           "flex items-center gap-0.5 md:gap-1.5 px-1 md:px-4 h-full rounded-full transition-all duration-300",
@@ -31,7 +31,7 @@ function PersonaToggle({ speed = 0 }: Props = {}) {
 
       <div className="h-3 w-px bg-white/10" />
 
-      {/* Traveller — navigates to /photography */}
+      {/* Traveller - navigates to /photography */}
       <div
         onClick={() => router.push("/photography")}
         className={cn(

@@ -6,7 +6,7 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import SectionWrapper from "./components/SectionWrapper";
-import { fontJersey15, fontInter } from "@/lib/font";
+import { fontHeading, fontInter } from "@/lib/font";
 
 import "./style/footer.css";
 import textsEn from "../lang/data-texts-en";
@@ -58,7 +58,7 @@ function Footer() {
     >
       <div className="pointer-events-auto absolute bottom-0 flex h-9 w-full flex-row items-center justify-evenly">
         {/* Nom Prénom */}
-        <span className={cn(fontJersey15.className, "text-xl lg:text-3xl")}>
+        <span className={cn(fontHeading.className, "text-xl lg:text-3xl")}>
           {texts.hero.arthur}
         </span>
         <div className="h-1/2 w-px bg-white-1 md:opacity-0"></div>

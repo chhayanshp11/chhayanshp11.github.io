@@ -3,7 +3,7 @@
  * @type Component
  */
 
-import { fontJersey15 } from "@/lib/font";
+import { fontHeading } from "@/lib/font";
 import "../style/navigationBar.css";
 import { cn } from "@/lib/utils";
 import textsEn from "../../lang/data-texts-en";
@@ -36,7 +36,7 @@ function NavigationBarText({
       onClick={onClick}
       className={cn(
         "p-navigation-bar-text px-4 py-1 text-end max-sm:text-[19px] text-2xl text-blue-9 lg:px-12 lg:text-3xl max-sm:pr-2 max-sm:pl-0 max-sm:py-[1px] max-sm:leading-tight cursor-pointer",
-        fontJersey15.className,
+        fontHeading.className,
         className,
       )}
     >

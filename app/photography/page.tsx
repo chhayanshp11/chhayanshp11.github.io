@@ -7,7 +7,7 @@
 
 "use client";
 
-import { fontJersey15, fontInter } from "@/lib/font";
+import { fontHeading, fontInter } from "@/lib/font";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
@@ -39,7 +39,7 @@ const trips: Trip[] = [
     destination: "New England",
     country: "USA",
     date: "2023",
-    description: "A fall road trip through Vermont and New Hampshire. The autumn foliage was unreal — rivers of gold and crimson as far as the eye could see.",
+    description: "A fall road trip through Vermont and New Hampshire. The autumn foliage was unreal - rivers of gold and crimson as far as the eye could see.",
     photos: ["/img/photography/aerial.png"],
   },
   {
@@ -47,7 +47,7 @@ const trips: Trip[] = [
     destination: "Himalayas",
     country: "India",
     date: "2022",
-    description: "Rode through the highest motorable passes in the world. Spiti Valley, Rohtang, and Manali — the mountains humbled me at every turn.",
+    description: "Rode through the highest motorable passes in the world. Spiti Valley, Rohtang, and Manali - the mountains humbled me at every turn.",
     photos: ["/img/photography/mountains.png", "/img/photography/snow.png"],
   },
   {
@@ -55,7 +55,7 @@ const trips: Trip[] = [
     destination: "Rajasthan",
     country: "India",
     date: "2021",
-    description: "The land of kings. From the blue streets of Jodhpur to the golden dunes of Jaisalmer — chaos, color, and camels everywhere.",
+    description: "The land of kings. From the blue streets of Jodhpur to the golden dunes of Jaisalmer - chaos, color, and camels everywhere.",
     photos: ["/img/photography/street.png", "/img/photography/desert.png"],
   },
   {
@@ -126,7 +126,7 @@ function TimelineNode({
               <div className="w-px flex-1 bg-gradient-to-b from-[#f0c56d]/60 to-[#f0c56d]/10 min-h-[200px]" />
             </div>
             <div className="w-5/12 flex justify-start pl-8 mt-[-6px]">
-              <span className={cn("text-3xl lg:text-4xl text-white/20 leading-none", fontJersey15.className)}>
+              <span className={cn("text-3xl lg:text-4xl text-white/20 leading-none", fontHeading.variable + " font-heading")}>
                 {trip.date}
               </span>
             </div>
@@ -135,7 +135,7 @@ function TimelineNode({
           <>
             {/* isLeft=false: [Year | dot | TripCard] */}
             <div className="w-5/12 flex justify-end pr-8 mt-[-6px]">
-              <span className={cn("text-3xl lg:text-4xl text-white/20 leading-none", fontJersey15.className)}>
+              <span className={cn("text-3xl lg:text-4xl text-white/20 leading-none", fontHeading.variable + " font-heading")}>
                 {trip.date}
               </span>
             </div>
@@ -185,7 +185,7 @@ function TripCard({
       )}
     >
       {/* Location */}
-      <h3 className={cn("text-2xl lg:text-3xl text-[#f0c56d]", fontJersey15.className)}>
+      <h3 className={cn("text-2xl lg:text-3xl text-[#f0c56d]", fontHeading.variable + " font-heading")}>
         {trip.destination}
       </h3>
       <div className={cn("text-xs text-white/40 mt-0.5", fontInter.className)}>
@@ -243,12 +243,12 @@ export default function PhotographyPage() {
     return () => window.removeEventListener("keydown", handler);
   }, []);
   return (
-    <main className="min-h-screen bg-[#00131c]">
+    <main className="min-h-screen bg-zinc-950">
       {/* Hero header */}
       <div className="relative pt-12 pb-16 text-center">
-        {/* Persona Toggle — Traveller active */}
+        {/* Persona Toggle - Traveller active */}
         <div className="absolute top-2.5 left-2.5 md:top-6 md:left-6 flex h-8 md:h-10 flex-row items-center gap-0 rounded-full border border-[#f0c56d]/30 bg-[#00131c]/60 backdrop-blur-sm">
-          {/* Engineer — navigates to main page */}
+          {/* Engineer - navigates to main page */}
           <div
             onClick={() => router.push("/")}
             className={cn(
@@ -264,7 +264,7 @@ export default function PhotographyPage() {
             <span className="font-medium text-[8px] md:text-sm">Engineer</span>
           </div>
           <div className="h-3 w-px bg-[#f0c56d]/20" />
-          {/* Traveller — active */}
+          {/* Traveller - active */}
           <div
             className={cn(
               "flex items-center gap-1 md:gap-1.5 px-2 md:px-4 h-full rounded-full transition-all duration-300",
@@ -280,7 +280,7 @@ export default function PhotographyPage() {
           </div>
         </div>
 
-        <h1 className={cn("text-5xl lg:text-7xl text-[#f0c56d] mt-8", fontJersey15.className)}>
+        <h1 className={cn("text-5xl lg:text-7xl text-[#f0c56d] mt-8", fontHeading.variable + " font-heading")}>
           My Travel Journey
         </h1>
         <p className={cn("mt-4 text-base text-white/50 max-w-lg mx-auto", fontInter.className)}>

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import "../style/timeline.css";
-import { fontJersey15, fontInter } from "@/lib/font";
+import { fontHeading, fontInter } from "@/lib/font";
 import { cn } from "@/lib/utils";
 import { useOnScreen } from "../hooks/useOnScreen";
 import textsEn from "../../lang/data-texts-en";
@@ -112,7 +112,7 @@ const TimelineText = ({
         className={cn(
           "text-lg/5 opacity-90 lg:text-xl/5 group-hover/item:text-[#a2fff4] transition-colors",
           isMobile ? "text-left" : "text-center",
-          fontJersey15.className,
+          fontHeading.className,
         )}
       >
         {name}
@@ -260,7 +260,7 @@ function Timeline({ className = "" }: Props) {
           : "translate-y-8 opacity-0 lg:translate-y-0 lg:-translate-x-20",
       )}
     >
-      {/* LPL Financial — grouped with sub-roles */}
+      {/* LPL Financial - grouped with sub-roles */}
       <TimelineStep
         name="LPL Financial"
         desc=""
@@ -278,7 +278,7 @@ function Timeline({ className = "" }: Props) {
         ]}
       />
 
-      {/* UT Austin McCombs — PGP AI/ML */}
+      {/* UT Austin McCombs - PGP AI/ML */}
       <TimelineStep
         name={texts.about.timeline.utaustin.name}
         desc={texts.about.timeline.utaustin.desc}
