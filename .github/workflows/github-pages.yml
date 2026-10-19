@@ -1,4 +1,17 @@
-name: GitHub Pages Deployment
+# Deploy Portfolio to GitHub Pages
+#
+# How to use:
+#   - Push to main         -> auto-deploys to production
+#   - Manual run (sandbox)  -> pick any branch (feature-*, portfolio-v1, etc.) to preview live
+#   - Manual run (production) -> must be run from main, deploys to production
+#
+# Examples:
+#   1. Test a feature branch:    Run workflow > branch: feature-cool-thing > sandbox
+#   2. Rollback to v1:           Run workflow > branch: portfolio-v1 > sandbox
+#   3. Ship to production:       Merge PR to main (auto-deploys)
+#   4. Redeploy production:      Run workflow > branch: main > production
+
+name: Deploy
 
 on:
   push:
@@ -7,7 +20,7 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        description: 'Deploy as sandbox (feature branch) or production (main only)'
+        description: 'sandbox = preview any branch, production = deploy main'
         required: true
         default: 'sandbox'
         type: choice
