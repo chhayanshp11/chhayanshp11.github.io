@@ -13,6 +13,8 @@ export default function SkillCylinder() {
   const containerRef = useRef<HTMLDivElement>(null);
   const rotationRef = useRef(0);
   const rafRef = useRef<number>(0);
+  const dragRef = useRef({ active: false, lastX: 0 });
+  const velocityRef = useRef(0.004);
 
   const allSkills = skills.flatMap((cat) =>
     cat.subSkills.map((s) => ({ name: s.name, image: s.image, url: s.url })),
@@ -56,13 +58,34 @@ export default function SkillCylinder() {
 
   useEffect(() => {
     const animate = () => {
-      rotationRef.current += 0.004;
+      if (!dragRef.current.active) {
+        velocityRef.current *= 0.995;
+        if (Math.abs(velocityRef.current) < 0.003) velocityRef.current = 0.004;
+        rotationRef.current += velocityRef.current;
+      }
       render();
       rafRef.current = requestAnimationFrame(animate);
     };
     rafRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(rafRef.current);
   }, [render]);
+
+  const onPointerDown = (e: React.PointerEvent) => {
+    dragRef.current = { active: true, lastX: e.clientX };
+    (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
+  };
+
+  const onPointerMove = (e: React.PointerEvent) => {
+    if (!dragRef.current.active) return;
+    const dx = e.clientX - dragRef.current.lastX;
+    rotationRef.current += dx * 0.005;
+    velocityRef.current = dx * 0.003;
+    dragRef.current.lastX = e.clientX;
+  };
+
+  const onPointerUp = () => {
+    dragRef.current.active = false;
+  };
 
   const distributed: { skill: (typeof allSkills)[0]; row: number; col: number; colCount: number }[] = [];
   let idx = 0;
@@ -76,8 +99,12 @@ export default function SkillCylinder() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full select-none overflow-hidden"
+      className="relative w-full select-none overflow-hidden cursor-grab active:cursor-grabbing touch-none"
       style={{ height: cylinderHeight + 40 }}
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={onPointerUp}
+      onPointerLeave={onPointerUp}
     >
       {distributed.map(({ skill, row, col, colCount }) => (
         <a
@@ -90,6 +117,9 @@ export default function SkillCylinder() {
           target="_blank"
           rel="noreferrer"
           className="absolute left-1/2 top-1/2 flex items-center gap-1 px-2 py-1 rounded-full bg-white/90 dark:bg-zinc-800/90 border border-zinc-200 dark:border-zinc-700 shadow-sm whitespace-nowrap"
+          onClick={(e) => {
+            if (Math.abs(velocityRef.current) > 0.008) e.preventDefault();
+          }}
         >
           <Image
             src={skill.image}
