@@ -1,9 +1,8 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
+import { useState, useEffect, useCallback } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { IconSun, IconMoon } from "@tabler/icons-react";
 
 const NAV_LINKS = [
@@ -15,17 +14,39 @@ const NAV_LINKS = [
 
 function PersonaToggle() {
   const pathname = usePathname();
+  const router = useRouter();
   const isPhotography = pathname === "/photography";
 
+  const navigateWithTransition = useCallback(
+    (href: string) => {
+      if ((href === "/" && !isPhotography) || (href === "/photography" && isPhotography)) return;
+      const content = document.querySelector(".page-content");
+      if (content) {
+        content.classList.add("page-exit");
+        setTimeout(() => router.push(href), 250);
+      } else {
+        router.push(href);
+      }
+    },
+    [isPhotography, router],
+  );
+
   return (
-    <div className="flex h-8 items-center gap-0 rounded-full border border-zinc-300 dark:border-zinc-500 bg-white/60 dark:bg-zinc-700/60 backdrop-blur-sm">
-      <Link
-        href="/"
+    <div
+      className={cn(
+        "flex h-8 items-center gap-0 rounded-full border backdrop-blur-sm",
+        isPhotography
+          ? "border-[#f0c56d]/30 bg-zinc-900/60"
+          : "border-zinc-300 dark:border-zinc-500 bg-white/60 dark:bg-zinc-700/60",
+      )}
+    >
+      <button
+        onClick={() => navigateWithTransition("/")}
         className={cn(
-          "flex items-center gap-1.5 px-3 h-full rounded-full transition-all duration-300 text-xs font-medium",
+          "flex items-center gap-1.5 px-3 h-full rounded-full transition-all duration-300 text-xs font-medium cursor-pointer",
           !isPhotography
             ? "bg-accent/20 text-accent dark:bg-accent/30 dark:text-blue-300"
-            : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-300 dark:hover:text-white",
+            : "text-white/40 hover:text-white/70",
         )}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -33,14 +54,14 @@ function PersonaToggle() {
           <polyline points="8 6 2 12 8 18" />
         </svg>
         Engineer
-      </Link>
-      <div className="h-3 w-px bg-zinc-300 dark:bg-zinc-500" />
-      <Link
-        href="/photography"
+      </button>
+      <div className={cn("h-3 w-px", isPhotography ? "bg-[#f0c56d]/20" : "bg-zinc-300 dark:bg-zinc-500")} />
+      <button
+        onClick={() => navigateWithTransition("/photography")}
         className={cn(
-          "flex items-center gap-1.5 px-3 h-full rounded-full transition-all duration-300 text-xs font-medium",
+          "flex items-center gap-1.5 px-3 h-full rounded-full transition-all duration-300 text-xs font-medium cursor-pointer",
           isPhotography
-            ? "bg-accent/20 text-accent dark:bg-accent/30 dark:text-blue-300"
+            ? "bg-[#f0c56d]/20 text-[#f0c56d]"
             : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-300 dark:hover:text-white",
         )}
       >
@@ -49,7 +70,7 @@ function PersonaToggle() {
           <circle cx="12" cy="13" r="4" />
         </svg>
         Explorer
-      </Link>
+      </button>
     </div>
   );
 }
@@ -67,9 +88,11 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const isPhotography = pathname === "/photography";
+
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", dark);
-  }, [dark]);
+    document.documentElement.classList.toggle("dark", dark || isPhotography);
+  }, [dark, isPhotography]);
 
   return (
     <nav
@@ -100,13 +123,15 @@ export default function Navbar() {
 
         {/* Theme toggle + mobile menu */}
         <div className="flex items-center gap-2">
-          <button
-            onClick={() => setDark(!dark)}
-            className="p-2 rounded-lg text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
-            aria-label="Toggle theme"
-          >
-            {dark ? <IconSun size={18} /> : <IconMoon size={18} />}
-          </button>
+          {!isPhotography && (
+            <button
+              onClick={() => setDark(!dark)}
+              className="p-2 rounded-lg text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
+              aria-label="Toggle theme"
+            >
+              {dark ? <IconSun size={18} /> : <IconMoon size={18} />}
+            </button>
+          )}
           {isHome && (
             <button
               onClick={() => setMenuOpen(!menuOpen)}

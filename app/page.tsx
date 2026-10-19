@@ -17,7 +17,7 @@ import {
   IconSchool,
 } from "@tabler/icons-react";
 import { useState, useEffect, useRef, useCallback } from "react";
-import Navbar from "./components/Navbar";
+
 
 import skills from "@/lang/data-skills-en";
 import projects from "@/lang/data-projects-en";
@@ -1015,7 +1015,6 @@ function BackToTop() {
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <Navbar />
       <Hero />
       <About />
       <Experience />

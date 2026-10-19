@@ -12,7 +12,6 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 
 /* ────────────────────── Trip Data ────────────────────── */
 
@@ -231,7 +230,6 @@ function TripCard({
 /* ────────────────────── Page ────────────────────── */
 
 export default function PhotographyPage() {
-  const router = useRouter();
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
 
   // Close on Escape
@@ -246,40 +244,6 @@ export default function PhotographyPage() {
     <main className="min-h-screen bg-zinc-950">
       {/* Hero header */}
       <div className="relative pt-12 pb-16 text-center">
-        {/* Persona Toggle - Explorer active */}
-        <div className="absolute top-2.5 left-2.5 md:top-6 md:left-6 flex h-8 md:h-10 flex-row items-center gap-0 rounded-full border border-[#f0c56d]/30 bg-[#00131c]/60 backdrop-blur-sm">
-          {/* Engineer - navigates to main page */}
-          <div
-            onClick={() => router.push("/")}
-            className={cn(
-              "flex items-center gap-1 md:gap-1.5 px-2 md:px-4 h-full rounded-full transition-all duration-300 cursor-pointer",
-              "text-white/40 hover:text-[#a2fff4] hover:bg-[#a2fff4]/10",
-              fontInter.className,
-            )}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="16 18 22 12 16 6" />
-              <polyline points="8 6 2 12 8 18" />
-            </svg>
-            <span className="font-medium text-[8px] md:text-sm">Engineer</span>
-          </div>
-          <div className="h-3 w-px bg-[#f0c56d]/20" />
-          {/* Explorer - active */}
-          <div
-            className={cn(
-              "flex items-center gap-1 md:gap-1.5 px-2 md:px-4 h-full rounded-full transition-all duration-300",
-              "bg-[#f0c56d]/20 text-[#f0c56d]",
-              fontInter.className,
-            )}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-              <circle cx="12" cy="13" r="4" />
-            </svg>
-            <span className="font-medium text-[8px] md:text-sm">Explorer</span>
-          </div>
-        </div>
-
         <h1 className={cn("text-5xl lg:text-7xl text-[#f0c56d] mt-8", fontHeading.variable + " font-heading")}>
           My Travel Journey
         </h1>

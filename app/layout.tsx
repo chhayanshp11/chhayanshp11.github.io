@@ -3,6 +3,8 @@ import "./style/globals.css";
 import { fontInter, fontHeading } from "@/lib/font";
 import { cn } from "@/lib/utils";
 import metadataInfos from "@/lib/metadata";
+import PageTransition from "./components/PageTransition";
+import Navbar from "./components/Navbar";
 
 export const metadata: Metadata = metadataInfos;
 
@@ -20,7 +22,8 @@ export default function RootLayout({
           "font-body antialiased",
         )}
       >
-        {children}
+        <Navbar />
+        <PageTransition>{children}</PageTransition>
       </body>
     </html>
   );
