@@ -246,7 +246,7 @@ export default function PhotographyPage() {
     <main className="min-h-screen bg-zinc-950">
       {/* Hero header */}
       <div className="relative pt-12 pb-16 text-center">
-        {/* Persona Toggle - Traveller active */}
+        {/* Persona Toggle - Explorer active */}
         <div className="absolute top-2.5 left-2.5 md:top-6 md:left-6 flex h-8 md:h-10 flex-row items-center gap-0 rounded-full border border-[#f0c56d]/30 bg-[#00131c]/60 backdrop-blur-sm">
           {/* Engineer - navigates to main page */}
           <div
@@ -264,7 +264,7 @@ export default function PhotographyPage() {
             <span className="font-medium text-[8px] md:text-sm">Engineer</span>
           </div>
           <div className="h-3 w-px bg-[#f0c56d]/20" />
-          {/* Traveller - active */}
+          {/* Explorer - active */}
           <div
             className={cn(
               "flex items-center gap-1 md:gap-1.5 px-2 md:px-4 h-full rounded-full transition-all duration-300",
@@ -276,7 +276,7 @@ export default function PhotographyPage() {
               <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
               <circle cx="12" cy="13" r="4" />
             </svg>
-            <span className="font-medium text-[8px] md:text-sm">Traveller</span>
+            <span className="font-medium text-[8px] md:text-sm">Explorer</span>
           </div>
         </div>
 

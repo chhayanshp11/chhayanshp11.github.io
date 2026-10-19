@@ -105,7 +105,7 @@ function Hero() {
               Chhayansh Purohit
             </h1>
             <p className="text-lg md:text-xl text-zinc-500 dark:text-zinc-300 mb-8">
-              Data engineer. Photographer.
+              Data engineer. Explorer.
             </p>
             <div className="flex items-center justify-center md:justify-start gap-4">
               <SocialLink

@@ -31,7 +31,7 @@ function PersonaToggle({ speed = 0 }: Props = {}) {
 
       <div className="h-3 w-px bg-white/10" />
 
-      {/* Traveller - navigates to /photography */}
+      {/* Explorer - navigates to /photography */}
       <div
         onClick={() => router.push("/photography")}
         className={cn(
@@ -44,7 +44,7 @@ function PersonaToggle({ speed = 0 }: Props = {}) {
           <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
           <circle cx="12" cy="13" r="4" />
         </svg>
-        <span className="font-semibold text-[10px] md:text-sm">Traveller</span>
+        <span className="font-semibold text-[10px] md:text-sm">Explorer</span>
       </div>
     </div>
   );
