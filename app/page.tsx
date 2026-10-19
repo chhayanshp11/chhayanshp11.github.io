@@ -86,7 +86,7 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 
 function Hero() {
   return (
-    <section id="skills" className="min-h-screen flex items-center pt-16">
+    <section id="skills" className="min-h-screen flex items-center pt-16 overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 py-16 md:py-24 w-full">
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
           {/* Left: profile info */}
@@ -131,7 +131,7 @@ function Hero() {
             </div>
           </div>
           {/* Right: skill sphere */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 translate-x-10 md:translate-x-16">
             <SkillSphere />
           </div>
         </div>
