@@ -9,7 +9,7 @@ const NAV_LINKS = [
   { label: "About", href: "#about" },
   { label: "Journey", href: "#experience" },
   { label: "Projects", href: "#projects" },
-  { label: "Photos", href: "#photography" },
+  { label: "Beyond Code", href: "#photography" },
 ];
 
 function PersonaToggle() {

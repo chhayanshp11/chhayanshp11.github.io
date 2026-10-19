@@ -76,7 +76,7 @@ function Section({
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="font-heading text-2xl md:text-3xl font-semibold text-zinc-900 dark:text-white mb-10">
+    <h2 className="font-heading text-2xl md:text-3xl font-semibold text-zinc-900 dark:text-white mb-6 md:mb-10">
       {children}
     </h2>
   );
@@ -84,14 +84,115 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 
 /* ═══════════════════════ HERO ═══════════════════════ */
 
+function SkillCylinder() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const rotationRef = useRef(0);
+  const rafRef = useRef<number>(0);
+
+  const allSkills = skills.flatMap((cat) =>
+    cat.subSkills.map((s) => ({ name: s.name, image: s.image, url: s.url })),
+  );
+
+  const rows = 7;
+  const perRow = Math.ceil(allSkills.length / rows);
+  const radius = 180;
+  const rowHeight = 38;
+  const cylinderHeight = rows * rowHeight;
+
+  const render = useCallback(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const items = container.querySelectorAll<HTMLElement>("[data-cyl]");
+    const angle = rotationRef.current;
+
+    items.forEach((el) => {
+      const row = Number(el.dataset.row);
+      const col = Number(el.dataset.col);
+      const colCount = Number(el.dataset.colcount);
+      const baseAngle = (col / colCount) * Math.PI * 2;
+      const stagger = row % 2 === 1 ? Math.PI / colCount : 0;
+      const a = baseAngle + stagger + angle;
+
+      const x = radius * Math.sin(a);
+      const z = radius * Math.cos(a);
+      const y = (row - (rows - 1) / 2) * rowHeight;
+
+      const perspective = 500;
+      const scale = perspective / (perspective + z);
+      const projX = x * scale;
+      const projY = y * scale;
+
+      const normZ = (z + radius) / (2 * radius);
+      const opacity = 0.15 + 0.85 * normZ;
+
+      el.style.transform = `translate(-50%, -50%) translate(${projX}px, ${projY}px) scale(${scale})`;
+      el.style.opacity = String(opacity);
+      el.style.zIndex = String(Math.round(normZ * 100));
+      el.style.pointerEvents = normZ > 0.4 ? "auto" : "none";
+    });
+  }, [allSkills.length]);
+
+  useEffect(() => {
+    const animate = () => {
+      rotationRef.current += 0.004;
+      render();
+      rafRef.current = requestAnimationFrame(animate);
+    };
+    rafRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [render]);
+
+  const distributed: { skill: typeof allSkills[0]; row: number; col: number; colCount: number }[] = [];
+  let idx = 0;
+  for (let r = 0; r < rows; r++) {
+    const count = r < allSkills.length % rows ? perRow : Math.floor(allSkills.length / rows);
+    for (let c = 0; c < count && idx < allSkills.length; c++, idx++) {
+      distributed.push({ skill: allSkills[idx], row: r, col: c, colCount: count });
+    }
+  }
+
+  return (
+    <div
+      ref={containerRef}
+      className="relative w-full select-none overflow-hidden"
+      style={{ height: cylinderHeight + 40 }}
+    >
+      {distributed.map(({ skill, row, col, colCount }) => (
+        <a
+          key={skill.name}
+          data-cyl
+          data-row={row}
+          data-col={col}
+          data-colcount={colCount}
+          href={skill.url}
+          target="_blank"
+          rel="noreferrer"
+          className="absolute left-1/2 top-1/2 flex items-center gap-1 px-2 py-1 rounded-full bg-white/90 dark:bg-zinc-800/90 border border-zinc-200 dark:border-zinc-700 shadow-sm whitespace-nowrap"
+        >
+          <Image
+            src={skill.image}
+            alt={skill.name}
+            width={14}
+            height={14}
+            className="object-contain w-3.5 h-3.5"
+          />
+          <span className="text-[10px] font-medium text-zinc-700 dark:text-zinc-300">
+            {skill.name}
+          </span>
+        </a>
+      ))}
+    </div>
+  );
+}
+
 function Hero() {
   return (
-    <section id="skills" className="min-h-screen flex items-center pt-16 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 py-16 md:py-24 w-full">
+    <section id="skills" className="min-h-[100dvh] md:min-h-screen flex items-center pt-20 md:pt-16 overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6 py-10 md:py-24 w-full">
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
           {/* Left: profile info */}
           <div className="flex-1 text-center md:text-left">
-            <div className="w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden mx-auto md:mx-0 mb-8 ring-2 ring-zinc-200 dark:ring-zinc-700">
+            <div className="w-20 h-20 md:w-28 md:h-28 rounded-full overflow-hidden mx-auto md:mx-0 mb-6 md:mb-8 ring-2 ring-zinc-200 dark:ring-zinc-700">
               <Image
                 src={selfie}
                 alt="Chhayansh Purohit"
@@ -101,13 +202,13 @@ function Hero() {
                 priority
               />
             </div>
-            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-zinc-900 dark:text-white mb-4">
+            <h1 className="font-heading text-3xl md:text-5xl lg:text-6xl font-bold text-zinc-900 dark:text-white mb-3 md:mb-4">
               Chhayansh Purohit
             </h1>
-            <p className="text-lg md:text-xl text-zinc-500 dark:text-zinc-300 mb-8">
+            <p className="text-base md:text-xl text-zinc-500 dark:text-zinc-300 mb-6 md:mb-8">
               Data engineer. Explorer.
             </p>
-            <div className="flex items-center justify-center md:justify-start gap-4">
+            <div className="flex items-center justify-center md:justify-start gap-3 md:gap-4">
               <SocialLink
                 href="https://github.com/chhayanshp11"
                 label="GitHub"
@@ -129,9 +230,13 @@ function Hero() {
                 icon={<IconFileText size={20} />}
               />
             </div>
+            {/* Mobile: scrolling skill strip */}
+            <div className="md:hidden mt-4 -mx-6">
+              <SkillCylinder />
+            </div>
           </div>
-          {/* Right: skill sphere */}
-          <div className="flex-shrink-0 translate-x-10 md:translate-x-16">
+          {/* Right: skill sphere (desktop only) */}
+          <div className="hidden md:block flex-shrink-0 translate-x-10 md:translate-x-16">
             <SkillSphere />
           </div>
         </div>
@@ -167,7 +272,7 @@ function SocialLink({
 function About() {
   const { ref, visible } = useReveal<HTMLDivElement>();
   return (
-    <Section id="about" className="py-20 md:py-28">
+    <Section id="about" className="py-12 md:py-28">
       <div
         ref={ref}
         className={cn(
@@ -350,17 +455,18 @@ function RoleCard({ role }: { role: Role }) {
         className="w-full text-left cursor-pointer group/role"
       >
         <div className="flex items-start justify-between gap-2">
-          <div>
+          <div className="min-w-0">
             <p className="font-medium text-sm text-zinc-800 dark:text-zinc-200 group-hover/role:text-accent transition-colors">
               {role.title}
             </p>
-            <p className="text-xs text-zinc-400 dark:text-zinc-500 flex items-center gap-1 mt-0.5">
-              {role.type} <span className="mx-1">&middot;</span>{" "}
-              <IconMapPin size={12} /> {role.location}
+            <p className="text-xs text-zinc-400 dark:text-zinc-500 flex items-center gap-1 mt-0.5 flex-wrap">
+              {role.type} <span>&middot;</span> <IconMapPin size={12} /> {role.location}
+              <span className="md:hidden">&middot;</span>
+              <span className="md:hidden">{role.date}</span>
             </p>
           </div>
           <div className="flex items-center gap-1 shrink-0">
-            <span className="text-xs text-zinc-400 dark:text-zinc-500">
+            <span className="text-xs text-zinc-400 dark:text-zinc-500 hidden md:inline">
               {role.date}
             </span>
             {expanded ? (
@@ -414,14 +520,14 @@ function JourneyNode({
 
   return (
     <div
-      className="relative flex gap-4 md:gap-6"
+      className="relative flex gap-3 md:gap-6"
       style={{ animationDelay: `${index * 80}ms` }}
     >
       {/* Timeline spine */}
       <div className="flex flex-col items-center shrink-0">
         <div
           className={cn(
-            "w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shrink-0 ring-4 ring-surface dark:ring-surface-dark z-10 overflow-hidden",
+            "w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center shrink-0 ring-4 ring-surface dark:ring-surface-dark z-10 overflow-hidden",
             entry.logo
               ? "bg-white dark:bg-zinc-800"
               : entry.kind === "work"
@@ -435,7 +541,7 @@ function JourneyNode({
               alt={entry.org}
               width={36}
               height={36}
-              className="object-contain w-9 h-9"
+              className="object-contain w-7 h-7 md:w-9 md:h-9"
             />
           ) : (
             <span className="text-xs font-bold">{entry.initials}</span>
@@ -448,9 +554,9 @@ function JourneyNode({
 
       {/* Content */}
       <div className={cn("pb-8 md:pb-10 flex-1 min-w-0", isLast && "pb-0")}>
-        <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-4 md:p-5">
+        <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-3 md:p-5">
           {/* Header */}
-          <div className="flex items-start justify-between gap-3">
+          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-1 md:gap-3">
             <div className="min-w-0">
               <div className="flex items-center gap-2 flex-wrap">
                 <h3 className="font-heading font-semibold text-zinc-900 dark:text-white text-sm md:text-base">
@@ -467,11 +573,17 @@ function JourneyNode({
                   {entry.subtitle}
                 </p>
               )}
-              <p className="text-xs text-zinc-400 dark:text-zinc-500 flex items-center gap-1 mt-1.5">
-                <IconMapPin size={12} /> {entry.location}
-              </p>
+              <div className="flex items-center gap-2 mt-1.5 flex-wrap">
+                <p className="text-xs text-zinc-400 dark:text-zinc-500 flex items-center gap-1">
+                  <IconMapPin size={12} /> {entry.location}
+                </p>
+                <span className="text-xs text-zinc-300 dark:text-zinc-600 md:hidden">&middot;</span>
+                <span className="text-xs text-zinc-400 dark:text-zinc-500 md:hidden">
+                  {entry.date}
+                </span>
+              </div>
             </div>
-            <span className="text-xs text-zinc-400 dark:text-zinc-500 whitespace-nowrap shrink-0 mt-0.5">
+            <span className="text-xs text-zinc-400 dark:text-zinc-500 whitespace-nowrap shrink-0 mt-0.5 hidden md:block">
               {entry.date}
             </span>
           </div>
@@ -500,7 +612,7 @@ function Experience() {
   const { ref, visible } = useReveal<HTMLDivElement>();
 
   return (
-    <Section id="experience" className="py-20 md:py-28">
+    <Section id="experience" className="py-12 md:py-28">
       <div
         ref={ref}
         className={cn(
@@ -530,7 +642,7 @@ function Projects() {
   const { ref, visible } = useReveal<HTMLDivElement>();
 
   return (
-    <Section id="projects" className="py-20 md:py-28">
+    <Section id="projects" className="py-12 md:py-28">
       <div
         ref={ref}
         className={cn(
@@ -747,7 +859,7 @@ function Photography() {
   }, []);
 
   return (
-    <Section id="photography" className="py-20 md:py-28">
+    <Section id="photography" className="py-12 md:py-28">
       <div
         ref={ref}
         className={cn(
@@ -897,7 +1009,7 @@ function Testimonials() {
   const { ref, visible } = useReveal<HTMLDivElement>();
 
   return (
-    <Section id="testimonials" className="py-20 md:py-28">
+    <Section id="testimonials" className="py-12 md:py-28">
       <div
         ref={ref}
         className={cn(
@@ -949,7 +1061,7 @@ function Testimonials() {
 
 function Footer() {
   return (
-    <footer className="border-t border-zinc-200 dark:border-zinc-800 py-8 mt-10">
+    <footer className="border-t border-zinc-200 dark:border-zinc-800 py-6 md:py-8 mt-4 md:mt-10">
       <div className="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
         <p className="text-sm text-zinc-400 dark:text-zinc-500">
           Chhayansh Purohit
