@@ -871,8 +871,8 @@ const testimonialsData: Testimonial[] = [
   },
   {
     name: "Kory Bliss",
-    role: "Senior IT Internal Auditor",
-    company: "LPL Financial",
+    role: "Senior Internal Auditor - Enterprise Technology",
+    company: "Truist",
     linkedin: "https://www.linkedin.com/in/kory-bliss",
     text: "Chhayansh did a fantastic job during his time as an IT internal audit intern. He was able to quickly pickup concepts and put them into practice. Questions or concerns that were raised during the testing of controls were well thought out and showed an overall understanding of the purpose of the testing we were performing.",
   },
@@ -885,9 +885,9 @@ const testimonialsData: Testimonial[] = [
     text: "It was a pleasure to have Chhayansh intern with our IT Internal Audit team this Summer. He had a great work ethic, completing his testing ahead of schedule. He also knew when to raise questions to his Seniors and manage his workload with minimal oversight.",
   },
   {
-    name: "Amit Bhatt",
-    role: "Product Manager",
-    company: "ESEM Infostreamz",
+    name: "Amit Bhat",
+    role: "Project Manager",
+    company: "Velocis Systems Private Limited",
     linkedin: "https://www.linkedin.com/in/amit-bhatt-3809871b",
     text: "I had the privilege of working with Chhayansh during an internship where we focused on Google Cloud solutions. Chhayansh demonstrated exceptional technical proficiency and a deep understanding of cloud computing technologies. He consistently brought fresh perspectives and innovative solutions to the table.",
   },
