@@ -619,8 +619,9 @@ function SkillSphere() {
 
     const { x: rotX, y: rotY } = rotationRef.current;
     const items = container.querySelectorAll<HTMLElement>("[data-skill]");
-    const radius = 240;
-    const perspective = 700;
+    const w = container.offsetWidth;
+    const radius = w < 400 ? 150 : 240;
+    const perspective = w < 400 ? 500 : 700;
 
     items.forEach((el, i) => {
       const { theta, phi } = positionsRef.current[i];
@@ -695,7 +696,7 @@ function SkillSphere() {
   return (
     <div
       ref={containerRef}
-      className="relative w-[500px] h-[500px] mx-auto cursor-grab active:cursor-grabbing select-none"
+      className="relative w-[320px] h-[320px] md:w-[500px] md:h-[500px] mx-auto cursor-grab active:cursor-grabbing select-none"
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
@@ -708,7 +709,7 @@ function SkillSphere() {
           href={skill.url}
           target="_blank"
           rel="noreferrer"
-          className="absolute left-1/2 top-1/2 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 dark:bg-zinc-800/90 border border-zinc-200 dark:border-zinc-700 shadow-sm hover:shadow-md hover:border-accent/50 transition-shadow whitespace-nowrap pointer-events-auto"
+          className="absolute left-1/2 top-1/2 flex items-center gap-1 md:gap-2 px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-white/90 dark:bg-zinc-800/90 border border-zinc-200 dark:border-zinc-700 shadow-sm hover:shadow-md hover:border-accent/50 transition-shadow whitespace-nowrap pointer-events-auto"
           onClick={(e) => {
             if (Math.abs(velocityRef.current.x) > 0.003 || Math.abs(velocityRef.current.y) > 0.005) {
               e.preventDefault();
@@ -720,9 +721,9 @@ function SkillSphere() {
             alt={skill.name}
             width={20}
             height={20}
-            className="object-contain w-5 h-5"
+            className="object-contain w-3.5 h-3.5 md:w-5 md:h-5"
           />
-          <span className="text-xs font-medium text-zinc-700 dark:text-zinc-300">
+          <span className="text-[10px] md:text-xs font-medium text-zinc-700 dark:text-zinc-300">
             {skill.name}
           </span>
         </a>
