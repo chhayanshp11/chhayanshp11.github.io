@@ -1032,8 +1032,8 @@ export default function Home() {
       <About />
       <Experience />
       <Projects />
-      <Photography />
       <Testimonials />
+      <Photography />
       <Footer />
       <BackToTop />
     </main>
