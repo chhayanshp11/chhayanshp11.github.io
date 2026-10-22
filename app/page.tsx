@@ -20,7 +20,6 @@ import { useState, useEffect, useRef, useCallback } from "react";
 
 
 import skills from "@/lang/data-skills-en";
-import SkillCylinder from "./components/SkillCylinder";
 import projects from "@/lang/data-projects-en";
 import textsEn from "@/lang/data-texts-en";
 
@@ -131,9 +130,9 @@ function Hero() {
                 icon={<IconFileText size={20} />}
               />
             </div>
-            {/* Mobile: scrolling skill strip */}
-            <div className="md:hidden mt-4 -mx-6">
-              <SkillCylinder />
+            {/* Mobile: skill sphere */}
+            <div className="md:hidden mt-6 flex justify-center">
+              <SkillSphere />
             </div>
           </div>
           {/* Right: skill sphere (desktop only) */}
