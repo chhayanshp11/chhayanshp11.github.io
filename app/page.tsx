@@ -429,7 +429,7 @@ function JourneyNode({
           className={cn(
             "w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center shrink-0 ring-4 ring-surface dark:ring-surface-dark z-10 overflow-hidden",
             entry.logo
-              ? "bg-white dark:bg-zinc-800"
+              ? "bg-white"
               : entry.kind === "work"
                 ? "bg-accent/10 text-accent"
                 : "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
